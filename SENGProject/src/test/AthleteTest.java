@@ -24,7 +24,7 @@ class AthleteTest {
 		testAthlete.increaseDefence(27);
 		assertEquals(90, testAthlete.getDefenceStat());
 		testAthlete.increaseDefence(47);
-		assertEquals(100, testAth)
+		assertEquals(100, testAthlete.getDefenceStat());
 	}
 
 }
