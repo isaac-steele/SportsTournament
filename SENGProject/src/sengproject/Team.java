@@ -40,17 +40,35 @@ public class Team {
 		// boosts the attribute of a given player with the property and value of a given item
 		// removes the item from the inventory
 		String statType = item.getProperty();
+		
 		athlete.statType -= item.getStatValue();
 		inventory.remove(item);
 	}
 	
-	public void subPlayer(Athlete player, Athlete sub){
+	public void subAthlete(Athlete player, Athlete sub){
 		// swaps a reserve with an active player
 		activeTeam.remove(sub);
 		activeTeam.add(player);
 		reserves.remove(player);
 		reserves.add(player);
 	
+	public void addAthlete(Athlete newPlayer) {
+		
+		if (reserves.length() == 5) {
+			
+			replaceAthlete(newPlayer, oldPlayer)
+		}
+		else {
+			reserves.add(newPlayer);
+		}
+	}
+	
+	public void replaceAthlete(Athlete newPlayer) {
+		
+		reserves.remove(oldPlayer);
+		reserves.add(newPlayer);
+	}
 	
 }
+	
 
