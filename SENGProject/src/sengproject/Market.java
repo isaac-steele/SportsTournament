@@ -38,7 +38,7 @@ public class Market {
 	public void buyStarter(newAthlete Athlete, oldAthlete Athlete) {
 		
 		Team.addNewAthlete(newAthlete, oldAthlete);
-		Team.subAthlete
+		Team.subAthlete(newAthlete, oldAthlete);
 	}
 
 
