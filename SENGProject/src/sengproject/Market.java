@@ -20,12 +20,18 @@ public class Market {
 	 */
 	private ArrayList<Athlete> freeAgents;
 	
-
-
 	/**
 	 * sets the list of available items for purchase
 	 * @param availableItems
 	 */
+	
+	/**
+	 * view the teams money
+	 * @param team
+	 */
+	public void getMoney(Team team) {
+		team.getMoney();
+	}
 	public void setAvailableItems(ArrayList<Item> availableItems) {
 		this.availableItems = availableItems;
 	}
@@ -36,6 +42,13 @@ public class Market {
 	public ArrayList<Item> viewAvailableItems() {
 		return availableItems;
 	}
+	/**
+	 * @param item
+	 * adds a new item to the market
+	 */
+	public void addAvailableItem(Item item) {
+		availableItems.add(item);
+	}
 
 	/**
 	 * @return list of available players to be drafted
@@ -43,28 +56,58 @@ public class Market {
 	public ArrayList<Athlete> getFreeAgents() {
 		return freeAgents;
 	}
-
+	
+	/**
+	 * @param athlete
+	 * adds a new fre agent to the market
+	 */
+	public void addFreeAgent(Athlete athlete) {
+		freeAgents.add(athlete);
+	}
 	/**
 	 * sets the list of free agents
 	 * @param freeAgents
 	 */
-	
-	public void addFreeAgent(Athlete athlete) {
-		setFreeAgents()
-	}
-	public void setFreeAgents(List<Athlete> freeAgents) {
+	public void setFreeAgents(ArrayList<Athlete> freeAgents) {
 		this.freeAgents = freeAgents;
 	}
 	
+	/**
+	 * adds an athlete from market to the teams reserves and removes the athlete from the market
+	 * @param newAthlete
+	 * @param team
+	 */
 	public void buyReserve(Athlete newAthlete, Team team) {
 		
 		team.addNewAthlete(newAthlete);
+		freeAgents.remove(newAthlete);
 		
 	}
+	/**
+	 * buys a new athlete from the market and puts them on the reserves
+	 * then substitutes the other given player for the new one
+	 * @param newAthlete
+	 * @param subAthlete
+	 * @param team
+	 */
 	public void buyStarter(Athlete newAthlete, Athlete subAthlete, Team team) {
 		
 		team.addNewAthlete(newAthlete);
 		team.subAthlete(newAthlete, subAthlete);
+		freeAgents.remove(newAthlete);
+
+	}
+	
+	/**
+	 * purchase item from market 
+	 * @param item
+	 * @param team
+	 */
+	public void buyItem(Item item, Team team) {
+		team.addItem(item);
+		availableItems.remove(item);
+		team.setMoney(team.getMoney() - item.getPrice());
+		
 	}
 
 
