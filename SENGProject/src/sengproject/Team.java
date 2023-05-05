@@ -43,6 +43,20 @@ public class Team {
 	static boolean TeamFull;
 	
 	/**
+	 * @return the money
+	 */
+	public int getMoney() {
+		return money;
+	}
+
+	/**
+	 * @param money The money to set
+	 */
+	public void setMoney(int money) {
+		this.money = money;
+	}
+
+	/**
 	 * returns the team name
 	 * @return name The name of team
 	 */
@@ -121,6 +135,14 @@ public class Team {
 		inventory.remove(item);
 	}
 	
+	/**
+	 * adds an item to the inventory
+	 * @param item
+	 */
+	public void addItem(Item item) {
+		inventory.add(item);
+	}
+	
 	
 	/**
 	 * takes a reserve and an active player and adds the reserve to the active team and the active player to the reserves
@@ -144,10 +166,30 @@ public class Team {
 		if (reserves.size() == 5) {
 			TeamFull = true;
 		}
+		}
+		
+	/**
+	 * removes given athlete from team
+	 * @param athlete
+	 */
+	public void removeAthlete(Athlete athlete) {
+		
+		if (reserves.contains(athlete)) {
+			reserves.remove(athlete);
+			}
+		else {
+			activeTeam.remove(athlete);
+			}
 	}
-	
-	
-	
 }
+		
+		
+		
+		
+			
+	
+	
+	
+	
 	
 
