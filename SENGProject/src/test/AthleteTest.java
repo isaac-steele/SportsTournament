@@ -1,11 +1,13 @@
 package test;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 import org.junit.jupiter.api.Test;
 
 import sengproject.Athlete;
 
 class AthleteTest {
+	
 
 	@Test 
 	public void increaseOffenceTest() {
@@ -26,5 +28,34 @@ class AthleteTest {
 		testAthlete.increaseDefence(47);
 		assertEquals(100, testAthlete.getDefenceStat());
 	}
+	
+	@Test
+	public void increaseStaminaTest() {
+		Athlete testAthlete = new Athlete();
+		testAthlete.setStamina(72);
+		testAthlete.increaseStamina(12);
+		assertEquals(84, testAthlete.getStamina());
+		testAthlete.increaseStamina(43);
+		assertEquals(100, testAthlete.getStamina());
+	}
+	
+	@Test
+	public void decreaseStaminaTest() {
+		Athlete testAthlete = new Athlete();
+		testAthlete.decreaseStamina(72);
+		assertEquals(28, testAthlete.getStamina());
+		testAthlete.decreaseStamina(45);
+		assertEquals(0, testAthlete.getStamina());
+		
+	}
+	
+	@Test
+	public void restoreStaminaTest() {
+		Athlete testAthlete = new Athlete();
+		testAthlete.decreaseStamina(89);
+		testAthlete.restoreStamina();
+		assertEquals(100, testAthlete.getStamina());
+	}
+		
 
 }
