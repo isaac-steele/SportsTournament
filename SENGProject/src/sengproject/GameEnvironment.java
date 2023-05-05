@@ -46,6 +46,11 @@ public class GameEnvironment {
 	private int moneyAmount;
 	
 	/**
+	 * Instantiate a RandomEvent Object
+	 */
+	private RandomEvent randomEvent;
+	
+	/**
 	 * Returns the total number of weeks.
 	 * 
 	 * @return The total number of weeks.
@@ -96,7 +101,7 @@ public class GameEnvironment {
 	/**
 	 * Sets the amount of money the player has if they choose easy as their difficulty.
 	 * 
-	 * @param easyMoneyAmount The amount of money the player gets if their difficulty is easy.
+	 *@param easyMoneyAmount The amount of money the player gets if their difficulty is easy.
 	 */
 	public void setEasyMoneyAmount(int easyMoneyAmount) {
 		this.moneyAmount = easyMoneyAmount;
@@ -153,7 +158,24 @@ public class GameEnvironment {
 	 * - call random events method
 	 */
 	
+	if(randomEvent.getStatNumber() < 10) {
+		randomEvent.randomAthleteBoost();
+	}
+	
+	if(randomEvent.getQuitNumber() < randomEvent.getQuitChance()) {
+		randomEvent.randomAthleteQuits();
+	}
+	
+	if(randomEvent.getJoinNumber() < 10) {
+		randomEvent.randomAthleteJoins();
+	}
+	
+	
+	
+
 		
 	
-	
-}
+	 
+		
+		
+
