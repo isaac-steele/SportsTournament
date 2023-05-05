@@ -1,28 +1,57 @@
 package sengproject;
 
-import java.util.List;
+import java.util.ArrayList;
+
+/**
+ * contains the source code for the market interface
+ * where items can be purchased and players can be added/released
+ * @author rsc103
+ *
+ */
 
 public class Market {
 	
-	private List<Item> availableItems;
-	private List<Athlete> freeAgents;
+	/**
+	 * list of available items for purchase
+	 */
+	private ArrayList<Item> availableItems;
+	/**
+	 * list of available free agents
+	 */
+	private ArrayList<Athlete> freeAgents;
 	
 
 
-	public void setAvailableItems(List<Item> availableItems) {
+	/**
+	 * sets the list of available items for purchase
+	 * @param availableItems
+	 */
+	public void setAvailableItems(ArrayList<Item> availableItems) {
 		this.availableItems = availableItems;
 	}
 	
-	public List<Item> viewAvailableItems() {
-		
+	/**
+	 * @return list of available items
+	 */
+	public ArrayList<Item> viewAvailableItems() {
 		return availableItems;
 	}
 
-	public List<Athlete> getFreeAgents() {
+	/**
+	 * @return list of available players to be drafted
+	 */
+	public ArrayList<Athlete> getFreeAgents() {
 		return freeAgents;
 	}
 
-
+	/**
+	 * sets the list of free agents
+	 * @param freeAgents
+	 */
+	
+	public void addFreeAgent(Athlete athlete) {
+		setFreeAgents()
+	}
 	public void setFreeAgents(List<Athlete> freeAgents) {
 		this.freeAgents = freeAgents;
 	}
