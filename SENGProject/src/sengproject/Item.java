@@ -8,14 +8,14 @@ public class Item {
 	
 	private int price;
 	private int statValue;
-	private String property;
+	private String name;
 	
-	public String getProperty() {
-		return property;
+	public String getName() {
+		return name;
 	}
 	
-	public void setProperty(String property) {
-		this.property = property;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public int getStatValue() {

@@ -27,15 +27,15 @@ public class Market {
 		this.freeAgents = freeAgents;
 	}
 	
-	public void buyReserve(newAthlete Athlete, oldAthlete Athlete) {
+	public void buyReserve( Athlete newAthlete, Athlete oldAthlete) {
 		
-		if (Team.reserves.length() == 5) {
+		if (Team.viewReserves().length() == 5) {
 			
 		}
 		Team.addNewAthlete(newAthlete, oldAthlete);
 		
 	}
-	public void buyStarter(newAthlete Athlete, oldAthlete Athlete) {
+	public void buyStarter(Athlete newAthlete, Athlete oldAthlete) {
 		
 		Team.addNewAthlete(newAthlete, oldAthlete);
 		Team.subAthlete(newAthlete, oldAthlete);
