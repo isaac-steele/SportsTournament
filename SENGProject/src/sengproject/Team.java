@@ -1,9 +1,9 @@
 package sengproject;
 
+import java.util
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-
 /**
  * This class contains the source code for the team/club interface 
  * This is where the player can manage the team
@@ -20,11 +20,11 @@ public class Team {
 	/**
 	 * List of active players
 	 */
-	private List<Athlete> activeTeam;
+	private ArrayList<Athlete> activeTeam;
 	/**
 	 * List of reserves
 	 */
-	private List<Athlete> reserves;
+	private ArrayList<Athlete> reserves;
 	/**
 	 * The current amount of points the team has
 	 */
@@ -36,7 +36,7 @@ public class Team {
 	/**
 	 * List of items available for use
 	 */
-	private List<Item> inventory;
+	private ArrayList<Item> inventory;
 	/**
 	 * A boolean that is true only when the reserves are full
 	 * (when a player cannot be added to the team without replacing another)
@@ -63,7 +63,7 @@ public class Team {
 	 * returns list of active players on the team
 	 * @ return activeTeam
 	 */
-	public List<Athlete> viewActiveTeam() {
+	public ArrayList<Athlete> viewActiveTeam() {
 		return activeTeam;
 	}
 	
@@ -71,7 +71,7 @@ public class Team {
 	 * returns list of players on the bench
 	 * @return reserves
 	 */
-	public List<Athlete> viewReserves() {
+	public ArrayList<Athlete> viewReserves() {
 		return reserves;
 	}
 	
@@ -79,7 +79,7 @@ public class Team {
 	 * returns list of items in inventory
 	 * @return inventory
 	 */
-	public List<Item> viewItems(){
+	public ArrayList<Item> viewItems(){
 		return inventory;
 	}
 	
@@ -88,10 +88,10 @@ public class Team {
 	 * @param Athlete The athlete
 	 * @return properties The given athletes stats
 	 */
-	public Map<String, Integer> viewAthlete(Athlete athlete) {
+	public HashMap<String, Integer> viewAthlete(Athlete athlete) {
 		
 	
-		Map<String, Integer> properties = new HashMap();
+		HashMap<String, Integer> properties = new HashMap();
 		
 		properties.put("Offence", athlete.getOffenceStat());
 		properties.put("Defence", athlete.getDefenceStat());
