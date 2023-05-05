@@ -109,6 +109,29 @@ public class Market {
 		team.setMoney(team.getMoney() - item.getPrice());
 		
 	}
+	
+	/**
+	 * returns a reserve to the market
+	 * @param athlete
+	 * @param team
+	 */
+	public void returnReserve(Athlete athlete, Team team) {
+		
+		freeAgents.add(athlete);
+		team.removeReserve(athlete);
+	}
+	
+	/**
+	 * subs the athlete to be returned with another then returns the original athlete to the market
+	 * @param athlete
+	 * @param replacement
+	 * @param team
+	 */
+	public void returnStarter(Athlete athlete, Athlete replacement,Team team) {
+		team.subAthlete(replacement, athlete);
+		team.removeReserve(athlete);
+		freeAgents.add(athlete);
+	}
 
 
 	

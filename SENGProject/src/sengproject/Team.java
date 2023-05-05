@@ -1,5 +1,9 @@
 package sengproject;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> branch 'main' of https://eng-git.canterbury.ac.nz/rsc103/sengproject.git
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -172,15 +176,12 @@ public class Team {
 	 * removes given athlete from team
 	 * @param athlete
 	 */
-	public void removeAthlete(Athlete athlete) {
+	public void removeReserve(Athlete athlete) {
 		
-		if (reserves.contains(athlete)) {
-			reserves.remove(athlete);
-			}
-		else {
-			activeTeam.remove(athlete);
-			}
+		activeTeam.remove(athlete);
+			
 	}
+	
 }
 		
 		
