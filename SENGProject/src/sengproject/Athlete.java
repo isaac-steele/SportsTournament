@@ -20,7 +20,7 @@ package sengproject;
  * 
  * @author Isaac Steele 
  *
- */
+ */ 
 
 
 public class Athlete {
