@@ -171,7 +171,7 @@ public class GameEnvironment {
 		randomEvent.randomAthleteQuits();
 		}
 	
-		if(randomEvent.getJoinNumber() < randomEvent.getAthleteJoinChance()) {
+		if(randomEvent.getJoinNumber() < (randomEvent.getAthleteJoinChance() - 5)) {
 		randomEvent.randomAthleteJoins();
 		}
 	}
@@ -185,10 +185,11 @@ public class GameEnvironment {
 			randomEvent.randomAthleteQuits();
 		}
 		
-		if(randomEvent.getJoinNumber() < (randomEvent.getAthleteJoinChance()) + 5) {
+		if(randomEvent.getJoinNumber() < (randomEvent.getAthleteJoinChance())) {
 			randomEvent.randomAthleteJoins();
 		}
 	}
+
 }
 	
 	

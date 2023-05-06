@@ -116,19 +116,19 @@ public class RandomEvent {
 	public int getAthleteJoinChance() {
 		ArrayList<Athlete> reserves = team.viewReserves();
 		if(reserves.size() == 0) {
-			return 25;
+			return 30;
 		}
 		else if(reserves.size() == 1) {
-			return 20;
+			return 25;
 		}
 		else if(reserves.size() == 2) {
-			return 15;
+			return 20;
 		}
 		else if(reserves.size() == 3) {
-			return 10;
+			return 15;
 		}
 		else if(reserves.size() == 4) {
-			return 5;
+			return 10;
 		}
 		else {
 			return 0;
@@ -139,7 +139,8 @@ public class RandomEvent {
 	 * A random Athlete joins.
 	 */
 	public void randomAthleteJoins() {
-		
+		Athlete randomAthlete = Athlete.randomAthleteGenerator();
+		team.addNewAthlete(randomAthlete);
 	}
 	
 
