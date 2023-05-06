@@ -32,6 +32,10 @@ public class Market {
 	public void getMoney(Team team) {
 		team.getMoney();
 	}
+	/**
+	 * sets the list of items in the market
+	 * @param availableItems
+	 */
 	public void setAvailableItems(ArrayList<Item> availableItems) {
 		this.availableItems = availableItems;
 	}
@@ -95,7 +99,6 @@ public class Market {
 		team.addNewAthlete(newAthlete);
 		team.subAthlete(newAthlete, subAthlete);
 		freeAgents.remove(newAthlete);
-
 	}
 	
 	/**
