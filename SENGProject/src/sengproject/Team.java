@@ -10,7 +10,7 @@ import java.util.Map;
  * 
  * author @Reuben Schoonbee
  */
-public class Team implements Purchasable {
+public class Team {
 	
 
 	/**

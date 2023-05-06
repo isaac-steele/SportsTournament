@@ -27,7 +27,7 @@ import java.util.Random;
  */ 
 
 
-public class Athlete {
+public class Athlete implements Purchasable {
 	
 	
 	/**
