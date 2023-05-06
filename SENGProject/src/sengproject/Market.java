@@ -21,10 +21,22 @@ public class Market {
 	private ArrayList<Athlete> freeAgents;
 	
 	/**
-	 * sets the list of available items for purchase
-	 * @param availableItems
+	 * default constructor for market
+	 * sets availableItems to all possible items
+	 * creates a list of random athletes to be available for purchase
 	 */
-	
+	public Market() {
+		
+		for (Item item : Item.values()) {
+			availableItems.add(item);
+		}
+		
+		for (int i = 0; i < 5; i++ ) {
+			freeAgents.add(Athlete.randomAthleteGenerator());
+		}
+		
+
+	}
 	/**
 	 * view the teams money
 	 * @param team
@@ -36,9 +48,7 @@ public class Market {
 	 * sets the list of items in the market
 	 * @param availableItems
 	 */
-	public void setAvailableItems(ArrayList<Item> availableItems) {
-		this.availableItems = availableItems;
-	}
+	
 	
 	/**
 	 * @return list of available items
@@ -46,14 +56,6 @@ public class Market {
 	public ArrayList<Item> viewAvailableItems() {
 		return availableItems;
 	}
-	/**
-	 * @param item
-	 * adds a new item to the market
-	 */
-	public void addAvailableItem(Item item) {
-		availableItems.add(item);
-	}
-
 	/**
 	 * @return list of available players to be drafted
 	 */
@@ -83,9 +85,13 @@ public class Market {
 	 */
 	public void buyReserve(Athlete newAthlete, Team team) {
 		
+		team.setMoney(team.getMoney() - newAthlete.getPrice());
 		team.addNewAthlete(newAthlete);
 		freeAgents.remove(newAthlete);
 		
+		if (freeAgents.size() == 2) {
+			freeAgents.add(Athlete.randomAthleteGenerator());
+		}
 	}
 	/**
 	 * buys a new athlete from the market and puts them on the reserves
@@ -96,9 +102,14 @@ public class Market {
 	 */
 	public void buyStarter(Athlete newAthlete, Athlete subAthlete, Team team) {
 		
+		team.setMoney(team.getMoney() - newAthlete.getPrice());
 		team.addNewAthlete(newAthlete);
 		team.subAthlete(newAthlete, subAthlete);
 		freeAgents.remove(newAthlete);
+		
+		if (freeAgents.size() == 2) {
+			freeAgents.add(Athlete.randomAthleteGenerator());
+		}
 	}
 	
 	/**
@@ -108,9 +119,7 @@ public class Market {
 	 */
 	public void buyItem(Item item, Team team) {
 		team.addItem(item);
-		availableItems.remove(item);
 		team.setMoney(team.getMoney() - item.getPrice());
-		
 	}
 	
 	/**
@@ -120,6 +129,7 @@ public class Market {
 	 */
 	public void returnReserve(Athlete athlete, Team team) {
 		
+		team.setMoney(team.getMoney() + (athlete.getPrice() / 2));
 		freeAgents.add(athlete);
 		team.removeReserve(athlete);
 	}
@@ -131,6 +141,7 @@ public class Market {
 	 * @param team
 	 */
 	public void returnStarter(Athlete athlete, Athlete replacement,Team team) {
+		team.setMoney(team.getMoney() + (athlete.getPrice() / 2));
 		team.subAthlete(replacement, athlete);
 		team.removeReserve(athlete);
 		freeAgents.add(athlete);

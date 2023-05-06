@@ -1,9 +1,6 @@
 package sengproject;
 
-<<<<<<< HEAD
-=======
 
->>>>>>> branch 'main' of https://eng-git.canterbury.ac.nz/rsc103/sengproject.git
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -13,7 +10,7 @@ import java.util.Map;
  * 
  * author @Reuben Schoonbee
  */
-public class Team {
+public class Team implements Purchasable {
 	
 
 	/**
@@ -30,12 +27,14 @@ public class Team {
 	private ArrayList<Athlete> reserves;
 	/**
 	 * The current amount of points the team has
+	 * set to 0 initially
 	 */
-	private int points;
+	private int points = 0;
 	/**
 	 * Current amount of money the team has
+	 * set to 100 initially
 	 */
-	private int money;
+	private int money = 100;
 	/**
 	 * List of items available for use
 	 */
@@ -48,6 +47,14 @@ public class Team {
 	
 	/**
 	 * @return the money
+	 */
+	
+	public Team(String name, ArrayList<Athlete> activeTeam) {
+		setName(name);
+		this.activeTeam = activeTeam;
+	}
+	/**
+	 * @return the teams money
 	 */
 	public int getMoney() {
 		return money;
@@ -107,7 +114,6 @@ public class Team {
 	 */
 	public HashMap<String, Integer> viewAthlete(Athlete athlete) {
 		
-	
 		HashMap<String, Integer> properties = new HashMap();
 		
 		properties.put("Offence", athlete.getOffenceStat());
@@ -126,14 +132,14 @@ public class Team {
 	 */
 	public void useItem(Item item, Athlete athlete) {
 		
-		String itemName = item.getName();
-		switch(itemName) {
-		case "Protein Shake":
-			athlete.setDefenceStat(athlete.getDefenceStat() - item.getStatValue());
-		case "Energy Drink":
-			athlete.setStamina(athlete.getStamina() - item.getStatValue());
-		case "Knee Sleeve":
-			athlete.setOffenceStat(athlete.getOffenceStat() - item.getStatValue());		
+		
+		switch(item) {
+		case PROTEIN_SHAKE:
+			athlete.setDefenceStat(athlete.getDefenceStat() - item.getStatBoost());
+		case ENERGY_DRINK:
+			athlete.setStamina(athlete.getStamina() - item.getStatBoost());
+		case KNEE_SLEEVE:
+			athlete.setOffenceStat(athlete.getOffenceStat() - item.getStatBoost());		
 		}
 		
 		inventory.remove(item);
