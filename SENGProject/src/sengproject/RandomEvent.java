@@ -73,7 +73,7 @@ public class RandomEvent {
 	 * Randomly chooses an athlete and boosts their stats.
 	 */
 	public void randomAthleteBoost() {
-		int randomInt = rng.nextInt(0,4);
+		int randomInt = rng.nextInt(4);
 		ArrayList<Athlete> activeTeam = team.viewActiveTeam();
 		Athlete boostedAthlete = activeTeam.get(randomInt);
 		boostedAthlete.increaseDefence(17);
@@ -85,7 +85,7 @@ public class RandomEvent {
 	 * @return A number
 	 */
 	public int getQuitChance() {
-		int randomInt = rng.nextInt(0,4);
+		int randomInt = rng.nextInt(4);
 		athleteIndex = randomInt;
 		ArrayList<Athlete> activeTeam = team.viewActiveTeam();
 		Athlete quitter = activeTeam.get(randomInt);
@@ -99,17 +99,47 @@ public class RandomEvent {
 	}
 	/**
 	 * Removes a random Athlete from the team. The Athlete has more of a chance to get removed if they are injured.
-	 * 
-	 * @param athleteIndex the index of the Athlete to be removed.
 	 */
-	public void randomAthleteQuits(int athleteIndex) {
+	public void randomAthleteQuits() {
 		ArrayList<Athlete> activeTeam = team.viewActiveTeam();
 		ArrayList<Athlete> reserves = team.viewReserves();
 		Athlete quitter = activeTeam.get(athleteIndex);
-		int randomSub = rng.nextInt(0,5);
+		int randomSub = rng.nextInt(5);
 		Athlete replacement = reserves.get(randomSub);
 		team.subAthlete(quitter, replacement);
 		team.removeReserve(quitter);
+	}
+	
+	/**
+	 * The chances increase depending on the number of free slots in the reserves.
+	 */
+	public int getAthleteJoinChance() {
+		ArrayList<Athlete> reserves = team.viewReserves();
+		if(reserves.size() == 0) {
+			return 25;
+		}
+		else if(reserves.size() == 1) {
+			return 20;
+		}
+		else if(reserves.size() == 2) {
+			return 15;
+		}
+		else if(reserves.size() == 3) {
+			return 10;
+		}
+		else if(reserves.size() == 4) {
+			return 5;
+		}
+		else {
+			return 0;
+		}
+	}
+	
+	/**
+	 * A random Athlete joins.
+	 */
+	public void randomAthleteJoins() {
+		
 	}
 	
 
