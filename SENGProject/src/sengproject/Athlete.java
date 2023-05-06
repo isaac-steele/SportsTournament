@@ -1,4 +1,8 @@
 package sengproject;
+
+import java.util.Random;
+
+
 /**
  * This class implements an Athlete which has different statistics and can have a nickname.
  * Athletes also have positions in which they play.
@@ -34,7 +38,7 @@ public class Athlete {
 	/**
 	 * The injury status of the Athlete
 	 */
-	private boolean injuryStatus;
+	private boolean injuryStatus = false;
 	/**
 	 * The offence statistic of the Athlete
 	 */
@@ -71,6 +75,7 @@ public class Athlete {
 		offenceStat = tempOffenceStat;
 		defenceStat = tempDefenceStat;
 		athletePrice = tempPrice;
+		
 	}
 	
 	/**
@@ -232,6 +237,34 @@ public class Athlete {
 	 */
 	public void restoreStamina() {
 		athleteStamina = 100;
+	}
+	/**
+	 * To String method for the Athlete Class
+	 */
+	public String toString() {
+		return "Name: " + athleteName + "\n" + "Offence: " + offenceStat + "\n" + "Defence: " + defenceStat + "\n" + "Stamina: " + athleteStamina + "\n" + "Price: " + athletePrice;
+	}
+	
+	/**
+	 * Random Athlete Generator
+	 */
+	public static Athlete randomAthleteGenerator() {
+		Random rng = new Random();
+		int randomDefence = rng.nextInt(51) + 50;
+		int randomOffence = rng.nextInt(51) + 50;
+		int price = (Math.max(randomDefence, randomOffence)) / 10;
+		String[] firstNames = {"John", "Matt", "Henry", "David", "Harry", "Joe", "Will", "Jack", "Luke", "Zach", "Ben", "James", "Adam", "Eric"};
+		String[] lastNames = {"Smith", "Wilson", "Lee", "Turner", "Adams", "Baker", "Young", "Thomposon", "Clark", "Garcia", "Rodriguez", "Martinez", "Patel", "Miller"};
+		String randomFirstName = firstNames[rng.nextInt(14)];
+		String randomLastName = lastNames[rng.nextInt(14)];
+		String randomName = randomFirstName + " " + randomLastName;
+		Athlete randomAthlete =  new Athlete(randomName, randomDefence, randomOffence, price);
+		return randomAthlete;
+		
+	}
+	
+	public static void main(String[] args) {
+		System.out.println(randomAthleteGenerator());
 	}
 	
 	
