@@ -31,9 +31,6 @@ public class Athlete {
 	 */
 	private String athleteName;
 	/**
-	 * The position the Athlete plays
-	 */
-	private String athletePosition;
 	/**
 	 * The injury status of the Athlete
 	 */
@@ -65,14 +62,12 @@ public class Athlete {
 	 * The main constructor for Athlete.
 	 * 
 	 * @param tempName The given name for the Athlete.
-	 * @param tempPosition The given position of the Athlete.
 	 * @param tempOffenceStat The given offence stat of the Athlete.
 	 * @param tempDefenceStat The given defence stat of the Athlete.
 	 * @param tempPrice The given price of the Athlete.
 	 */
-	public Athlete(String tempName, String tempPosition, int tempOffenceStat, int tempDefenceStat, int tempPrice) {
+	public Athlete(String tempName, int tempOffenceStat, int tempDefenceStat, int tempPrice) {
 		athleteName = tempName;
-		athletePosition = tempPosition;
 		offenceStat = tempOffenceStat;
 		defenceStat = tempDefenceStat;
 		athletePrice = tempPrice;
@@ -95,25 +90,6 @@ public class Athlete {
 	public void setName(String nickname) {
 		athleteName = nickname;
 	}
-	
-	/**
-	 * Returns the position of the Athlete.
-	 * 
-	 * @return The position the Athlete plays.
-	 */
-	public String getPosition() {
-		return athletePosition;
-	}
-	
-	/**
-	 * Sets the position of the Athlete.
-	 * 
-	 * @param position The position the Athlete plays.
-	 */
-	public void setPosition(String position) {
-		athletePosition = position;
-	}
-	
 	/**
 	 * Returns the injury status of the Athlete.
 	 * 
