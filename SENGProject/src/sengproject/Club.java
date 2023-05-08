@@ -68,6 +68,18 @@ public class Club extends Team{
 	}
 
 	/**
+	 * @return the points
+	 */
+	public int getPoints() {
+		return points;
+	}
+	/**
+	 * @param points the points to set
+	 */
+	public void setPoints(int points) {
+		this.points = points;
+	}
+	/**
 	 * returns the team name
 	 * @return name The name of team
 	 */
