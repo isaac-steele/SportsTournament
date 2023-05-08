@@ -5,12 +5,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 /**
- * This class contains the source code for the team/club interface 
- * This is where the player can manage the team
- * 
+ * This class contains the source code for the club interface 
+ * This is where the player can manage their team
+ * child class of team
  * author @Reuben Schoonbee
  */
-public class Team {
+public class Club extends Team{
 	
 
 	/**
@@ -49,7 +49,7 @@ public class Team {
 	 * @return the money
 	 */
 	
-	public Team(String name, ArrayList<Athlete> activeTeam) {
+	public Club(String name, ArrayList<Athlete> activeTeam) {
 		setName(name);
 		this.activeTeam = activeTeam;
 	}
