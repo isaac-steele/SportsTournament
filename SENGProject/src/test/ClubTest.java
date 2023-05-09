@@ -33,7 +33,45 @@ class ClubTest {
 	}
 	
 	@Test
-	public void AthletesTest() {
+	public void subAthletesTest() {
+		ArrayList<Athlete> athletes = new ArrayList<Athlete>();
+		ArrayList<Athlete> reserves = new ArrayList<Athlete>();
+		for(int i = 0; i < 4; i++) {
+			athletes.add(Athlete.randomAthleteGenerator());
+		}
+		for(int i = 0; i < 5; i++) {
+			reserves.add(Athlete.randomAthleteGenerator());
+		}
+		Club club = new Club("BOYS", athletes, reserves);
+		ArrayList<Athlete> clubAthletes = club.viewActiveTeam();
+		ArrayList<Athlete> clubReserves = club.viewReserves();
+		Athlete swappedReserve = clubReserves.get(0);
+		Athlete swappedActive = clubAthletes.get(0);
+		club.subAthlete(swappedReserve, swappedActive);
+		assertTrue(clubReserves.contains(swappedActive));
+		assertTrue(clubAthletes.contains(swappedReserve));
+	}
+	
+	@Test
+	public void addAthleteTest() {
+		ArrayList<Athlete> athletes = new ArrayList<Athlete>();
+		ArrayList<Athlete> reserves = new ArrayList<Athlete>();
+		for(int i = 0; i < 4; i++) {
+			athletes.add(Athlete.randomAthleteGenerator());
+		}
+		for(int i = 0; i < 5; i++) {
+			reserves.add(Athlete.randomAthleteGenerator());
+		}
+		Club club = new Club("BOYS", athletes, reserves);
+		ArrayList<Athlete> clubReserves = club.viewReserves();
+		Athlete newAthlete = Athlete.randomAthleteGenerator();
+		club.addNewAthlete(newAthlete);
+		assertEquals(5, clubReserves.size());
+		assertTrue(club.isTeamFull());
+		Athlete reserve = clubReserves.get(0);
+		club.removeReserve(reserve);
+		assertEquals(4,clubReserves.size());
+		assertFalse(club.isTeamFull());
 		
 	}
 

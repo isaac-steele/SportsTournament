@@ -35,16 +35,36 @@ public class Club extends Team{
 	 * A boolean that is true only when the reserves are full
 	 * (when a player cannot be added to the team without replacing another)
 	 */
-	static boolean TeamFull;
-	
-	/**
-	 * @return the money
-	 */
+	private boolean teamFull;
+
 	
 	public Club(String name, ArrayList<Athlete> activeTeam) {
 		super(name, activeTeam);
 		inventory = new ArrayList<Item>();
 		reserves = new ArrayList<Athlete>();
+	}
+	
+	public Club(String name, ArrayList<Athlete> activeTeam, ArrayList<Athlete> reserves) {
+		super(name, activeTeam);
+		inventory = new ArrayList<Item>();
+		this.reserves = reserves;
+	}
+	/**
+	 * Returns a boolean that is true if the team is full.
+	 * 
+	 * @return boolean of whether team is full or not.
+	 */
+	public boolean isTeamFull() {
+		return teamFull;
+	}
+	
+	/**
+	 * Sets when the team is full or not.
+	 * 
+	 * @param teamFull true or false, depending on whether the team is full or not.
+	 */
+	public void setTeamFull(boolean teamFull) {
+		this.teamFull = teamFull;
 	}
 	/**
 	 * @return the teams money
@@ -132,7 +152,7 @@ public class Club extends Team{
 		activeTeam.remove(sub);
 		activeTeam.add(player);
 		reserves.remove(player);
-		reserves.add(player);
+		reserves.add(sub);
 	}
 	
 	/**
@@ -140,19 +160,20 @@ public class Club extends Team{
 	 * @param newPlayer
 	 */
 	public void addNewAthlete(Athlete newPlayer) {
-		reserves.add(newPlayer);
-		if (reserves.size() == 5) {
-			TeamFull = true;
+		if (reserves.size() < 5) {
+			reserves.add(newPlayer);
+		} else {
+			teamFull = true;
 		}
-		}
-		
+	}	
 	/**
 	 * removes given athlete from team
 	 * @param athlete
 	 */
 	public void removeReserve(Athlete athlete) {
 		
-		activeTeam.remove(athlete);
+		reserves.remove(athlete);
+		teamFull = false;
 			
 	}
 	
