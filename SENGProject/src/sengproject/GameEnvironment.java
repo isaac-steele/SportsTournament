@@ -1,5 +1,7 @@
 package sengproject;
 
+import java.util.ArrayList;
+
 /**
  * This class contains the main game. It keeps track of the game and handles requests from the UI.
  * The player starts off in week 1 with a default amount of money. They can draft players and improve their stats with items.
@@ -22,11 +24,21 @@ package sengproject;
  * 
  * Should be the same for GUI and command line UI
  * 
- * @author Isaac Steele
+ * @author Isaac Steele + Reuben Schoonbee
  *
  */
 
 public class GameEnvironment {
+	/**
+	 * The list of athletes available to be drafted
+	 */
+	private ArrayList<Athlete> draft;
+	
+	/**
+	 * user interface instance
+	 * final variable
+	 */
+	private CommandLine ui;
 
 	/**
 	 * The total number of weeks.
@@ -59,6 +71,27 @@ public class GameEnvironment {
 	 * 
 	 * @return The total number of weeks.
 	 */
+	
+	public GameEnvironment(CommandLine ui, ArrayList<Athlete> draft ) {
+		
+		this.draft = draft;
+		this.ui = ui;
+		
+	/**
+	 * starts the game
+	 */
+	public void Start() {
+		ui.SetUp(this);
+	}
+	/**
+	 * finishes setup and starts the main game
+	 */
+	public FinishSetup() {
+		
+		
+	}
+		
+	}
 	public int getTotalWeeks() {
 		return totalWeeks;
 	}

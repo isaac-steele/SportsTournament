@@ -1,4 +1,7 @@
 package sengproject;
+
+import java.util.ArrayList;
+
 /**
  * Where application begins. 
  * Facilitates use of command line interface
@@ -10,7 +13,17 @@ public class Main {
 	
 	public static void main(String[] args) {
 		
-		GameEnvironment game = new GameEnvironment();
+		final ArrayList<Athlete> draft = new ArrayList();
+		
+		while (draft.size() <= 10) {
+			draft.add(Athlete.randomAthleteGenerator());
+		}
+		
+		CommandLine ui = new CommandLine();
+		
+		GameEnvironment game = new GameEnvironment(ui, draft);
+		game.start();
+		
 		
 	}
 

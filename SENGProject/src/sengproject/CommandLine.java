@@ -32,6 +32,27 @@ public class CommandLine {
 	public void SetUp(GameEnvironment game) {
 		
 		this.game = game;
+		
+	}
+	public String getName() {
+		System.out.println("Enter team name (must be one word");
+		
+		boolean pass = false;
+		while (pass == false) {
+			String name = scanner.nextLine();
+			if (name.length() >= 15) {
+				System.out.println("Name must be 15 characters or less");
+			}
+			else {
+				pass = true;
+				return name;
+			}
+		}
+		
+		
+			
+			
+		
 	}
 
 }
