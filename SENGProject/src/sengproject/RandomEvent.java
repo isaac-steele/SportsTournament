@@ -143,35 +143,37 @@ public class RandomEvent {
 		team.addNewAthlete(randomAthlete);
 	}
 	
+	public void doRandomEvent(String difficulty) {
+	
 	if (difficulty == "Hard") {
 		
-		if(randomEvent.getStatNumber() < 10) {
-		randomEvent.randomAthleteBoost();
+		if(getStatNumber() < 10) {
+			randomAthleteBoost();
 		}
 	
-		if(randomEvent.getQuitNumber() < randomEvent.getQuitChance()) {
-		randomEvent.randomAthleteQuits();
+		if(getQuitNumber() < getQuitChance()) {
+			randomAthleteQuits();
 		}
 	
-		if(randomEvent.getJoinNumber() < (randomEvent.getAthleteJoinChance() - 5)) {
-		randomEvent.randomAthleteJoins();
+		if(getJoinNumber() < (getAthleteJoinChance() - 5)) {
+			randomAthleteJoins();
 		}
 	}
 	
 	if(difficulty == "Easy") {
-		if(randomEvent.getStatNumber() < 20) {
-			randomEvent.randomAthleteBoost();
+		if(getStatNumber() < 20) {
+			randomAthleteBoost();
 		}
 		
-		if(randomEvent.getQuitNumber() < (randomEvent.getQuitChance()) - 5) {
-			randomEvent.randomAthleteQuits();
+		if(getQuitNumber() < (getQuitChance()) - 5) {
+			randomAthleteQuits();
 		}
 		
-		if(randomEvent.getJoinNumber() < (randomEvent.getAthleteJoinChance())) {
-			randomEvent.randomAthleteJoins();
+		if(getJoinNumber() < (getAthleteJoinChance())) {
+			randomAthleteJoins();
 		}
 	}
 	
-
+	}
 	
 }
