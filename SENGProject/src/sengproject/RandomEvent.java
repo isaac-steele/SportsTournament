@@ -145,34 +145,34 @@ public class RandomEvent {
 	
 	public void doRandomEvent(String difficulty) {
 	
-	if (difficulty == "Hard") {
+		if (difficulty == "Hard") {
+			
+			if(getStatNumber() < 10) {
+				randomAthleteBoost();
+			}
 		
-		if(getStatNumber() < 10) {
-			randomAthleteBoost();
+			if(getQuitNumber() < getQuitChance()) {
+				randomAthleteQuits();
+			}
+		
+			if(getJoinNumber() < (getAthleteJoinChance() - 5)) {
+				randomAthleteJoins();
+			}
 		}
 	
-		if(getQuitNumber() < getQuitChance()) {
-			randomAthleteQuits();
+		if(difficulty == "Easy") {
+			if(getStatNumber() < 20) {
+				randomAthleteBoost();
+			}
+			
+			if(getQuitNumber() < (getQuitChance()) - 5) {
+				randomAthleteQuits();
+			}
+			
+			if(getJoinNumber() < (getAthleteJoinChance())) {
+				randomAthleteJoins();
+			}
 		}
-	
-		if(getJoinNumber() < (getAthleteJoinChance() - 5)) {
-			randomAthleteJoins();
-		}
-	}
-	
-	if(difficulty == "Easy") {
-		if(getStatNumber() < 20) {
-			randomAthleteBoost();
-		}
-		
-		if(getQuitNumber() < (getQuitChance()) - 5) {
-			randomAthleteQuits();
-		}
-		
-		if(getJoinNumber() < (getAthleteJoinChance())) {
-			randomAthleteJoins();
-		}
-	}
 	
 	}
 	
