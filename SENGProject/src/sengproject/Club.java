@@ -2,7 +2,7 @@ package sengproject;
 
 
 import java.util.ArrayList;
-import java.util.HashMap;
+
 
 /**
  * This class contains the source code for the club interface 
@@ -43,6 +43,8 @@ public class Club extends Team{
 	
 	public Club(String name, ArrayList<Athlete> activeTeam) {
 		super(name, activeTeam);
+		inventory = new ArrayList<Item>();
+		reserves = new ArrayList<Athlete>();
 	}
 	/**
 	 * @return the teams money
@@ -88,20 +90,6 @@ public class Club extends Team{
 	}
 	
 	/**
-	 * returns a hash map of attribute type to attribute value for the given athlete
-	 * @param Athlete The athlete
-	 * @return properties The given athletes stats
-	 */
-	public HashMap<String, Integer> viewAthlete(Athlete athlete) {
-		
-		HashMap<String, Integer> properties = new HashMap<String, Integer>();
-		
-		properties.put("Offence", athlete.getOffenceStat());
-		properties.put("Defence", athlete.getDefenceStat());
-		properties.put("Stamina", athlete.getStamina());
-		return properties;	
-	}
-	/**
 	 * boosts the attribute of a given player with the property and value of a given item
 	 * then removes the item from the inventory
 	 * @param item The item to be used
@@ -112,11 +100,14 @@ public class Club extends Team{
 		
 		switch(item) {
 		case PROTEIN_SHAKE:
-			athlete.setDefenceStat(athlete.getDefenceStat() - item.getStatBoost());
+			athlete.setDefenceStat(athlete.getDefenceStat() + item.getStatBoost());
+			break;
 		case ENERGY_DRINK:
-			athlete.setStamina(athlete.getStamina() - item.getStatBoost());
+			athlete.setStamina(athlete.getStamina() + item.getStatBoost());
+			break;
 		case KNEE_SLEEVE:
-			athlete.setOffenceStat(athlete.getOffenceStat() - item.getStatBoost());		
+			athlete.setOffenceStat(athlete.getOffenceStat() + item.getStatBoost());
+			break;
 		}
 		
 		inventory.remove(item);

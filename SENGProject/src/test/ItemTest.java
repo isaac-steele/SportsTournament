@@ -38,6 +38,7 @@ class ItemTest {
 		assertEquals(4, price);
 		assertEquals(5, statBoost);
 		assertEquals("Offence", stat);
+		
 	}
 
 }

@@ -143,6 +143,35 @@ public class RandomEvent {
 		team.addNewAthlete(randomAthlete);
 	}
 	
+	if (difficulty == "Hard") {
+		
+		if(randomEvent.getStatNumber() < 10) {
+		randomEvent.randomAthleteBoost();
+		}
+	
+		if(randomEvent.getQuitNumber() < randomEvent.getQuitChance()) {
+		randomEvent.randomAthleteQuits();
+		}
+	
+		if(randomEvent.getJoinNumber() < (randomEvent.getAthleteJoinChance() - 5)) {
+		randomEvent.randomAthleteJoins();
+		}
+	}
+	
+	if(difficulty == "Easy") {
+		if(randomEvent.getStatNumber() < 20) {
+			randomEvent.randomAthleteBoost();
+		}
+		
+		if(randomEvent.getQuitNumber() < (randomEvent.getQuitChance()) - 5) {
+			randomEvent.randomAthleteQuits();
+		}
+		
+		if(randomEvent.getJoinNumber() < (randomEvent.getAthleteJoinChance())) {
+			randomEvent.randomAthleteJoins();
+		}
+	}
+	
 
 	
 }

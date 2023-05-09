@@ -62,11 +62,6 @@ public class GameEnvironment {
 	private String difficulty;
 	
 	/**
-	 * Instantiate a RandomEvent Object
-	 */
-	private RandomEvent randomEvent;
-	
-	/**
 	 * Returns the total number of weeks.
 	 * 
 	 * @return The total number of weeks.
@@ -128,20 +123,12 @@ public class GameEnvironment {
 		return moneyAmount;
 	}
 	/**
-	 * Sets the amount of money the player has if they choose hard as their difficulty.
+	 * Sets the amount of money the player has based on their difficulty setting.
 	 * 
-	 * @param hardMoneyAmount The amount of money the player gets if their difficulty is hard.
+	 *@param money The amount of money the player gets.
 	 */
-	public void setHardMoneyAmount(int hardMoneyAmount) {
-		this.moneyAmount = hardMoneyAmount;
-	}
-	/**
-	 * Sets the amount of money the player has if they choose easy as their difficulty.
-	 * 
-	 *@param easyMoneyAmount The amount of money the player gets if their difficulty is easy.
-	 */
-	public void setEasyMoneyAmount(int easyMoneyAmount) {
-		this.moneyAmount = easyMoneyAmount;
+	public void setMoneyAmount(int money) {
+		this.moneyAmount = money;
 	}
 	/**
 	 * Updates the current week. This will occur after a bye.
@@ -154,6 +141,22 @@ public class GameEnvironment {
 	 */
 	public void updateWeeksRemaining() {
 		weeksRemaining -= 1;
+	}
+	/**
+	 * Sets the difficulty of the game
+	 * 
+	 * @param difficulty The difficulty chosen in the setup
+	 */
+	public void setDifficulty(String difficulty) {
+		this.difficulty = difficulty;
+	}
+	/**
+	 * Gets the difficulty of the game.
+	 * 
+	 * @return The game difficulty
+	 */
+	public String getDifficulty() {
+		return difficulty;
 	}
 	
 	/*
@@ -194,34 +197,7 @@ public class GameEnvironment {
 	 * - Specially train Athlete: 1
 	 * - call random events method
 	 */
-	if (difficulty == "Hard") {
 	
-		if(randomEvent.getStatNumber() < 10) {
-		randomEvent.randomAthleteBoost();
-		}
-	
-		if(randomEvent.getQuitNumber() < randomEvent.getQuitChance()) {
-		randomEvent.randomAthleteQuits();
-		}
-	
-		if(randomEvent.getJoinNumber() < (randomEvent.getAthleteJoinChance() - 5)) {
-		randomEvent.randomAthleteJoins();
-		}
-	}
-	
-	if(difficulty == "Easy") {
-		if(randomEvent.getStatNumber() < 20) {
-			randomEvent.randomAthleteBoost();
-		}
-		
-		if(randomEvent.getQuitNumber() < (randomEvent.getQuitChance()) - 5) {
-			randomEvent.randomAthleteQuits();
-		}
-		
-		if(randomEvent.getJoinNumber() < (randomEvent.getAthleteJoinChance())) {
-			randomEvent.randomAthleteJoins();
-		}
-	}
 
 }
 	

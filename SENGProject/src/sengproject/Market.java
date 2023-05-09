@@ -14,11 +14,11 @@ public class Market {
 	/**
 	 * list of available items for purchase
 	 */
-	private ArrayList<Item> availableItems;
+	private ArrayList<Item> availableItems = new ArrayList<Item>();
 	/**
 	 * list of available free agents
 	 */
-	private ArrayList<Athlete> freeAgents;
+	private ArrayList<Athlete> freeAgents = new ArrayList<Athlete>();
 	
 	/**
 	 * default constructor for market
