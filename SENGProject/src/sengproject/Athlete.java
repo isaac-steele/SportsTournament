@@ -262,6 +262,24 @@ public class Athlete implements Purchasable {
 		return randomAthlete;
 		
 	}
+	/**
+	 * Random Athlete Generator based on the number of weeks remaining
+	 * 
+	 * @param randomDefence A randomly generated defence stat based on the weeks remaining
+	 * @param randomOffence A randomly generated offence stat based on the weeks remaining
+	 */
+	public static Athlete randomAthleteGenerator(int randomDefence, int randomOffence ) {
+		Random rng = new Random();
+		int price = (Math.max(randomDefence, randomOffence)) / 10;
+		String[] firstNames = {"John", "Matt", "Henry", "David", "Harry", "Joe", "Will", "Jack", "Luke", "Zach", "Ben", "James", "Adam", "Eric"};
+		String[] lastNames = {"Smith", "Wilson", "Lee", "Turner", "Adams", "Baker", "Young", "Thomposon", "Clark", "Garcia", "Rodriguez", "Martinez", "Patel", "Miller"};
+		String randomFirstName = firstNames[rng.nextInt(14)];
+		String randomLastName = lastNames[rng.nextInt(14)];
+		String randomName = randomFirstName + " " + randomLastName;
+		Athlete randomAthlete =  new Athlete(randomName, randomDefence, randomOffence, price);
+		return randomAthlete;
+		
+	}
 	
 	
 	

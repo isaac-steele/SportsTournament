@@ -10,7 +10,7 @@ public class Stadium {
 	/**
 	 * list of possible matches to play
 	 */
-	private ArrayList<Match> matches;
+	private ArrayList<Team> matches;
 	
 	/**
 	 * default constructor for stadium which creates list of matches
@@ -18,7 +18,7 @@ public class Stadium {
 	public Stadium() {
 		
 		for (int i = 0; i <3; i ++) {
-			Match match = Match.randomMatchGenerator();
+			Team match = Team.randomTeamGenerator();
 			this.matches.add(match);
 		}
 	}
@@ -26,7 +26,7 @@ public class Stadium {
 	/**
 	 * @return the available matches
 	 */
-	public ArrayList<Match> getMatches() {
+	public ArrayList<Team> getMatches() {
 		return matches;
 	}
 

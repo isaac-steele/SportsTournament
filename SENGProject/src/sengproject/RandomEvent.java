@@ -14,7 +14,7 @@ import java.util.Random;
 
 public class RandomEvent {
 	/**
-	 * Instantiates a Team Object.
+	 * Instantiates a Club Object.
 	 */
 	private Club team;
 	/**
