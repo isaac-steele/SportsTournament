@@ -27,7 +27,7 @@ class AthleteTest {
 		assertEquals(90, testAthlete.getDefenceStat());
 		testAthlete.increaseDefence(47);
 		assertEquals(100, testAthlete.getDefenceStat());
-	}
+	} 
 	
 	@Test
 	public void increaseStaminaTest() {
@@ -56,6 +56,8 @@ class AthleteTest {
 		testAthlete.restoreStamina();
 		assertEquals(100, testAthlete.getStamina());
 	}
+	
+	
 		
 
 }

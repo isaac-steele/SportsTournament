@@ -99,11 +99,8 @@ public class Club extends Team{
 		properties.put("Offence", athlete.getOffenceStat());
 		properties.put("Defence", athlete.getDefenceStat());
 		properties.put("Stamina", athlete.getStamina());
-		return properties;
-			
+		return properties;	
 	}
-	
-	
 	/**
 	 * boosts the attribute of a given player with the property and value of a given item
 	 * then removes the item from the inventory

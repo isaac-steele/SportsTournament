@@ -1,5 +1,6 @@
 package sengproject;
 
+import java.util.HashMap;
 import java.util.Random;
 
 
@@ -172,7 +173,7 @@ public class Athlete implements Purchasable {
 	 * @return The price of the Athlete
 	 */
 	public int getPrice() {
-		return athletePrice;
+		return athletePrice; 
 	}
 	
 	/**
