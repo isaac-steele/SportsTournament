@@ -81,12 +81,20 @@ public class GameEnvironment {
 	/**
 	 * finishes setup and starts the main game
 	 */
-	public FinishSetup() {
-		
-		
+	public void finishSetup(String name, ArrayList<Athlete> team, int numWeeks) {
+		ui.start(); 	
 	}
 		
+	
+	/**
+	 * @return the draft
+	 */
+	public ArrayList<Athlete> getDraft() {
+		return draft;
 	}
+	/**
+	 * @return the amount of weeks the game shall be played for
+	 */
 	public int getTotalWeeks() {
 		return totalWeeks;
 	}
