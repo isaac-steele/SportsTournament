@@ -16,7 +16,7 @@ public class RandomEvent {
 	/**
 	 * Instantiates a Team Object.
 	 */
-	private Team team;
+	private Club team;
 	/**
 	 * Instantiates a Random Object
 	 */
@@ -26,7 +26,7 @@ public class RandomEvent {
 	 * 
 	 * @param team Allows for access to team methods 
 	 */
-	public RandomEvent(Team team) {
+	public RandomEvent(Club team) {
 		this.team = team;
 	}
 	/**

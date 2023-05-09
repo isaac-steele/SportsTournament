@@ -2,10 +2,7 @@ package sengproject;
 
 import java.util.ArrayList;
 
-import sengproject.Athlete;
-import sengproject.Stadium;
-import sengproject.Team;
-import sengproject.Club;
+
 /**
  * Matches will be generated randomly and will get harder as weeks go on.
  * In a match, the stat of their position will be compared.
@@ -20,7 +17,7 @@ public class Match extends Stadium{
 	/**
 	 * Play match
 	 */
-	public String playMatch(Club me, Team opponent) {
+	public static String playMatch(Club me, Team opponent) {
 		int myScore = 0;
 		int opponentScore = 0;
 		ArrayList<Athlete> myTeam = me.viewActiveTeam();

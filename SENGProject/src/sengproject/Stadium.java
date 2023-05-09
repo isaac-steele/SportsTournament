@@ -55,13 +55,13 @@ public class Stadium {
 			
 			String result = Match.playMatch(club, opponent);
 			switch(result) {
-			case 'W':
+			case "W":
 				club.setPoints(club.getPoints() + 3);
 				club.setMoney(club.getMoney() + 5000);
-			case 'D':
+			case "D":
 				club.setPoints(club.getPoints() + 1);
 				club.setMoney(club.getMoney() + 1000);
-			case 'L':
+			case "L":
 				club.setPoints(club.getPoints() + 0);
 			}
 			

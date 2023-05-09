@@ -3,7 +3,7 @@ package sengproject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
+
 /**
  * This class contains the source code for the club interface 
  * This is where the player can manage their team
@@ -13,14 +13,6 @@ import java.util.Map;
 public class Club extends Team{
 	
 
-	/**
-	 * The teams name
-	 */
-	private String name;
-	/**
-	 * List of active players
-	 */
-	private ArrayList<Athlete> activeTeam;
 	/**
 	 * List of reserves
 	 */
@@ -50,8 +42,7 @@ public class Club extends Team{
 	 */
 	
 	public Club(String name, ArrayList<Athlete> activeTeam) {
-		setName(name);
-		this.activeTeam = activeTeam;
+		super(name, activeTeam);
 	}
 	/**
 	 * @return the teams money
@@ -79,29 +70,6 @@ public class Club extends Team{
 	public void setPoints(int points) {
 		this.points = points;
 	}
-	/**
-	 * returns the team name
-	 * @return name The name of team
-	 */
-	public String viewName() {
-		return name;
-	}
-	
-	/**
-	 * sets team name
-	 * @param name
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
-	
-	/**
-	 * returns list of active players on the team
-	 * @ return activeTeam
-	 */
-	public ArrayList<Athlete> viewActiveTeam() {
-		return activeTeam;
-	}
 	
 	/**
 	 * returns list of players on the bench
@@ -126,7 +94,7 @@ public class Club extends Team{
 	 */
 	public HashMap<String, Integer> viewAthlete(Athlete athlete) {
 		
-		HashMap<String, Integer> properties = new HashMap();
+		HashMap<String, Integer> properties = new HashMap<String, Integer>();
 		
 		properties.put("Offence", athlete.getOffenceStat());
 		properties.put("Defence", athlete.getDefenceStat());
