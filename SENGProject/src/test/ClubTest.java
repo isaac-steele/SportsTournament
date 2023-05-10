@@ -29,7 +29,10 @@ class ClubTest {
 		club.useItem(Item.PROTEIN_SHAKE, athlete);
 		assertEquals(80, athlete.getStamina());
 		assertEquals(75, athlete.getOffenceStat());
-		assertEquals(75, athlete.getDefenceStat());	
+		assertEquals(75, athlete.getDefenceStat());
+		ArrayList<Item> items = club.viewItems();
+		assertEquals(0, items.size());
+		
 	}
 	
 	@Test
@@ -65,13 +68,17 @@ class ClubTest {
 		Club club = new Club("BOYS", athletes, reserves);
 		ArrayList<Athlete> clubReserves = club.viewReserves();
 		Athlete newAthlete = Athlete.randomAthleteGenerator();
-		club.addNewAthlete(newAthlete);
+		assertThrows(ArrayIndexOutOfBoundsException.class, () -> club.addNewAthlete(newAthlete));
 		assertEquals(5, clubReserves.size());
 		assertTrue(club.isTeamFull());
 		Athlete reserve = clubReserves.get(0);
 		club.removeReserve(reserve);
 		assertEquals(4,clubReserves.size());
 		assertFalse(club.isTeamFull());
+		club.addNewAthlete(newAthlete);
+		assertEquals(5, clubReserves.size());
+		assertTrue(clubReserves.contains(newAthlete));
+		assertTrue(club.isTeamFull());
 		
 	}
 

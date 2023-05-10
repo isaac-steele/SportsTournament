@@ -160,11 +160,16 @@ public class Club extends Team{
 	 * @param newPlayer
 	 */
 	public void addNewAthlete(Athlete newPlayer) {
-		if (reserves.size() < 5) {
-			reserves.add(newPlayer);
-		} else {
-			teamFull = true;
+		if(reserves.size() == 5) {
+			setTeamFull(true);
+			throw new ArrayIndexOutOfBoundsException("Maximum size of reserves is 5");
 		}
+		else {
+			reserves.add(newPlayer);
+			if(reserves.size() == 5) {
+				setTeamFull(true);
+			}
+		} 	
 	}	
 	/**
 	 * removes given athlete from team
@@ -173,7 +178,7 @@ public class Club extends Team{
 	public void removeReserve(Athlete athlete) {
 		
 		reserves.remove(athlete);
-		teamFull = false;
+		setTeamFull(false);
 			
 	}
 	
