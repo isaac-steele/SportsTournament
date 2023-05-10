@@ -208,4 +208,8 @@ public class CommandLine {
 		
 	}
 
+	public void printClubOptions() {
+		
+		System.out.println("1: ")
+
 }
