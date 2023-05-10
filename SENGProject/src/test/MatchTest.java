@@ -30,7 +30,7 @@ class MatchTest {
 		assertEquals("D", result);
 		ArrayList<Athlete> clubTeam = myClub.viewActiveTeam();
 		Athlete myFirstDefender = clubTeam.get(0);
-		Athlete myFirstAttacker = clubTeam.get(3);
+		Athlete myFirstAttacker = clubTeam.get(2);
 		assertEquals(85,myFirstAttacker.getStamina());
 		assertEquals(90,myFirstDefender.getStamina());
 		myFirstAttacker.setStamina(3);
@@ -40,6 +40,16 @@ class MatchTest {
 		assertEquals(0, myFirstAttacker.getStamina());
 		assertEquals(80, myFirstDefender.getStamina());
 		assertTrue(myFirstAttacker.getInjuryStatus());
+		myFirstDefender.setDefenceStat(57);
+		myFirstDefender.setStamina(15);
+		Athlete mySecondDefender = clubTeam.get(1);
+		mySecondDefender.setDefenceStat(60);
+		myFirstAttacker.setOffenceStat(81);
+		String lossResult = Match.playMatch(myClub, opps);
+		assertEquals("L", lossResult);
+		assertEquals(0, myFirstDefender.getStamina());
+		assertTrue(myFirstDefender.getInjuryStatus());
+		
 	}
 
 }

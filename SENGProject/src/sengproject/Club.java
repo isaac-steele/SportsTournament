@@ -167,7 +167,7 @@ public class Club extends Team{
 		else {
 			reserves.add(newPlayer);
 			if(reserves.size() == 5) {
-				setTeamFull(true);
+				setTeamFull(true); 
 			}
 		} 	
 	}	

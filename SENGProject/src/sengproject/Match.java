@@ -12,7 +12,7 @@ import java.util.ArrayList;
  *
  */
 
-public class Match extends Stadium{
+public class Match {
 	
 	/**
 	 * Play match
