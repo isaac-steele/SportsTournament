@@ -35,6 +35,11 @@ public class GameEnvironment {
 	private ArrayList<Athlete> draft;
 	
 	/**
+	 * the club object which will be used for the entirety of the game
+	 */
+	private final Club club;
+	
+	/**
 	 * user interface instance
 	 * final variable
 	 */
@@ -62,11 +67,10 @@ public class GameEnvironment {
 	private String difficulty;
 	
 	/**
-	 * Returns the total number of weeks.
-	 * 
-	 * @return The total number of weeks.
+	 * constructor for game environment, used once at the beginning of the game form the main method
+	 * @param ui
+	 * @param draft
 	 */
-	
 	public GameEnvironment(CommandLine ui, ArrayList<Athlete> draft ) {
 		
 		this.draft = draft;
@@ -82,10 +86,11 @@ public class GameEnvironment {
 	 * finishes setup and starts the main game
 	 */
 	public void finishSetup(String name, ArrayList<Athlete> team, int numWeeks) {
-		ui.start(); 	
+		this.totalWeeks = numWeeks;
+		Club club = new Club(name,team);
+		ui.start(club); 	
 	}
 		
-	
 	/**
 	 * @return the draft
 	 */
@@ -205,6 +210,22 @@ public class GameEnvironment {
 	 * - Specially train Athlete: 1
 	 * - call random events method
 	 */
+	
+	public void printClubOptions() {
+		
+		System.out.println("1: View active team");
+		System.out.println("2: View reserves");
+		System.out.println("3: View inventory");
+	}
+	
+	public void printStadiumOptions() {
+	
+		System.out.println("Please select the team you want to play");
+		System.out.println("1: "+stadium.getMatches())
+	}
+	public void printMarketOptions() {
+		Syste
+	}
 	
 
 }

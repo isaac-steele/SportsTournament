@@ -22,7 +22,7 @@ public class CommandLine {
 	private final Scanner scanner;
 	
 	/**
-	* default constructor which creates an instance of the command line interface which 
+	* default constructor which creates an instance of the command line interface with a scanner
 	*/
 	public CommandLine() {
 
@@ -30,7 +30,7 @@ public class CommandLine {
 		
 	}
 	/**
-	 * prompts the users name and athlete selection and returns the information to the game environmnet
+	 * prompts the users name and athlete selection and returns the information to the game environment
 	 * @param game
 	 */
 	public void SetUp(GameEnvironment game) {
@@ -135,11 +135,77 @@ public class CommandLine {
 		
 		int i = 1;
 		for (Athlete athlete: draft) {
-			System.out.println(i+": "+athlete.toString());
+			System.out.println(i+": "+athlete);
 			i += 1;
 		}
 		
 	}
+	/**
+	 * starts the main game run loop where the user selects the action they want to perform
+	 * terminates when no more weeks are remaining
+	 * @param club
+	 */
+	public void start(Club club) {
+		
+		while (game.getWeeksRemaining() > 0) {
+			
+			Market market = new Market();
+			Stadium stadium = new Stadium();
+			boolean takeBye = false;
+			
+			do {
+				try {
+					int selection = scanner.nextInt();
+					if (selection == 4) {
+						takeBye = true;
+					}
+					else if (selection >= 1 && selection <= 3) {
+						handleMainOption(selection);
+					}
+				} catch (Exception error) {
+					System.out.println("Please enter a number between 1 and 4");
+				}
+				
+			} while (takeBye == false);
+			
+			game.updateWeeksRemaining();
+			game.updateCurrentWeek();
+		}
+
+		
+		
+	}
 	
+	/**
+	 * prints out the options available to the user from the main screen
+	 */
+	public void printMainOptions() {
+		
+		System.out.println("1: Go to club");
+		System.out.println("2: Go to stadium");
+		System.out.println("3: Go to market");
+		System.out.println("4: Take bye");
+	}
+	
+	/**
+	 * handles user selection from the main screen
+	 * @param selection
+	 */
+	public void handleMainOption(int selection) {
+		
+		switch (selection) {
+			default:
+				throw new IllegalArgumentException("Unexpected value");
+			case(1):
+				printClubOptions();
+			case(2):
+				printStadiumOptions();
+			case(3):
+				printMarketOptions();				
+			}
+		
+		}
+		
+	}
 
 }
