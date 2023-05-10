@@ -211,12 +211,6 @@ public class GameEnvironment {
 	 * - call random events method
 	 */
 	
-	public void printClubOptions() {
-		
-		System.out.println("1: View active team");
-		System.out.println("2: View reserves");
-		System.out.println("3: View inventory");
-	}
 	
 	public void printStadiumOptions() {
 	
@@ -227,6 +221,33 @@ public class GameEnvironment {
 		Syste
 	}
 	
+	public void handleClubOptions(int selection) {
+		
+		switch (selection) {
+			
+		default:
+			throw new IllegalArgumentException("Unexpected value");
+			
+		case(1):
+			for (Athlete athlete: club.viewActiveTeam()) {
+				System.out.println(athlete);
+			}
+		case(2):
+			for (Athlete athlete: club.viewReserves()) {
+				System.out.println(athlete);
+		case(3):
+			System.out.println(club.viewItems());
+		
+		case(4):
+			ui.printSubOffOptions(club);
+			int subOffIndex = ui.getIntegerInput(4);
+			ui.printSubOnOptions(club);
+			int subOnIndex = ui.getIntegerInput(club.viewReserves().size());
+			club.subAthlete(club.viewActiveTeam().get(subOffIndex), club.viewReserves().get(subOnIndex));
+		
+		case(5)
+		}
+	}
 
 }
 	

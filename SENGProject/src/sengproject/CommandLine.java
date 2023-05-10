@@ -1,6 +1,8 @@
 package sengproject;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
@@ -151,31 +153,37 @@ public class CommandLine {
 			
 			Market market = new Market();
 			Stadium stadium = new Stadium();
-			boolean takeBye = false;
+			mainScreen();
 			
-			do {
-				try {
-					int selection = scanner.nextInt();
-					if (selection == 4) {
-						takeBye = true;
-					}
-					else if (selection >= 1 && selection <= 3) {
-						handleMainOption(selection);
-					}
-				} catch (Exception error) {
-					System.out.println("Please enter a number between 1 and 4");
-				}
-				
-			} while (takeBye == false);
 			
-			game.updateWeeksRemaining();
-			game.updateCurrentWeek();
 		}
-
-		
 		
 	}
 	
+	public void mainScreen() {
+		
+		boolean takeBye = false;
+		
+		do {
+			try {
+				int selection = scanner.nextInt();
+				if (selection == 4) {
+					takeBye = true;
+				}
+				else if (selection >= 1 && selection <= 3) {
+					handleMainOption(selection);
+				}
+			} catch (Exception error) {
+				System.out.println("Please enter a number between 1 and 4");
+				scanner.nextLine();
+			}
+			
+		} while (takeBye == false);
+		
+		game.updateWeeksRemaining();
+		game.updateCurrentWeek();
+		start(club);
+	}
 	/**
 	 * prints out the options available to the user from the main screen
 	 */
@@ -198,18 +206,75 @@ public class CommandLine {
 				throw new IllegalArgumentException("Unexpected value");
 			case(1):
 				printClubOptions();
+				selection = getIntegerInput(3);
+				game.handleClubOptions(5); 
 			case(2):
 				printStadiumOptions();
 			case(3):
 				printMarketOptions();				
 			}
+		}	
+	}
+
+	/**
+	 * a helper method that takes an integer which represents the number of options the user can select
+	 * it then prompts the user for input and checks if the input is valid
+	 * then returns the integer
+	 * @param numOptions
+	 * @return
+	 */
+	public int getIntegerInput(int numOptions) {
 		
+		System.out.println("Please enter a number between 1 and "+numOptions);
+		
+		while (true) {
+			try {
+				int selection = scanner.nextInt();
+				if (selection >= 1 && selection <= numOptions) {
+					return selection;
+				}
+				else {
+					System.out.println("Please enter a number between 1 and "+numOptions);
+				}
+			} catch (InputMismatchException error) {
+				System.out.println("Please enter a number between 1 and"+numOptions);
+				
+			} catch (NoSuchElementException error) {
+				System.out.println("Please enter a number between 1 and"+numOptions);
+			}
 		}
 		
 	}
 
+
+	/**
+	 * prints the initial options the user can select from the club screen
+	 */
 	public void printClubOptions() {
 		
-		System.out.println("1: ")
+		System.out.println("1: View active team");
+		System.out.println("2: View reserves");
+		System.out.println("3: View inventory ");
+		System.out.println("4: Substitute player");
+		System.out.println("5: Return to main screen");
 
+	}
+	
+	public void printSubOffOptions(Club club) {
+		
+		System.out.println("Select the player you wish to take off the active team");
+		int i = 1;
+		for (Athlete athlete: club.viewActiveTeam()) {
+			System.out.println(i+": "+athlete);
+			i += 1;
+		
+		
+	public void printSubOnOptions(Club club) {
+		System.out.println("Select the player you wish to put on your active team");
+		int i = 1;
+		for (Athlete reserve: club.viewReserves()) {
+			System.out.println(i+": "+reserve);
+			i += 1;
+	}
+		
 }
