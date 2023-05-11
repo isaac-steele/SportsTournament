@@ -3,6 +3,8 @@ package sengproject;
 import java.util.ArrayList;
 import java.util.Random;
 
+
+
 /**
  * the general class for team, will be used both for the players own team and opposing teams
  * parent class of club
@@ -100,8 +102,34 @@ public class Team {
 		Team randomTeam = new Team(randomName, athleteList);
 		return randomTeam;
 	}
-	
-	
-	
-
+		
 }
+
+/*
+ * to be added before take bye is called
+ *  ArrayList<Athlete> activeTeam = club.viewActiveTeam();
+	ArrayList<Athlete> reserves = club.viewReserves();
+	int i = 1;
+	System.out.println("Choose an athlete to specially train:");
+	for(Athlete starter : activeTeam) {
+		System.out.println("("+i+") " + starter);
+		i += 1;
+	}
+	for(Athlete reserve : reserves) {
+		System.out.println("("+i+") " + reserve);
+		i += 1;	
+	}
+	int chosenAthleteNum = getIntegerInput(activeTeam.size() + reserves.size()) - 1;
+	if (chosenAthleteNum < activeTeam.size()) {
+		Athlete chosenAthlete = activeTeam.get(chosenAthleteNum);
+		chosenAthlete.increaseDefence(10);
+		chosenAthlete.increaseOffence(10);
+	} else if (chosenAthleteNum >= activeTeam.size() && chosenAthleteNum < (reserves.size() + activeTeam.size())) {
+		chosenAthleteNum -= activeTeam.size();
+		Athlete chosenAthlete = reserves.get(chosenAthleteNum);
+		chosenAthlete.increaseDefence(10);
+		chosenAthlete.increaseOffence(10);
+	}
+ */
+
+
