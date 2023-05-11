@@ -2,6 +2,12 @@ package sengproject;
 
 import java.util.ArrayList;
 
+import main.Athlete;
+import main.Club;
+import main.Market;
+import main.RandomEvent;
+import main.Stadium;
+
 /**
  * This class contains the main game. It keeps track of the game and handles requests from the UI.
  * The player starts off in week 1 with a default amount of money. They can draft players and improve their stats with items.
@@ -33,7 +39,10 @@ public class GameEnvironment {
 	 * The list of athletes available to be drafted
 	 */
 	private ArrayList<Athlete> draft;
-	
+	/**
+	 * A random event object
+	 */
+	private RandomEvent randomEvent;
 	/**
 	 * the club object which will be used for the entirety of the game
 	 */
@@ -73,6 +82,10 @@ public class GameEnvironment {
 	 * The difficulty of the game.
 	 */
 	private String difficulty;
+	/**
+	 * The points gained
+	 */
+	private int points = 0;
 	
 	/**
 	 * constructor for game environment, used once at the beginning of the game form the main method
@@ -101,7 +114,22 @@ public class GameEnvironment {
 		
 		ui.start(); 	
 	}
-		
+	/**
+	 * Gets the club
+	 * 
+	 * @return the club
+	 */
+	public Club getClub() {
+		return club;
+	}	
+	/*
+	 * Gets the stadium
+	 * 
+	 * @return the stadium
+	 */
+	public Stadium getStadium() {
+		return stadium;
+	}
 	/**
 	 * @return the draft
 	 */
@@ -153,6 +181,27 @@ public class GameEnvironment {
 	 */
 	public void setMoneyAmount(int money) {
 		this.moneyAmount = money;
+	}
+	/**
+	 * Updates the amount of money the player wins.
+	 */
+	public void updateMoney(int gains) {
+		this.moneyAmount += gains;
+	}
+	/** 
+	 * The amount of points the player has
+	 * @return the points
+	 */
+	public int getPoints() {
+		return points;
+	}
+	/**
+	 * Adds points for winning a match.
+	 * 
+	 * @param points number of points to add
+	 */
+	public void updatePoints(int points) {
+		this.points += points;
 	}
 	/**
 	 * Updates the current week. This will occur after a bye.
@@ -258,11 +307,17 @@ public class GameEnvironment {
 		}
 	}
 		
-	public void handleBye() {
-		
-		updateWeeksRemaining();
+	public void takeBye() {
+		//In command line print out option to specially train one athlete before calling this
 		updateCurrentWeek();
-		ui.start();
+		updateWeeksRemaining();
+		market = new Market();
+		stadium = new Stadium(this);
+		randomEvent = new RandomEvent(club);
+		randomEvent.doRandomEvent(difficulty);
+		for(Athlete athlete : club.activeTeam) {
+			athlete.restoreStamina();
+		}
 	}
 	
 	/**

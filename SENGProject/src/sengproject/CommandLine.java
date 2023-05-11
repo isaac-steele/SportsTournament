@@ -6,6 +6,9 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
+import main.Stadium;
+import main.Team;
+
 /**
  * command line interface for the game environment
  * can take input from console and perform actions
@@ -62,7 +65,7 @@ public class CommandLine {
 				System.out.println("Please select a number between 5 and 15");
 			}
 		}
-	} return null;
+	}
 	
 	/**
 	 * prompts player to enter a name for the team and checks it is valid
@@ -84,8 +87,7 @@ public class CommandLine {
 				pass = true;
 				return name.toString();
 			}
-		}
-		return null;	
+		}	
 	}
 	
 	/**
@@ -93,7 +95,7 @@ public class CommandLine {
 	 * @param game
 	 * @return selected athletes
 	 */
-	public ArrayList<Athlete> draftAthletes(GameEnvironment game){
+	public ArrayList<Athlete> draftAthletes(GameEnvironment game) {
 		
 		final ArrayList<Athlete> draft = new ArrayList<Athlete>(game.getDraft());
 		ArrayList<Athlete> selected = new ArrayList<Athlete>();
@@ -183,15 +185,19 @@ public class CommandLine {
 				printClubOptions();
 				selection = getIntegerInput(3);
 				game.handleClubOptions(5); 
+				break;
 			case(2):
-				printStadiumOptions();
+				StadiumOptions();
+				break;
 			case(3):
-				printMarketOptions();	
+				printMarketOptions();
+				break;
 			case(4):
 				game.handleBye();
+				break;
 			}
 		}	
-	}
+	
 
 	/**
 	 * a helper method that takes an integer which represents the number of options the user can select
@@ -244,6 +250,8 @@ public class CommandLine {
 		for (Athlete athlete: club.viewActiveTeam()) {
 			System.out.println(i+": "+athlete);
 			i += 1;
+		}
+	}
 		
 		
 	public void printSubOnOptions(Club club) {
@@ -284,5 +292,40 @@ public class CommandLine {
 			
 	}
 		
-	}
+	
+	/**
+	 * Prints the options the user can select if they go to the Stadium.
+	 */
+	public void StadiumOptions() {
+		while(true) {
+	
+			Stadium stadium = game.getStadium();
+			ArrayList<Team> matches = stadium.getMatches();
+			int i = 0;
+			int m = 1;
+			for( Team match : matches ) {
+				System.out.println("("+m+") Match "+m+":\n" + matches.get(i));
+				m += 1;
+				i += 1;
+			}
+			System.out.println("("+m+") Return to Main Menu");
+			int matchNum = getIntegerInput(matches.size() + 1);
+			if (matchNum == m) {
+				return;
+			}
+			else {
+				String result = stadium.startMatch(game.getClub(), matches.get(matchNum));
+				if(result == "Cannot start match! Must have at least one healthy athlete") {
+					System.out.println(result);
+				}
+				else {
+				System.out.println("The result of the match is:" + result);
+				System.out.println("The updated status of your team is\n" + game.getClub());
+				System.out.println("Your total points are now: " + game.getPoints());
+				System.out.println("Your total money is now: " + game.getMoneyAmount());
+				}
+		
+			}
+		}
+	}	
 }
