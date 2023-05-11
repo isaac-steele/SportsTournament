@@ -223,15 +223,11 @@ public class GameEnvironment {
 	 */
 	
 	
-	public void printStadiumOptions() {
 	
-		System.out.println("Please select the team you want to play");
-		System.out.println("1: "+stadium.getMatches())
-	}
-	public void printMarketOptions() {
-		Syste
-	}
-	
+	/**
+	 * takes and handles users input selection from the club screen
+	 * @param selection
+	 */
 	public void handleClubOptions(int selection) {
 		
 		switch (selection) {
@@ -247,16 +243,18 @@ public class GameEnvironment {
 			for (Athlete athlete: club.viewReserves()) {
 				System.out.println(athlete);
 		case(3):
-			ui.printInventoryOptions();
-			selection = ui.getIntegerInput(club.get)
-		
+			ui.printInventoryOptions(club);
+			int itemIndex = ui.getIntegerInput(club.viewItems().size());
+			ui.printWholeTeam(club);
+			int athleteIndex = ui.getIntegerInput(club.viewActiveTeam().size() + club.viewReserves().size());
+			
 		case(4):
 			ui.printSubOffOptions(club);
 			int subOffIndex = ui.getIntegerInput(4);
 			ui.printSubOnOptions(club);
 			int subOnIndex = ui.getIntegerInput(club.viewReserves().size());
 			club.subAthlete(club.viewActiveTeam().get(subOffIndex), club.viewReserves().get(subOnIndex));
-		
+			
 		}
 	}
 		
@@ -266,6 +264,27 @@ public class GameEnvironment {
 		updateCurrentWeek();
 		ui.start();
 	}
+	
+	/**
+	 * takes the users selection for item and athlete and uses the item on the athlete
+	 * @param itemIndex
+	 * @param athleteIndex
+	 */
+	public void handleItemUse(int itemIndex, int athleteIndex) {
+		
+		Item item = club.viewItems().get(itemIndex);
+		Athlete athlete;
+		
+		if (athleteIndex > 4) {
+			athleteIndex -= 4;
+			athlete = club.viewReserves().get(athleteIndex);	
+		}
+		else {
+			athlete = club.viewActiveTeam().get(athleteIndex);
+		}
+		club.useItem(item, athlete);
+	}
+	
 
 }
 	

@@ -254,12 +254,35 @@ public class CommandLine {
 			i += 1;
 	}
 	
-		public void printInventoryOptions() {
-			System.out.println("Please select the item you wish to use");
-			int i = 0;
-			for (Item item: club.viewItems()) {
-				System.out.println(i+": "+item);
-				i += 1;
-			}
+	/**
+	 * 
+	 * @param club
+	 */
+	public void printInventoryOptions(Club club) {
+		System.out.println("Please select the item you wish to use");
+		int i = 0;
+		for (Item item: club.viewItems()) {
+			System.out.println(i+": "+item);
+			i += 1;
 		}
+	}
+	
+	/**
+	 * displays all the athletes in the club including the active team and the reserves
+	 * used so user can select an athlete to use an item on
+	 * @param club
+	 */
+	public void printWholeTeam(Club club) {
+		
+		ArrayList<Athlete> wholeTeam = new ArrayList<Athlete>(club.viewActiveTeam());
+		wholeTeam.addAll(club.viewReserves());
+		System.out.println("Please select the athlete you wish to use the item on");
+		int i = 0;
+		for (Athlete athlete: wholeTeam) {
+			System.out.println(i+": "+athlete);
+		}
+			
+	}
+		
+	}
 }
