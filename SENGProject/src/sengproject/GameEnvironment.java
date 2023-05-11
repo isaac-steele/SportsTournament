@@ -122,6 +122,12 @@ public class GameEnvironment {
 	public Club getClub() {
 		return club;
 	}	
+	/**
+	 * @return the market
+	 */
+	public Market getMarket() {
+		return market;
+	}
 	/*
 	 * Gets the stadium
 	 * 
@@ -288,21 +294,54 @@ public class GameEnvironment {
 			for (Athlete athlete: club.viewActiveTeam()) {
 				System.out.println(athlete);
 			}
+			System.out.println("1: Return to club");
+			ui.singleIntegerInput(1);
+			returnToClub();
+			break;
+			
 		case(2):
 			for (Athlete athlete: club.viewReserves()) {
 				System.out.println(athlete);
+			}
+			System.out.println("1: Return to club");
+			ui.singleIntegerInput(1);
+			returnToClub();
+			break;
+			
 		case(3):
 			ui.printInventoryOptions(club);
-			int itemIndex = ui.getIntegerInput(club.viewItems().size());
+			int itemIndex = ui.getIntegerInput(club.viewItems().size()+1);
+			if (itemIndex == club.viewItems().size()+1) {
+				returnToClub();
+				break;
+			}
 			ui.printWholeTeam(club);
-			int athleteIndex = ui.getIntegerInput(club.viewActiveTeam().size() + club.viewReserves().size());
+			int athleteIndex = ui.getIntegerInput(club.viewActiveTeam().size() + club.viewReserves().size() + 1);
+			if (athleteIndex == club.viewActiveTeam().size() + club.viewReserves().size() + 1) {
+				returnToClub();
+				break;
+			}
+			handleItemUse(itemIndex - 1, athleteIndex - 1);
+			break;
 			
 		case(4):
 			ui.printSubOffOptions(club);
-			int subOffIndex = ui.getIntegerInput(4);
+			int subOffIndex = ui.getIntegerInput(5);
+			if (subOffIndex == 5) {
+				returnToClub();
+				break;
+			}
 			ui.printSubOnOptions(club);
-			int subOnIndex = ui.getIntegerInput(club.viewReserves().size());
-			club.subAthlete(club.viewActiveTeam().get(subOffIndex), club.viewReserves().get(subOnIndex));
+			int subOnIndex = ui.getIntegerInput(club.viewReserves().size() + 1);
+			if (subOnIndex == club.viewReserves().size() + 1) {
+				returnToClub();
+				break;
+			}
+			club.subAthlete(club.viewActiveTeam().get(subOffIndex - 1), club.viewReserves().get(subOnIndex - 1));
+			break;
+		case(5):
+			ui.start();
+			break;
 			
 		}
 	}
@@ -341,6 +380,15 @@ public class GameEnvironment {
 	}
 	
 
+	/**
+	 * called from within club to return to the main club screen
+	 * 
+	 */
+	public void returnToClub() {
+		ui.printClubOptions();
+		int selection = ui.getIntegerInput(5);
+		handleClubOptions(selection);
+	}
 }
 	
 	

@@ -42,7 +42,7 @@ public class Market {
 	 * @param team
 	 */
 	public void getMoney(Club club) {
-		club.getMoney();
+		club.getMoneyAmount();
 	}
 	/**
 	 * sets the list of items in the market
@@ -85,7 +85,7 @@ public class Market {
 	 */
 	public void buyReserve(Athlete newAthlete, Club club) {
 		
-		club.setMoney(club.getMoney() - newAthlete.getPrice());
+		club.setMoney(club.getMoneyAmount() - newAthlete.getPrice());
 		club.addNewAthlete(newAthlete);
 		freeAgents.remove(newAthlete);
 		
@@ -102,7 +102,7 @@ public class Market {
 	 */
 	public void buyStarter(Athlete newAthlete, Athlete subAthlete, Club club) {
 		
-		club.setMoney(club.getMoney() - newAthlete.getPrice());
+		club.setMoney(club.getMoneyAmount() - newAthlete.getPrice());
 		club.addNewAthlete(newAthlete);
 		club.subAthlete(newAthlete, subAthlete);
 		freeAgents.remove(newAthlete);
@@ -119,7 +119,7 @@ public class Market {
 	 */
 	public void buyItem(Item item, Club club) {
 		club.addItem(item);
-		club.setMoney(club.getMoney() - item.getPrice());
+		club.setMoney(club.getMoneyAmount() - item.getPrice());
 	}
 	
 	/**
@@ -127,11 +127,11 @@ public class Market {
 	 * @param athlete
 	 * @param team
 	 */
-	public void returnReserve(Athlete athlete, Club club) {
+	public void returnReserve(Athlete athlete, GameEnvironment game) {
 		
-		club.setMoney(club.getMoney() + (athlete.getPrice() / 2));
+		game.updateMoney(game.getMoneyAmount() + (athlete.getPrice() / 2));
 		freeAgents.add(athlete);
-		club.removeReserve(athlete);
+		game.getClub().removeReserve(athlete);
 	}
 	
 	/**
@@ -141,7 +141,7 @@ public class Market {
 	 * @param team
 	 */
 	public void returnStarter(Athlete athlete, Athlete replacement,Club club) {
-		club.setMoney(club.getMoney() + (athlete.getPrice() / 2));
+		club.setMoney(club.getMoneyAmount() + (athlete.getPrice() / 2));
 		club.subAthlete(replacement, athlete);
 		club.removeReserve(athlete);
 		freeAgents.add(athlete);

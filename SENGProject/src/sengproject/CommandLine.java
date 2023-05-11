@@ -182,14 +182,15 @@ public class CommandLine {
 			default:
 				throw new IllegalArgumentException("Unexpected value");
 			case(1):
-				printClubOptions();
-				selection = getIntegerInput(3);
+				printClubOptions(game.getClub());
+				selection = getIntegerInput(5);
 				game.handleClubOptions(5); 
 				break;
 			case(2):
 				StadiumOptions();
 				break;
 			case(3):
+				handleMarketOptions;
 				printMarketOptions();
 				break;
 			case(4):
@@ -225,8 +226,32 @@ public class CommandLine {
 			} catch (NoSuchElementException error) {
 				System.out.println("Please enter a number between 1 and"+numOptions);
 			}
-		}
+		}	
+	}
+	
+	/**
+	 * helper method that keeps prompting user for a specific input until it is received
+	 * used for situations where there is only one options available
+	 * @param optionNum
+	 */
+	public void singleIntegerInput(int optionNum) {
 		
+		while (true) {
+			
+			try {
+				int selection = scanner.nextInt();
+				if (selection == optionNum) {
+					return;
+				}
+				else {
+					System.out.println("Please enter the number "+optionNum+" to return");
+				}
+			} catch (InputMismatchException error) {
+				System.out.println("Please enter the number "+optionNum+" to return");
+				
+			} catch (NoSuchElementException error) {
+				System.out.println("Please enter the number "+optionNum+" to return");			}
+		}
 	}
 
 
@@ -235,6 +260,7 @@ public class CommandLine {
 	 */
 	public void printClubOptions() {
 		
+		System.out.println(game.getClub().viewName());
 		System.out.println("1: View active team");
 		System.out.println("2: View reserves");
 		System.out.println("3: View inventory ");
@@ -243,6 +269,10 @@ public class CommandLine {
 
 	}
 	
+	/**
+	 * prints the options for the player to be subbed off
+	 * @param club
+	 */
 	public void printSubOffOptions(Club club) {
 		
 		System.out.println("Select the player you wish to take off the active team");
@@ -251,19 +281,27 @@ public class CommandLine {
 			System.out.println(i+": "+athlete);
 			i += 1;
 		}
+		System.out.println(i+": Return to club");
+
 	}
 		
 		
+	/**
+	 * prints the options for the player to be subbed on
+	 * @param club
+	 */
 	public void printSubOnOptions(Club club) {
 		System.out.println("Select the player you wish to put on your active team");
 		int i = 1;
 		for (Athlete reserve: club.viewReserves()) {
 			System.out.println(i+": "+reserve);
 			i += 1;
+		}
+		System.out.println(i+": Return to club");
 	}
 	
 	/**
-	 * 
+	 * prints the items in the inventory to be used plus an option to return to club
 	 * @param club
 	 */
 	public void printInventoryOptions(Club club) {
@@ -273,6 +311,7 @@ public class CommandLine {
 			System.out.println(i+": "+item);
 			i += 1;
 		}
+		System.out.println(i+": Return to club");
 	}
 	
 	/**
@@ -289,6 +328,7 @@ public class CommandLine {
 		for (Athlete athlete: wholeTeam) {
 			System.out.println(i+": "+athlete);
 		}
+		System.out.println(i+": Return to club");
 			
 	}
 		
@@ -303,7 +343,7 @@ public class CommandLine {
 			ArrayList<Team> matches = stadium.getMatches();
 			int i = 0;
 			int m = 1;
-			for( Team match : matches ) {
+			for(Team match : matches ) {
 				System.out.println("("+m+") Match "+m+":\n" + matches.get(i));
 				m += 1;
 				i += 1;
@@ -314,7 +354,7 @@ public class CommandLine {
 				return;
 			}
 			else {
-				String result = stadium.startMatch(game.getClub(), matches.get(matchNum));
+				String result = stadium.startMatch(game.getClub(), matches.get(matchNum - 1));
 				if(result == "Cannot start match! Must have at least one healthy athlete") {
 					System.out.println(result);
 				}
@@ -327,5 +367,60 @@ public class CommandLine {
 		
 			}
 		}
-	}	
+	}
+	
+	public void MarketOptions(){
+		
+		printMarketOptions();
+		int selection = getIntegerInput(5);
+		
+		switch(selection) {
+		
+		default:
+			throw new IllegalArgumentException("Unexpected value");
+		case(1):
+			System.out.println("1: Draft back reserve");
+			System.out.println("3: Return to market");
+			int choice = getIntegerInput(2);
+			switch(choice) {
+				
+			case(1):
+				System.out.println("Please select the reserve you wish to draft back to the market");
+				int i = 1;
+				for (Athlete athlete: game.getClub().viewReserves()) {
+					System.out.println(i+": "+athlete);
+					i += 1;
+				}
+				System.out.println(i+": Return to market");
+				int athleteIndex = getIntegerInput(game.getClub().viewReserves().size() + 1);
+				if (athleteIndex == game.getClub().viewReserves().size() + 1) {
+					returnToMarket();
+					break;
+				}
+				game.getMarket().returnReserve(game.getClub().viewReserves().get(athleteIndex), game);
+				break;
+			case(2):
+				returnToMarket();
+				break;
+			}
+		}
+		
+		
+	}
+	
+	public void printMarketOptions() {
+		
+		System.out.println("Current balance: $"+game.getMoneyAmount());
+		System.out.println("1: Draft athlete back to market");
+		System.out.println("2: Draft item back to the market");
+		System.out.println("3: View available athletes for purchase");
+		System.out.println("4: View available items for purchase");
+		System.out.println("5: Return to main screen");
+	}
+	
+	public void returnToMarket() {
+		
+	}
 }
+
+
