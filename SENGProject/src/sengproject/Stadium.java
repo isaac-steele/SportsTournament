@@ -12,10 +12,14 @@ public class Stadium {
 	 */
 	private ArrayList<Team> matches;
 	
+	private GameEnvironment game;
+	
 	/**
 	 * default constructor for stadium which creates list of matches
 	 */
-	public Stadium() {
+	public Stadium(GameEnvironment game) {
+		
+		this.game = game;
 		
 		for (int i = 0; i <3; i ++) {
 			Team match = Team.randomTeamGenerator();
@@ -33,38 +37,52 @@ public class Stadium {
 	/**
 	 * helper function that checks if all the players on the active team are injured
 	 */
-	public boolean checkTeamInjuries(Club team) {
+	public static boolean checkTeamInjuries(Club team) {
 		
 		for (Athlete athlete: team.viewActiveTeam()){
 			if (athlete.getInjuryStatus() == false) {
-				return true;
+				return false;
 			}
 		}
-		return false;
+		return true;
 	}
 	/**
 	 * checks if the team is eligible to play a match
 	 * if so, it simulates the match
 	 */
-	public void startMatch(Match match, Club club, Team opponent) {
-		
-		if (checkTeamInjuries(club) == true) {
-			System.out.println("Cannot start match! Must have at least one healthy athlete");
+	public String startMatch(Club club, Team opponent) {
+		String difficulty = game.getDifficulty();
+		if (checkTeamInjuries(club)) {
+			return "Cannot start match! Must have at least one healthy athlete";
 		}
-		else { 
-			
+		else {
+
 			String result = Match.playMatch(club, opponent);
 			switch(result) {
-			case "W":
-				club.setPoints(club.getPoints() + 3);
-				club.setMoney(club.getMoney() + 5000);
-			case "D":
-				club.setPoints(club.getPoints() + 1);
-				club.setMoney(club.getMoney() + 1000);
-			case "L":
-				club.setPoints(club.getPoints() + 0);
+			case "Win":
+				if(difficulty == "Easy") {
+					game.updatePoints(3);
+					game.updateMoney(10);
+				} else if(difficulty == "Hard") {
+					game.updatePoints(5);
+					game.updateMoney(5);
+				}
+				break;
+			case "Draw":
+				if(difficulty == "Easy") {
+					game.updatePoints(1);
+					game.updateMoney(5);
+				}
+				else if(difficulty == "Hard") {
+					game.updatePoints(2);
+					game.updateMoney(3);
+				}
+				break;
+			case "Loss":
+				break;
 			}
-			
+			matches.remove(opponent);
+			return result; 
 		}
 	}
 

@@ -21,7 +21,7 @@ class MatchTest {
 		for(int i = 0; i < 4; i++) {
 			Athlete myAthlete = new Athlete("George", 60, 72, 5);
 			Athlete oppAthlete = new Athlete("Harry", 81, 60, 3);
-			myTeam.add(myAthlete);
+			myTeam.add(myAthlete); 
 			oppTeam.add(oppAthlete);
 		}
 		Club myClub = new Club("Fellas", myTeam);

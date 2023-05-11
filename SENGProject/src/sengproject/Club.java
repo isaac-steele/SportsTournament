@@ -18,16 +18,6 @@ public class Club extends Team{
 	 */
 	private ArrayList<Athlete> reserves;
 	/**
-	 * The current amount of points the team has
-	 * set to 0 initially
-	 */
-	private int points = 0;
-	/**
-	 * Current amount of money the team has
-	 * set to 100 initially
-	 */
-	private int money = 100;
-	/**
 	 * List of items available for use
 	 */
 	private ArrayList<Item> inventory;
@@ -66,33 +56,6 @@ public class Club extends Team{
 	public void setTeamFull(boolean teamFull) {
 		this.teamFull = teamFull;
 	}
-	/**
-	 * @return the teams money
-	 */
-	public int getMoney() {
-		return money;
-	}
-
-	/**
-	 * @param money The money to set
-	 */
-	public void setMoney(int money) {
-		this.money = money;
-	}
-
-	/**
-	 * @return the points
-	 */
-	public int getPoints() {
-		return points;
-	}
-	/**
-	 * @param points the points to set
-	 */
-	public void setPoints(int points) {
-		this.points = points;
-	}
-	
 	/**
 	 * returns list of players on the bench
 	 * @return reserves

@@ -12,7 +12,7 @@ import java.util.ArrayList;
  *
  */
 
-public class Match {
+public class Match extends Stadium{
 	
 	/**
 	 * Play match
@@ -39,6 +39,11 @@ public class Match {
 			myDefender.decreaseStamina(10);
 			if (myDefender.getStamina() == 0) {
 				myDefender.setInjuryStatus(true);
+				if(checkTeamInjuries(me)) {
+					return "Loss";
+					
+				}
+				
 			}
 		}
 		for(int i = 2; i < 4; i++) {
@@ -58,16 +63,19 @@ public class Match {
 			myAttacker.decreaseStamina(10);
 			if (myAttacker.getStamina() == 0) {
 				myAttacker.setInjuryStatus(true);
+				if(checkTeamInjuries) {
+					return "Loss";
+				}
 			}
 		}
 		if(myScore > opponentScore) {
-			return "W";
+			return "Win";
 		}
 		else if(myScore < opponentScore) {
-			return "L";
+			return "Loss";
 		}
 		else {
-			return "D";
+			return "Draw";
 		}
 		
 		

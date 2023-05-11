@@ -1,6 +1,6 @@
 package sengproject;
 
-import java.util.HashMap;
+
 import java.util.Random;
 
 
@@ -243,7 +243,7 @@ public class Athlete implements Purchasable {
 	 * To String method for the Athlete Class
 	 */
 	public String toString() {
-		return "Name: " + athleteName + "\n" + "Offence: " + offenceStat + "\n" + "Defence: " + defenceStat + "\n" + "Stamina: " + athleteStamina + "\n" + "Price: " + athletePrice;
+		return "Name: " + athleteName + "\n" + "Offence: " + offenceStat + "\n" + "Defence: " + defenceStat + "\n" + "Stamina: " + athleteStamina + "\n" + "Price: " + athletePrice + "Injured: " + injuryStatus;
 	}
 	
 	/**

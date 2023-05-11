@@ -61,6 +61,12 @@ public class Team {
 	public ArrayList<Athlete> viewActiveTeam() {
 		return activeTeam;
 	}
+	/** 
+	 * To string method for team
+	 */
+	public String toString() {
+		return "Name: " + name + "\n" + activeTeam.get(0).toString() + "\n" + activeTeam.get(1).toString() + "\n" + activeTeam.get(2).toString() + "\n" + activeTeam.get(3).toString();
+	}
 	/**
 	 * Generates a random team based on the weeks remaining.
 	 * 
