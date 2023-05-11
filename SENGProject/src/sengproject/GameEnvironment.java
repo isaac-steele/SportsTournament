@@ -247,7 +247,8 @@ public class GameEnvironment {
 			for (Athlete athlete: club.viewReserves()) {
 				System.out.println(athlete);
 		case(3):
-			System.out.println(club.viewItems());
+			ui.printInventoryOptions();
+			selection = ui.getIntegerInput(club.get)
 		
 		case(4):
 			ui.printSubOffOptions(club);

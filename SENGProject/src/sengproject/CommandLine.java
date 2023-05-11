@@ -151,6 +151,7 @@ public class CommandLine {
 		
 		while (game.getWeeksRemaining() > 0) {
 			
+			printMainOptions();
 			int selection = getIntegerInput(4);
 			handleMainOption(selection);
 			
@@ -252,5 +253,13 @@ public class CommandLine {
 			System.out.println(i+": "+reserve);
 			i += 1;
 	}
-		
+	
+		public void printInventoryOptions() {
+			System.out.println("Please select the item you wish to use");
+			int i = 0;
+			for (Item item: club.viewItems()) {
+				System.out.println(i+": "+item);
+				i += 1;
+			}
+		}
 }
