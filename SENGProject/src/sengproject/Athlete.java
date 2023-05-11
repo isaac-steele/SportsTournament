@@ -251,7 +251,7 @@ public class Athlete implements Purchasable {
 	 * To String method for the Athlete Class
 	 */
 	public String toString() {
-		return "Name: " + athleteName + "\n" + "Offence: " + offenceStat + "\n" + "Defence: " + defenceStat + "\n" + "Stamina: " + athleteStamina + "\n" + "Price: " + athletePrice + "Injured: " + injuryStatus;
+		return "Name: " + athleteName + "\n" + "Offence: " + offenceStat + "\n" + "Defence: " + defenceStat + "\n" + "Stamina: " + athleteStamina + "\n" + "Price: " + athletePrice + "\nInjured: " + injuryStatus;
 	}
 	
 	/**
@@ -285,7 +285,7 @@ public class Athlete implements Purchasable {
 		String randomFirstName = firstNames[rng.nextInt(14)];
 		String randomLastName = lastNames[rng.nextInt(14)];
 		String randomName = randomFirstName + " " + randomLastName;
-		Athlete randomAthlete =  new Athlete(randomName, randomDefence, randomOffence, price);
+		Athlete randomAthlete =  new Athlete(randomName, randomOffence, randomDefence, price);
 		return randomAthlete;
 		
 	}

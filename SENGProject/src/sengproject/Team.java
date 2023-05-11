@@ -16,7 +16,7 @@ public class Team {
 	/**
 	 * The game environment.
 	 */
-	protected static GameEnvironment game;
+	protected GameEnvironment game;
 	/**
 	 * The teams name
 	 */
@@ -31,7 +31,7 @@ public class Team {
 	public Team(String name, ArrayList<Athlete> activeTeam, GameEnvironment game) {
 		setName(name);
 		this.activeTeam = activeTeam;
-		Team.game = game;
+		this.game = game;
 	}
 	/** 
 	 * Constructor for team without game environment.
@@ -39,6 +39,12 @@ public class Team {
 	public Team(String name, ArrayList<Athlete> activeTeam) {
 		setName(name);
 		this.activeTeam = activeTeam;
+	}
+	/**
+	 * Team Constructor
+	 */
+	public Team(GameEnvironment game) {
+		this.game = game;
 	}
 	/**
 	 * returns the team name
@@ -74,7 +80,7 @@ public class Team {
 	 * 
 	 * @return a random team
 	 */
-	public static Team randomTeamGenerator() {
+	public Team randomTeamGenerator() {
 		int defenceStat;
 		int offenceStat;
 		ArrayList<Athlete> athleteList = new ArrayList<Athlete>();
@@ -93,7 +99,7 @@ public class Team {
 		}
 		else {
 			defenceStat = rng.nextInt(26) + 75;
-			offenceStat = rng.nextInt() + 75;
+			offenceStat = rng.nextInt(26) + 75;
 		}
 		for(int i = 0; i < 4; i++ ) {
 			Athlete randomAthlete = Athlete.randomAthleteGenerator(defenceStat, offenceStat);
@@ -102,8 +108,10 @@ public class Team {
 		Team randomTeam = new Team(randomName, athleteList);
 		return randomTeam;
 	}
-		
+	
+	
 }
+
 
 /*
  * to be added before take bye is called

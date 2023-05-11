@@ -10,20 +10,25 @@ public class Stadium {
 	/**
 	 * list of possible matches to play
 	 */
-	private ArrayList<Team> matches;
-	
+	private ArrayList<Team> matches = new ArrayList<Team>();
+	/**
+	 *Game Environment object
+	 */
 	private GameEnvironment game;
-	
+	/**
+	 * Club Object
+	 */
+	private Team team;
 	/**
 	 * default constructor for stadium which creates list of matches
 	 */
 	public Stadium(GameEnvironment game) {
-		
+		this.team = new Team(game);
 		this.game = game;
 		
 		for (int i = 0; i <3; i ++) {
-			Team match = Team.randomTeamGenerator();
-			this.matches.add(match);
+			Team match = team.randomTeamGenerator();
+			matches.add(match);
 		}
 	}
 	
