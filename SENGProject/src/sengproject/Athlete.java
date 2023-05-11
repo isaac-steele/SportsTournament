@@ -165,6 +165,9 @@ public class Athlete implements Purchasable {
 	 */
 	public void setStamina(int stamina) {
 		athleteStamina = stamina;
+		if (athleteStamina > 0 && injuryStatus == true) {
+			injuryStatus = false;
+		}
 	}
 	
 	/**
@@ -219,6 +222,9 @@ public class Athlete implements Purchasable {
 		if (athleteStamina > 100) {
 			athleteStamina = 100;
 		}
+		if (athleteStamina > 0 && injuryStatus == true) {
+			injuryStatus = false;
+		}
 	}
 	
 	/**
@@ -228,8 +234,9 @@ public class Athlete implements Purchasable {
 	 */
 	public void decreaseStamina(int staminaReduction) {
 		athleteStamina -= staminaReduction;
-		if (athleteStamina < 0) {
+		if (athleteStamina <= 0) {
 			athleteStamina = 0;
+			injuryStatus = true;
 		}
 	}
 	
@@ -238,6 +245,7 @@ public class Athlete implements Purchasable {
 	 */
 	public void restoreStamina() {
 		athleteStamina = 100;
+		injuryStatus = false;
 	}
 	/**
 	 * To String method for the Athlete Class

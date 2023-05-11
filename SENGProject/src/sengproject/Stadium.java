@@ -27,7 +27,7 @@ public class Stadium {
 		}
 	}
 	
-	/**
+	/** 
 	 * @return the available matches
 	 */
 	public ArrayList<Team> getMatches() {
