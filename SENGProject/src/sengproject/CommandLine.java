@@ -53,12 +53,10 @@ public class CommandLine {
 	 */
 	public int getNumWeeks() {
 		
-		boolean pass = false;
-		while(pass == false) {
+		while(true) {
 			try {
 				int numWeeks = scanner.nextInt();
 				if (numWeeks <= 15 && numWeeks >= 5) {
-					pass = true;
 					return numWeeks;
 				}
 			} catch (Exception error) {
@@ -74,8 +72,7 @@ public class CommandLine {
 	public String getName() {
 		System.out.println("Enter team name (must be one word)");
 		
-		boolean pass = false;
-		while (pass == false) {
+		while (true) {
 			String name = scanner.nextLine();
 			if (!Pattern.matches("[a-zA-Z0-9]+", name)) {
 				System.out.println("Name cannot contain special characters");
@@ -84,7 +81,6 @@ public class CommandLine {
 				System.out.println("Name must be between 3 and 15 characters");
 			}
 			else {
-				pass = true;
 				return name.toString();
 			}
 		}	
@@ -182,7 +178,7 @@ public class CommandLine {
 			default:
 				throw new IllegalArgumentException("Unexpected value");
 			case(1):
-				printClubOptions(game.getClub());
+				printClubOptions();
 				selection = getIntegerInput(5);
 				game.handleClubOptions(5); 
 				break;
@@ -190,8 +186,8 @@ public class CommandLine {
 				StadiumOptions();
 				break;
 			case(3):
-				handleMarketOptions;
 				printMarketOptions();
+				MarketOptions();
 				break;
 			case(4):
 				game.handleBye();

@@ -96,7 +96,7 @@ public class GameEnvironment {
 		
 		this.draft = draft;
 		this.ui = ui;
-		
+	}	
 	/**
 	 * starts the game
 	 */
@@ -110,7 +110,7 @@ public class GameEnvironment {
 		this.totalWeeks = numWeeks;
 		this.club = new Club(name,team);
 		this.market = new Market();
-		this.stadium = new Stadium();
+		this.stadium = new Stadium(this);
 		
 		ui.start(); 	
 	}
@@ -388,6 +388,37 @@ public class GameEnvironment {
 		ui.printClubOptions();
 		int selection = ui.getIntegerInput(5);
 		handleClubOptions(selection);
+	}
+	
+	/**
+	 * handles bye and offers the user the option of specially training an athlete
+	 */
+	public void handleBye() {
+		
+
+	   	ArrayList<Athlete> activeTeam = club.viewActiveTeam();
+		ArrayList<Athlete> reserves = club.viewReserves();
+		int i = 1;
+		System.out.println("Choose an athlete to specially train:");
+		for(Athlete starter : activeTeam) {
+			System.out.println("("+i+") " + starter);
+			i += 1;
+		}
+		for(Athlete reserve : reserves) {
+			System.out.println("("+i+") " + reserve);
+			i += 1;	
+		}
+		int chosenAthleteNum = ui.getIntegerInput(activeTeam.size() + reserves.size()) - 1;
+		if (chosenAthleteNum < activeTeam.size()) {
+			Athlete chosenAthlete = activeTeam.get(chosenAthleteNum);
+			chosenAthlete.increaseDefence(10);
+			chosenAthlete.increaseOffence(10);
+		} else if (chosenAthleteNum >= activeTeam.size() && chosenAthleteNum < (reserves.size() + activeTeam.size())) {
+			chosenAthleteNum -= activeTeam.size();
+			Athlete chosenAthlete = reserves.get(chosenAthleteNum);
+			chosenAthlete.increaseDefence(10);
+			chosenAthlete.increaseOffence(10);
+
 	}
 }
 	

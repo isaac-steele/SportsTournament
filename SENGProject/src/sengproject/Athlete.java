@@ -165,6 +165,9 @@ public class Athlete implements Purchasable {
 	 */
 	public void setStamina(int stamina) {
 		athleteStamina = stamina;
+		if (athleteStamina > 0 && injuryStatus == true) {
+			injuryStatus = false;
+		}
 	}
 	
 	/**
@@ -219,6 +222,9 @@ public class Athlete implements Purchasable {
 		if (athleteStamina > 100) {
 			athleteStamina = 100;
 		}
+		if (athleteStamina > 0 && injuryStatus == true) {
+			injuryStatus = false;
+		}
 	}
 	
 	/**
@@ -228,8 +234,9 @@ public class Athlete implements Purchasable {
 	 */
 	public void decreaseStamina(int staminaReduction) {
 		athleteStamina -= staminaReduction;
-		if (athleteStamina < 0) {
+		if (athleteStamina <= 0) {
 			athleteStamina = 0;
+			injuryStatus = true;
 		}
 	}
 	
@@ -238,12 +245,13 @@ public class Athlete implements Purchasable {
 	 */
 	public void restoreStamina() {
 		athleteStamina = 100;
+		injuryStatus = false;
 	}
 	/**
 	 * To String method for the Athlete Class
 	 */
 	public String toString() {
-		return "Name: " + athleteName + "\n" + "Offence: " + offenceStat + "\n" + "Defence: " + defenceStat + "\n" + "Stamina: " + athleteStamina + "\n" + "Price: " + athletePrice + "Injured: " + injuryStatus;
+		return "Name: " + athleteName + "\n" + "Offence: " + offenceStat + "\n" + "Defence: " + defenceStat + "\n" + "Stamina: " + athleteStamina + "\n" + "Price: " + athletePrice + "\nInjured: " + injuryStatus;
 	}
 	
 	/**
@@ -277,7 +285,7 @@ public class Athlete implements Purchasable {
 		String randomFirstName = firstNames[rng.nextInt(14)];
 		String randomLastName = lastNames[rng.nextInt(14)];
 		String randomName = randomFirstName + " " + randomLastName;
-		Athlete randomAthlete =  new Athlete(randomName, randomDefence, randomOffence, price);
+		Athlete randomAthlete =  new Athlete(randomName, randomOffence, randomDefence, price);
 		return randomAthlete;
 		
 	}

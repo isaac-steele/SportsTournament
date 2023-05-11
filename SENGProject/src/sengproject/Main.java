@@ -22,7 +22,7 @@ public class Main {
 		CommandLine ui = new CommandLine();
 		
 		GameEnvironment game = new GameEnvironment(ui, draft);
-		game.start();
+		game.Start();
 		
 		
 	}

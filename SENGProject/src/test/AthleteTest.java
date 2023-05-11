@@ -57,6 +57,12 @@ class AthleteTest {
 		assertEquals(100, testAthlete.getStamina());
 	}
 	
+	@Test
+	public void toStringTest() {
+		Athlete testAthlete = new Athlete("Harry", 87, 67, 7);
+		String expectedString = new String("Name: Harry\nOffence: 87\nDefence: 67\nStamina: 100\nPrice: 7\nInjured: false");
+		assertEquals(expectedString, testAthlete.toString());
+	}
 	
 		
 
