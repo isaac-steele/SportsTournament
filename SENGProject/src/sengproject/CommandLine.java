@@ -147,43 +147,17 @@ public class CommandLine {
 	 * terminates when no more weeks are remaining
 	 * @param club
 	 */
-	public void start(Club club) {
+	public void start() {
 		
 		while (game.getWeeksRemaining() > 0) {
 			
-			Market market = new Market();
-			Stadium stadium = new Stadium();
-			mainScreen();
-			
+			int selection = getIntegerInput(4);
+			handleMainOption(selection);
 			
 		}
 		
 	}
 	
-	public void mainScreen() {
-		
-		boolean takeBye = false;
-		
-		do {
-			try {
-				int selection = scanner.nextInt();
-				if (selection == 4) {
-					takeBye = true;
-				}
-				else if (selection >= 1 && selection <= 3) {
-					handleMainOption(selection);
-				}
-			} catch (Exception error) {
-				System.out.println("Please enter a number between 1 and 4");
-				scanner.nextLine();
-			}
-			
-		} while (takeBye == false);
-		
-		game.updateWeeksRemaining();
-		game.updateCurrentWeek();
-		start(club);
-	}
 	/**
 	 * prints out the options available to the user from the main screen
 	 */
@@ -211,7 +185,9 @@ public class CommandLine {
 			case(2):
 				printStadiumOptions();
 			case(3):
-				printMarketOptions();				
+				printMarketOptions();	
+			case(4):
+				game.handleBye();
 			}
 		}	
 	}

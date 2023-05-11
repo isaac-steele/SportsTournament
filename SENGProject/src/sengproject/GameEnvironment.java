@@ -38,7 +38,15 @@ public class GameEnvironment {
 	 * the club object which will be used for the entirety of the game
 	 */
 	private final Club club;
+	/**
+	 * the market object which will be used for the entirety of the game
+	 */
+	private Market market;
 	
+	/**
+	 * the stadium object which will be used for the entirety of the game
+	 */
+	private Stadium stadium;
 	/**
 	 * user interface instance
 	 * final variable
@@ -87,8 +95,11 @@ public class GameEnvironment {
 	 */
 	public void finishSetup(String name, ArrayList<Athlete> team, int numWeeks) {
 		this.totalWeeks = numWeeks;
-		Club club = new Club(name,team);
-		ui.start(club); 	
+		this.club = new Club(name,team);
+		this.market = new Market();
+		this.stadium = new Stadium();
+		
+		ui.start(); 	
 	}
 		
 	/**
@@ -245,8 +256,14 @@ public class GameEnvironment {
 			int subOnIndex = ui.getIntegerInput(club.viewReserves().size());
 			club.subAthlete(club.viewActiveTeam().get(subOffIndex), club.viewReserves().get(subOnIndex));
 		
-		case(5)
 		}
+	}
+		
+	public void handleBye() {
+		
+		updateWeeksRemaining();
+		updateCurrentWeek();
+		ui.start();
 	}
 
 }
