@@ -86,14 +86,19 @@ public class Market {
 	 * @param newAthlete
 	 * @param team
 	 */
-	public void buyReserve(Athlete newAthlete, Club club) {
+	public String buyReserve(Athlete newAthlete, Club club) {
+		try {
+			game.decreaseMoney(newAthlete.getPrice());
+			club.addNewAthlete(newAthlete);
+			freeAgents.remove(newAthlete);
 		
-		game.decreaseMoney(newAthlete.getPrice());
-		club.addNewAthlete(newAthlete);
-		freeAgents.remove(newAthlete);
-		
-		if (freeAgents.size() == 2) {
-			freeAgents.add(Athlete.randomAthleteGenerator());
+			if (freeAgents.size() == 2) {
+				freeAgents.add(Athlete.randomAthleteGenerator());
+			}
+			return newAthlete.getName() + " purchased.";
+		}
+		catch(ArithmeticException error) {
+			return error.getMessage();
 		}
 	}
 	/**

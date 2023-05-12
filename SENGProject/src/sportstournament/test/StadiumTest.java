@@ -68,25 +68,46 @@ class StadiumTest {
 	public void startMatchDrawTest() {
 		GameEnvironment game = new GameEnvironment();
 		game.setDifficulty("Easy");
+		game.setWeeksRemaining(7);
+		Stadium stadium = new Stadium(game);
+		ArrayList<Athlete> myTeam = new ArrayList<Athlete>();
+		ArrayList<Athlete> oppTeam = new ArrayList<Athlete>();
+		for(int i = 0; i < 4; i++) {
+			Athlete myAthlete = new Athlete("George", 60, 72, 5);
+			Athlete oppAthlete = new Athlete("Harry", 81, 60, 3);
+			myTeam.add(myAthlete); 
+			oppTeam.add(oppAthlete); 
+		}
+		Club myClub = new Club("Fellas", myTeam);
+		Team opps = new Team("Devils", oppTeam);
+		String result = stadium.startMatch(myClub, opps);
+		assertEquals("Draw", result);
+		assertEquals(1,game.getPoints());
+		assertEquals(5,game.getMoneyAmount());
+		game.setDifficulty("Hard");
+		result = stadium.startMatch(myClub, opps);
+		assertEquals("Draw", result);
+		assertEquals(3,game.getPoints());
+		assertEquals(8,game.getMoneyAmount());
+	}
+	
+	@Test
+	public void allAthletesInjuredTest() {
+		GameEnvironment game = new GameEnvironment();
+		game.setDifficulty("Easy");
 		game.setWeeksRemaining(4);
 		Stadium stadium = new Stadium(game);
 		ArrayList<Athlete> myTeam = new ArrayList<Athlete>();
 		for(int i = 0; i < 4; i++) {
 			Athlete myAthlete = new Athlete("George", 67, 67, 5);
+			myAthlete.setInjuryStatus(true);
 			myTeam.add(myAthlete);
 		}
 		Club myClub = new Club("Fellas", myTeam);
 		ArrayList<Team> matches = stadium.getMatches();
 		Team opposition = matches.get(0);
 		String result = stadium.startMatch(myClub, opposition);
-		assertEquals("Draw", result);
-		assertEquals(0,game.getPoints());
-		assertEquals(0,game.getMoneyAmount());
-		game.setDifficulty("Hard");
-		result = stadium.startMatch(myClub, opposition);
-		assertEquals("Draw", result);
-		assertEquals(0,game.getPoints());
-		assertEquals(0,game.getMoneyAmount());
+		assertEquals(result,"Cannot start match! Must have at least one healthy athlete");
 	}
 
 }
