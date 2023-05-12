@@ -174,14 +174,11 @@ public class CommandLine {
 				StadiumOptions();
 				break;
 			case(3):
-				printMarketOptions();
 				MarketOptions();
 				break;
 			case(4):
 				game.handleBye();
-				game.updateWeeksRemaining();
-				game.updateCurrentWeek();
-				start();
+				game.takeBye();
 				break;
 			}
 		}	
@@ -328,12 +325,10 @@ public class CommandLine {
 	
 			Stadium stadium = game.getStadium();
 			ArrayList<Team> matches = stadium.getMatches();
-			int i = 0;
 			int m = 1;
 			for(Team match : matches ) {
-				System.out.println("("+m+") Match "+m+":\n" + matches.get(i));
+				System.out.println("("+m+") Match "+m+":\n" + match);
 				m += 1;
-				i += 1;
 			}
 			System.out.println("("+m+") Return to Main Menu");
 			int matchNum = getIntegerInput(matches.size() + 1);

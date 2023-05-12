@@ -13,7 +13,7 @@ public class Main {
 	
 	public static void main(String[] args) {
 		
-		final ArrayList<Athlete> draft = new ArrayList();
+		final ArrayList<Athlete> draft = new ArrayList<Athlete>();
 		
 		while (draft.size() <= 10) {
 			draft.add(Athlete.randomAthleteGenerator());
