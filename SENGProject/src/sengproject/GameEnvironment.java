@@ -80,7 +80,11 @@ public class GameEnvironment {
 	 * The points gained
 	 */
 	private int points = 0;
-	
+	/**
+	 * Game Environment constructor used for testing
+	 */
+	public GameEnvironment() {
+	}
 	/**
 	 * constructor for game environment, used once at the beginning of the game form the main method
 	 * @param ui
@@ -165,6 +169,14 @@ public class GameEnvironment {
 	 */
 	public int getWeeksRemaining() {
 		return weeksRemaining;
+	}
+	/**
+	 * Sets the weeks remaining
+	 * 
+	 * @param week The number of weeks remaining
+	 */
+	public void setWeeksRemaining(int week) {
+		weeksRemaining = week;
 	}
 	/**
 	 * Returns the amount of money the player currently has.
