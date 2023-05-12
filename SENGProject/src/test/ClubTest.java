@@ -65,7 +65,7 @@ class ClubTest {
 		for(int i = 0; i < 5; i++) {
 			reserves.add(Athlete.randomAthleteGenerator());
 		}
-		Club club = new Club("BOYS", athletes, reserves);
+		final Club club = new Club("BOYS", athletes, reserves);
 		ArrayList<Athlete> clubReserves = club.viewReserves();
 		Athlete newAthlete = Athlete.randomAthleteGenerator();
 		assertThrows(ArrayIndexOutOfBoundsException.class, () -> club.addNewAthlete(newAthlete));
