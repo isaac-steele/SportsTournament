@@ -2,12 +2,6 @@ package sengproject;
 
 import java.util.ArrayList;
 
-import main.Athlete;
-import main.Club;
-import main.Market;
-import main.RandomEvent;
-import main.Stadium;
-
 /**
  * This class contains the main game. It keeps track of the game and handles requests from the UI.
  * The player starts off in week 1 with a default amount of money. They can draft players and improve their stats with items.
@@ -46,7 +40,7 @@ public class GameEnvironment {
 	/**
 	 * the club object which will be used for the entirety of the game
 	 */
-	private final Club club;
+	private Club club;
 	/**
 	 * the market object which will be used for the entirety of the game
 	 */
@@ -108,10 +102,10 @@ public class GameEnvironment {
 	 */
 	public void finishSetup(String name, ArrayList<Athlete> team, int numWeeks) {
 		this.totalWeeks = numWeeks;
+		this.weeksRemaining = this.totalWeeks - this.currentWeek;
 		this.club = new Club(name,team);
 		this.market = new Market();
 		this.stadium = new Stadium(this);
-		
 		ui.start(); 	
 	}
 	/**
@@ -413,12 +407,13 @@ public class GameEnvironment {
 			Athlete chosenAthlete = activeTeam.get(chosenAthleteNum);
 			chosenAthlete.increaseDefence(10);
 			chosenAthlete.increaseOffence(10);
-		} else if (chosenAthleteNum >= activeTeam.size() && chosenAthleteNum < (reserves.size() + activeTeam.size())) {
+		} 
+		else if (chosenAthleteNum >= activeTeam.size() && chosenAthleteNum < (reserves.size() + activeTeam.size())) {
 			chosenAthleteNum -= activeTeam.size();
 			Athlete chosenAthlete = reserves.get(chosenAthleteNum);
 			chosenAthlete.increaseDefence(10);
 			chosenAthlete.increaseOffence(10);
-
+		}
 	}
 }
 	

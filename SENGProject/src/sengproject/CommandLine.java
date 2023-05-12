@@ -1,13 +1,14 @@
 package sengproject;
 
+
+
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-import main.Stadium;
-import main.Team;
+
 
 /**
  * command line interface for the game environment
@@ -53,11 +54,15 @@ public class CommandLine {
 	 */
 	public int getNumWeeks() {
 		
+		System.out.println("Please enter the number of weeks you want the game to be played for (between 5 and 15)");
 		while(true) {
 			try {
 				int numWeeks = scanner.nextInt();
 				if (numWeeks <= 15 && numWeeks >= 5) {
 					return numWeeks;
+				}
+				else {
+					System.out.println("Please select a number between 5 and 15");
 				}
 			} catch (Exception error) {
 				System.out.println("Please select a number between 5 and 15");
@@ -93,35 +98,18 @@ public class CommandLine {
 	 */
 	public ArrayList<Athlete> draftAthletes(GameEnvironment game) {
 		
-		final ArrayList<Athlete> draft = new ArrayList<Athlete>(game.getDraft());
+		ArrayList<Athlete> draft = new ArrayList<Athlete>(game.getDraft());
 		ArrayList<Athlete> selected = new ArrayList<Athlete>();
 		
 		
-		for (int i =0; i < 4; i++) {
-			
-			printDraftOptions(draft);
-			System.out.println("Please enter the number next to the athlete you want to draft");
-		
-			boolean stop = false;
-			while (stop == false) {
+		while (selected.size() < 4 ) {
 				
-				try {
-					int selection = scanner.nextInt();
-					if (selection >= 1 && selection <= draft.size()) {
-						selected.add(draft.get(selection));
-						draft.remove(selection);
-						stop = true;
-					}
-					else {
-						System.out.println("Please select a valid number");
-					}
-				} catch (Exception error) {
+			printDraftOptions(draft);
+			System.out.println("Please enter the number next to the athlete you want to draft");	
+			int selection = getIntegerInput(draft.size());
+			selected.add(draft.get(selection - 1));
+			draft.remove(selection - 1);
 					
-					System.out.println("Please select a valid number");
-					scanner.nextLine();
-					
-				}	
-			}		
 		}
 		return selected;
 	
@@ -154,7 +142,7 @@ public class CommandLine {
 			handleMainOption(selection);
 			
 		}
-		
+		System.out.println("Game over");
 	}
 	
 	/**
@@ -179,8 +167,8 @@ public class CommandLine {
 				throw new IllegalArgumentException("Unexpected value");
 			case(1):
 				printClubOptions();
-				selection = getIntegerInput(5);
-				game.handleClubOptions(5); 
+				int new_selection = getIntegerInput(5);
+				game.handleClubOptions(new_selection); 
 				break;
 			case(2):
 				StadiumOptions();
@@ -191,6 +179,9 @@ public class CommandLine {
 				break;
 			case(4):
 				game.handleBye();
+				game.updateWeeksRemaining();
+				game.updateCurrentWeek();
+				start();
 				break;
 			}
 		}	
