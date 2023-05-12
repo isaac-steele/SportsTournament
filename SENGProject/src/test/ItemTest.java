@@ -3,7 +3,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import sengproject.Item;
+import sportstournament.main.Item;
 
 class ItemTest {
 

@@ -1,4 +1,4 @@
-package sengproject;
+package sportstournament.main;
 
 /**
  * This interface declares the methods common between Item and Athlete.

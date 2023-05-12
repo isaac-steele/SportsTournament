@@ -1,4 +1,4 @@
-package sengproject;
+package sportstournament.ui;
 
 
 
@@ -7,6 +7,13 @@ import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.regex.Pattern;
+
+import sportstournament.main.Athlete;
+import sportstournament.main.Club;
+import sportstournament.main.GameEnvironment;
+import sportstournament.main.Item;
+import sportstournament.main.Stadium;
+import sportstournament.main.Team;
 
 
 

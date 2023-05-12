@@ -1,6 +1,8 @@
-package sengproject;
+package sportstournament.main;
 
 import java.util.ArrayList;
+
+import sportstournament.ui.CommandLine;
 
 /**
  * This class contains the main game. It keeps track of the game and handles requests from the UI.

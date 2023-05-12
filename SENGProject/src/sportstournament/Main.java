@@ -1,6 +1,10 @@
-package sengproject;
+package sportstournament;
 
 import java.util.ArrayList;
+
+import sportstournament.main.Athlete;
+import sportstournament.main.GameEnvironment;
+import sportstournament.ui.CommandLine;
 
 /**
  * Where application begins. 

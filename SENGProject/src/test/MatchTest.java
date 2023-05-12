@@ -4,12 +4,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
+import sportstournament.main.Athlete;
+import sportstournament.main.Club;
+import sportstournament.main.Match;
+import sportstournament.main.Team;
 
-import sengproject.Athlete;
-import sengproject.Club;
-import sengproject.Match;
-import sengproject.Team;
+import java.util.ArrayList;
 
 
 class MatchTest {

@@ -6,9 +6,9 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
-import sengproject.Athlete;
-import sengproject.Club;
-import sengproject.Item;
+import sportstournament.main.Athlete;
+import sportstournament.main.Club;
+import sportstournament.main.Item;
 
 
 class ClubTest {

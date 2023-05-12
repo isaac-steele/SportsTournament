@@ -1,4 +1,4 @@
-package sengproject;
+package sportstournament.main;
 
 /**
  * stadium class where the player can see and select a match to play

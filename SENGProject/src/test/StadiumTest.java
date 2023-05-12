@@ -6,11 +6,11 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
-import sengproject.Stadium;
-import sengproject.Team;
-import sengproject.Athlete;
-import sengproject.Club;
-import sengproject.GameEnvironment;
+import sportstournament.main.Athlete;
+import sportstournament.main.Club;
+import sportstournament.main.GameEnvironment;
+import sportstournament.main.Stadium;
+import sportstournament.main.Team;
 
 class StadiumTest {
 

@@ -1,4 +1,4 @@
-package sengproject;
+package sportstournament.main;
 
 
 import java.util.ArrayList;

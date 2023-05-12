@@ -1,4 +1,5 @@
-package sengproject;
+package sportstournament.main;
+
 /**
  * An enum with three possible types of items.
  * Sets a default price and stat boost for each type
