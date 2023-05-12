@@ -108,7 +108,7 @@ public class GameEnvironment {
 		this.totalWeeks = numWeeks;
 		this.weeksRemaining = this.totalWeeks - this.currentWeek;
 		this.club = new Club(name,team);
-		this.market = new Market();
+		this.market = new Market(this);
 		this.stadium = new Stadium(this);
 		ui.start(); 	
 	}
@@ -199,6 +199,16 @@ public class GameEnvironment {
 	 */
 	public void updateMoney(int gains) {
 		this.moneyAmount += gains;
+	}
+	/**
+	 * Decreases the money
+	 */
+	public void decreaseMoney(int withdraw) {
+		if (this.moneyAmount - withdraw < 0) {
+			throw new ArithmeticException("You cannot afford this!");
+		} else {
+			this.moneyAmount -= withdraw;
+		}
 	}
 	/** 
 	 * The amount of points the player has
@@ -356,7 +366,7 @@ public class GameEnvironment {
 		//In command line print out option to specially train one athlete before calling this
 		updateCurrentWeek();
 		updateWeeksRemaining();
-		market = new Market();
+		market = new Market(this);
 		stadium = new Stadium(this);
 		randomEvent = new RandomEvent(club);
 		randomEvent.doRandomEvent(difficulty);

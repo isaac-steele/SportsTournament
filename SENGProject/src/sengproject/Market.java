@@ -19,14 +19,17 @@ public class Market {
 	 * list of available free agents
 	 */
 	private ArrayList<Athlete> freeAgents = new ArrayList<Athlete>();
-	
+	/**
+	 * The game environment
+	 */
+	private GameEnvironment game;
 	/**
 	 * default constructor for market
 	 * sets availableItems to all possible items
 	 * creates a list of random athletes to be available for purchase
 	 */
-	public Market() {
-		
+	public Market(GameEnvironment game) {
+		this.game = game;
 		for (Item item : Item.values()) {
 			availableItems.add(item);
 		}
@@ -41,8 +44,8 @@ public class Market {
 	 * view the teams money
 	 * @param team
 	 */
-	public void getMoney(Club club) {
-		club.getMoneyAmount();
+	public void getMoney() {
+		game.getMoneyAmount();
 	}
 	/**
 	 * sets the list of items in the market
@@ -85,7 +88,7 @@ public class Market {
 	 */
 	public void buyReserve(Athlete newAthlete, Club club) {
 		
-		club.setMoney(club.getMoneyAmount() - newAthlete.getPrice());
+		game.decreaseMoney(newAthlete.getPrice());
 		club.addNewAthlete(newAthlete);
 		freeAgents.remove(newAthlete);
 		
@@ -102,7 +105,7 @@ public class Market {
 	 */
 	public void buyStarter(Athlete newAthlete, Athlete subAthlete, Club club) {
 		
-		club.setMoney(club.getMoneyAmount() - newAthlete.getPrice());
+		game.decreaseMoney(newAthlete.getPrice());
 		club.addNewAthlete(newAthlete);
 		club.subAthlete(newAthlete, subAthlete);
 		freeAgents.remove(newAthlete);
@@ -119,7 +122,7 @@ public class Market {
 	 */
 	public void buyItem(Item item, Club club) {
 		club.addItem(item);
-		club.setMoney(club.getMoneyAmount() - item.getPrice());
+		game.decreaseMoney(item.getPrice());
 	}
 	
 	/**
@@ -129,7 +132,7 @@ public class Market {
 	 */
 	public void returnReserve(Athlete athlete, GameEnvironment game) {
 		
-		game.updateMoney(game.getMoneyAmount() + (athlete.getPrice() / 2));
+		game.updateMoney((athlete.getPrice() / 2));
 		freeAgents.add(athlete);
 		game.getClub().removeReserve(athlete);
 	}
@@ -141,7 +144,7 @@ public class Market {
 	 * @param team
 	 */
 	public void returnStarter(Athlete athlete, Athlete replacement,Club club) {
-		club.setMoney(club.getMoneyAmount() + (athlete.getPrice() / 2));
+		game.updateMoney((athlete.getPrice() / 2));
 		club.subAthlete(replacement, athlete);
 		club.removeReserve(athlete);
 		freeAgents.add(athlete);
