@@ -104,7 +104,7 @@ public class RandomEvent {
 		ArrayList<Athlete> activeTeam = team.viewActiveTeam();
 		ArrayList<Athlete> reserves = team.viewReserves();
 		Athlete quitter = activeTeam.get(athleteIndex);
-		int randomSub = rng.nextInt(5);
+		int randomSub = rng.nextInt(reserves.size());
 		Athlete replacement = reserves.get(randomSub);
 		team.subAthlete(quitter, replacement);
 		team.removeReserve(quitter);

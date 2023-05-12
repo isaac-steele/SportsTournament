@@ -348,7 +348,7 @@ public class CommandLine {
 					System.out.println(result);
 				}
 				else {
-				System.out.println("The result of the match is:" + result);
+				System.out.println("The result of the match is: " + result);
 				System.out.println("The updated status of your team is\n" + game.getClub());
 				System.out.println("Your total points are now: " + game.getPoints());
 				System.out.println("Your total money is now: " + game.getMoneyAmount());
