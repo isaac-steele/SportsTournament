@@ -108,15 +108,21 @@ public class Market {
 	 * @param subAthlete
 	 * @param team
 	 */
-	public void buyStarter(Athlete newAthlete, Athlete subAthlete, Club club) {
-		
-		game.decreaseMoney(newAthlete.getPrice());
-		club.addNewAthlete(newAthlete);
-		club.subAthlete(newAthlete, subAthlete);
-		freeAgents.remove(newAthlete);
-		
-		if (freeAgents.size() == 2) {
-			freeAgents.add(Athlete.randomAthleteGenerator());
+	public String buyStarter(Athlete newAthlete, Athlete subAthlete, Club club) {
+		try {
+			game.decreaseMoney(newAthlete.getPrice());
+			club.addNewAthlete(newAthlete);
+			club.subAthlete(newAthlete, subAthlete);
+			freeAgents.remove(newAthlete);
+			
+			if (freeAgents.size() == 2) {
+				freeAgents.add(Athlete.randomAthleteGenerator());
+			}
+			return newAthlete.getName() + " purchased.";
+		}
+		catch (ArithmeticException error) {
+			return error.getMessage();
+			
 		}
 	}
 	
@@ -125,9 +131,15 @@ public class Market {
 	 * @param item
 	 * @param team
 	 */
-	public void buyItem(Item item, Club club) {
-		club.addItem(item);
+	public String buyItem(Item item, Club club) {
+		try {
 		game.decreaseMoney(item.getPrice());
+		club.addItem(item);
+		return item.name() + " purchased.";
+		}
+		catch(ArithmeticException error) {
+			return error.getMessage();
+		}
 	}
 	
 	/**
@@ -135,11 +147,11 @@ public class Market {
 	 * @param athlete
 	 * @param team
 	 */
-	public void returnReserve(Athlete athlete, GameEnvironment game) {
+	public void returnReserve(Athlete athlete, Club club) {
 		
 		game.updateMoney((athlete.getPrice() / 2));
 		freeAgents.add(athlete);
-		game.getClub().removeReserve(athlete);
+		club.removeReserve(athlete);
 	}
 	
 	/**

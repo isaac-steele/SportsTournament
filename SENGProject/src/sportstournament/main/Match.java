@@ -25,7 +25,10 @@ public class Match {
 		for(int i = 0; i < 2 ; i++) {
 			Athlete myDefender = myTeam.get(i);
 			Athlete oppDefender = opponentTeam.get(i);
-			if(myDefender.getDefenceStat() > oppDefender.getDefenceStat()) {
+			if (myDefender.getInjuryStatus()) {
+				opponentScore += 10;
+			}
+			else if(myDefender.getDefenceStat() > oppDefender.getDefenceStat()) {
 				myScore += 10;
 			}
 			else if (myDefender.getDefenceStat() < oppDefender.getDefenceStat()) {
@@ -44,7 +47,10 @@ public class Match {
 		for(int i = 2; i < 4; i++) {
 			Athlete myAttacker = myTeam.get(i);
 			Athlete oppAttacker = opponentTeam.get(i);
-			if(myAttacker.getOffenceStat() > oppAttacker.getOffenceStat()) {
+			if(myAttacker.getInjuryStatus()) {
+				opponentScore += 10;
+			}
+			else if(myAttacker.getOffenceStat() > oppAttacker.getOffenceStat()) {
 				myScore += 10;
 			}
 			else if (myAttacker.getOffenceStat() < oppAttacker.getOffenceStat()) {
