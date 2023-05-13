@@ -3,10 +3,11 @@ package sportstournament.gui;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JButton;
 
 public class ClubScreen {
 
-	private JFrame frame;
+	private JFrame frmClub;
 
 	/**
 	 * Launch the application.
@@ -16,7 +17,7 @@ public class ClubScreen {
 			public void run() {
 				try {
 					ClubScreen window = new ClubScreen();
-					window.frame.setVisible(true);
+					window.frmClub.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -35,9 +36,23 @@ public class ClubScreen {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmClub = new JFrame();
+		frmClub.setTitle("Club");
+		frmClub.setBounds(100, 100, 784, 470);
+		frmClub.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmClub.getContentPane().setLayout(null);
+		
+		JButton btnInventory = new JButton("Inventory");
+		btnInventory.setBounds(63, 122, 284, 169);
+		frmClub.getContentPane().add(btnInventory);
+		
+		JButton btnTeam = new JButton("Team");
+		btnTeam.setBounds(400, 122, 307, 169);
+		frmClub.getContentPane().add(btnTeam);
+		
+		JButton btnMainMenu = new JButton("Main Menu");
+		btnMainMenu.setBounds(634, 405, 111, 25);
+		frmClub.getContentPane().add(btnMainMenu);
 	}
 
 }
