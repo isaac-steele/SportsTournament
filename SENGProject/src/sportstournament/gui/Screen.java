@@ -14,7 +14,7 @@ public abstract class Screen {
 	/**
 	 * the gui for the specific screen class
 	 */
-	private final Gui gui;
+	protected final Gui gui;
 	
 	/**
 	 * creates the given screen

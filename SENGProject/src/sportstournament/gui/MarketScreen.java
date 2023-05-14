@@ -8,12 +8,12 @@ import javax.swing.JLabel;
 import sportstournament.main.GameEnvironment;
 
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class MarketScreen extends Screen{
 
 	private JFrame marketWindow;
-	private GameEnvironment game;
-	private Gui gui;
 
 
 	/**
@@ -64,6 +64,12 @@ public class MarketScreen extends Screen{
 		marketWindow.getContentPane().add(btnViewAvailableItems);
 		
 		JButton btnMainMenu = new JButton("Main Menu");
+		btnMainMenu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gui.closeMarket();
+				gui.openMainScreen();
+			}
+		});
 		btnMainMenu.setBounds(648, 396, 117, 25);
 		marketWindow.getContentPane().add(btnMainMenu);
 	}

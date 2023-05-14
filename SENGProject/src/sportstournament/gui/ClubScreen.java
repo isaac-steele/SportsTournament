@@ -7,12 +7,13 @@ import javax.swing.JFrame;
 import sportstournament.main.GameEnvironment;
 
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ClubScreen extends Screen {
 
 	protected JFrame clubWindow;
-	private GameEnvironment game;
-	private Gui gui;
+	
 
 	/**
 	 * Launch the application.
@@ -51,6 +52,12 @@ public class ClubScreen extends Screen {
 		clubWindow.getContentPane().add(btnTeam);
 		
 		JButton btnMainMenu = new JButton("Main Menu");
+		btnMainMenu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gui.closeClub();
+				gui.openMainScreen();
+			}
+		});
 		btnMainMenu.setBounds(634, 405, 111, 25);
 		clubWindow.getContentPane().add(btnMainMenu);
 	}

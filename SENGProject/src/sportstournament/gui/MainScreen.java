@@ -15,9 +15,7 @@ import java.awt.event.ActionEvent;
 public class MainScreen extends Screen {
 	
 	
-	private static GameEnvironment game;
 	private JFrame mainWindow;
-	private static Gui gui;
 
 
 	/**
@@ -27,21 +25,9 @@ public class MainScreen extends Screen {
 		super(game, gui);
 		initialize();
 		super.window = mainWindow;
+	}
 		
-	}
-	public static void main(String[] args) {
-		game = new GameEnvironment();
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MainScreen window = new MainScreen(game, gui);
-					window.mainWindow.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+
 
 	/**
 	 * Initialize the contents of the frame.
@@ -96,6 +82,7 @@ public class MainScreen extends Screen {
 			public void actionPerformed(ActionEvent e) {
 				
 				gui.closeMainScreen();
+				gui.openTakeByeScreen();
 			}
 		});
 		btnNewButton.setBounds(397, 248, 192, 76);
