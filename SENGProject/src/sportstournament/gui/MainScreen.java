@@ -12,29 +12,36 @@ import sportstournament.main.GameEnvironment;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class MainScreen {
+public class MainScreen extends Screen {
 	
 	
-	private GameEnvironment game;
+	private static GameEnvironment game;
 	private JFrame mainWindow;
-	private Gui gui;
+	private static Gui gui;
 
-	
 
 	/**
 	 * Create the window.
 	 */
 	public MainScreen(GameEnvironment game, Gui gui) {
-		this.game = game;
+		super(game, gui);
 		initialize();
-		mainWindow.setVisible(true);
+		super.window = mainWindow;
+		
 	}
-	
-	public void closeWindow() {
-		mainWindow.dispose();
+	public static void main(String[] args) {
+		game = new GameEnvironment();
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					MainScreen window = new MainScreen(game, gui);
+					window.mainWindow.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
-	
-	
 
 	/**
 	 * Initialize the contents of the frame.
@@ -54,8 +61,9 @@ public class MainScreen {
 		JButton btnClub = new JButton("Club");
 		btnClub.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 				gui.closeMainScreen();
+				gui.openClub();
+
 			}
 		});
 		btnClub.setBounds(117, 154, 192, 76);
@@ -64,8 +72,9 @@ public class MainScreen {
 		JButton btnStadium = new JButton("Stadium");
 		btnStadium.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 				gui.closeMainScreen();
+				gui.OpenStadium();
+
 			}
 		});
 		btnStadium.setBounds(397, 154, 192, 76);
@@ -74,8 +83,8 @@ public class MainScreen {
 		JButton btnMarket = new JButton("Market");
 		btnMarket.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 				gui.closeMainScreen();
+				gui.OpenMarket();
 
 			}
 		});

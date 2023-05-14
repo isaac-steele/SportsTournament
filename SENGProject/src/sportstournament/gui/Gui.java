@@ -19,6 +19,27 @@ public class Gui {
 	 * The main screen
 	 */
 	private MainScreen mainScreen;
+	
+	/**
+	 * The club screen
+	 */
+	private ClubScreen clubScreen;
+	
+	/**
+	 * The stadium screen
+	 */
+	private StadiumScreen stadiumScreen;
+	
+	/**
+	 * The market screen
+	 */
+	private MarketScreen marketScreen;
+	
+	/**
+	 * The take bye screen
+	 */
+	private TakeByeScreen takeByeScreen;
+	
 	/**
 	 * Launches the setup window
 	 * @param game
@@ -26,8 +47,7 @@ public class Gui {
 	public void setup(GameEnvironment game) {
 		this.game = game;
 		ArrayList<Athlete> draftAthletes = game.getDraft();
-		setupScreen = new SetupScreen(game, draftAthletes);
-		
+		setupScreen = new SetupScreen(game, draftAthletes);	
 	}
 	
 	/**
@@ -35,22 +55,69 @@ public class Gui {
 	 */
 	public void start() {
 		setupScreen.closeWindow();
-		MainScreen mainWindow = new MainScreen(game, this);
+		mainScreen = new MainScreen(game, this);
+		clubScreen = new ClubScreen(game, this);
+		stadiumScreen = new StadiumScreen(game, this);
+		marketScreen = new MarketScreen(game, this);
+		openMainScreen();
 	}
 	
+	/**
+	 * opens the main screen
+	 */
+	public void openMainScreen() {
+		mainScreen.open();
+	}
+	/**
+	 * closes the main screen
+	 */
 	public void closeMainScreen() {
 		mainScreen.closeWindow();
 	}
 	
-	public void openClubScreen() {
-		clubWindow = new ClubScreen(game, this);
+	/**
+	 * opens the club screen
+	 */
+	public void openClub() {
+		clubScreen.open();
+	}
+	/**
+	 * closes the club screen
+	 */
+	public void closeClub() {
+		clubScreen.closeWindow();
 	}
 	
+	/**
+	 * opens the stadium screen
+	 */
 	public void OpenStadium() {
-		
+		stadiumScreen.open();
 	}
-
+	/**
+	 * closes the stadium screen
+	 */
+	public void closeStadium() {
+		stadiumScreen.closeWindow();
+	}
+	
+	/**
+	 * opens the market screen
+	 */
 	public void OpenMarket() {
-		
+		stadiumScreen.open();
+	}
+	/**
+	 * closes the market screen
+	 */
+	public void closeMarket() {
+		marketScreen.closeWindow();
+	}
+	
+	public void openTakeByeScreen() {
+		takeByeScreen.open();
+	}
+	public void closeTakeByeScreen() {
+		takeByeScreen.closeWindow();
 	}
 }
