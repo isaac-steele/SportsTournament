@@ -7,81 +7,114 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JTextPane;
 
+import sportstournament.main.GameEnvironment;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
 public class MainScreen {
+	
+	
+	private GameEnvironment game;
+	private JFrame mainWindow;
+	private Gui gui;
 
-	private JFrame frmasideFootballMain;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MainScreen window = new MainScreen();
-					window.frmasideFootballMain.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	
 
 	/**
-	 * Create the application.
+	 * Create the window.
 	 */
-	public MainScreen() {
+	public MainScreen(GameEnvironment game, Gui gui) {
+		this.game = game;
 		initialize();
+		mainWindow.setVisible(true);
 	}
+	
+	public void closeWindow() {
+		mainWindow.dispose();
+	}
+	
+	
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frmasideFootballMain = new JFrame();
-		frmasideFootballMain.setTitle("4-A-Side Football Main Menu");
-		frmasideFootballMain.setBounds(100, 100, 770, 464);
-		frmasideFootballMain.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frmasideFootballMain.getContentPane().setLayout(null);
+		mainWindow = new JFrame();
+		mainWindow.setTitle("4-A-Side Football Main Menu");
+		mainWindow.setBounds(100, 100, 770, 464);
+		mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		mainWindow.getContentPane().setLayout(null);
 		
 		JLabel lblWelcomeToThe = new JLabel("Welcome to the Main Menu!");
 		lblWelcomeToThe.setBounds(268, 12, 244, 15);
-		frmasideFootballMain.getContentPane().add(lblWelcomeToThe);
-		
+		mainWindow.getContentPane().add(lblWelcomeToThe);
+
+	
 		JButton btnClub = new JButton("Club");
-		btnClub.setBounds(123, 154, 161, 76);
-		frmasideFootballMain.getContentPane().add(btnClub);
+		btnClub.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				gui.closeMainScreen();
+			}
+		});
+		btnClub.setBounds(117, 154, 192, 76);
+		mainWindow.getContentPane().add(btnClub);
 		
 		JButton btnStadium = new JButton("Stadium");
+		btnStadium.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				gui.closeMainScreen();
+			}
+		});
 		btnStadium.setBounds(397, 154, 192, 76);
-		frmasideFootballMain.getContentPane().add(btnStadium);
+		mainWindow.getContentPane().add(btnStadium);
 		
 		JButton btnMarket = new JButton("Market");
-		btnMarket.setBounds(117, 248, 167, 76);
-		frmasideFootballMain.getContentPane().add(btnMarket);
+		btnMarket.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				gui.closeMainScreen();
+
+			}
+		});
+		btnMarket.setBounds(117, 248, 192, 76);
+		mainWindow.getContentPane().add(btnMarket);
 		
 		JButton btnNewButton = new JButton("Take Bye");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				gui.closeMainScreen();
+			}
+		});
 		btnNewButton.setBounds(397, 248, 192, 76);
-		frmasideFootballMain.getContentPane().add(btnNewButton);
+		mainWindow.getContentPane().add(btnNewButton);
 		
 		JButton btnQuit = new JButton("Quit");
+		btnQuit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		btnQuit.setBounds(616, 397, 117, 25);
-		frmasideFootballMain.getContentPane().add(btnQuit);
+		mainWindow.getContentPane().add(btnQuit);
 		
 		JLabel lblTotalFunds = new JLabel("Total Funds:");
 		lblTotalFunds.setBounds(60, 37, 117, 15);
-		frmasideFootballMain.getContentPane().add(lblTotalFunds);
+		mainWindow.getContentPane().add(lblTotalFunds);
 		
 		JLabel lblgetFunds = new JLabel("");
 		lblgetFunds.setBounds(172, 37, 70, 15);
-		frmasideFootballMain.getContentPane().add(lblgetFunds);
+		mainWindow.getContentPane().add(lblgetFunds);
 		
 		JLabel lblCurrentWeek = new JLabel("Current Week:");
 		lblCurrentWeek.setBounds(60, 64, 117, 15);
-		frmasideFootballMain.getContentPane().add(lblCurrentWeek);
+		mainWindow.getContentPane().add(lblCurrentWeek);
 		
 		JLabel lblWeeksRemaining = new JLabel("Weeks Remaining:");
 		lblWeeksRemaining.setBounds(60, 97, 147, 15);
-		frmasideFootballMain.getContentPane().add(lblWeeksRemaining);
+		mainWindow.getContentPane().add(lblWeeksRemaining);
 	}
 }
