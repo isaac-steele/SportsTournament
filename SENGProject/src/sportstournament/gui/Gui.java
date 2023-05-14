@@ -37,4 +37,20 @@ public class Gui {
 		setupScreen.closeWindow();
 		MainScreen mainWindow = new MainScreen(game, this);
 	}
+	
+	public void closeMainScreen() {
+		mainScreen.closeWindow();
+	}
+	
+	public void openClubScreen() {
+		clubWindow = new ClubScreen(game, this);
+	}
+	
+	public void OpenStadium() {
+		
+	}
+
+	public void OpenMarket() {
+		
+	}
 }
