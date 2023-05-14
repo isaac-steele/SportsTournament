@@ -2,6 +2,7 @@ package sportstournament.main;
 
 import java.util.ArrayList;
 
+import sportstournament.gui.Gui;
 import sportstournament.ui.CommandLine;
 
 /**
@@ -57,7 +58,10 @@ public class GameEnvironment {
 	 * final variable
 	 */
 	private CommandLine ui;
-
+	/**
+	 * gui instance
+	 */
+	private Gui gui;
 	/**
 	 * The total number of weeks.
 	 */
@@ -98,21 +102,43 @@ public class GameEnvironment {
 		this.ui = ui;
 	}	
 	/**
+	 * constructor for the gui
+	 * @param gui
+	 * @param draft
+	 */
+	public GameEnvironment(Gui gui, ArrayList<Athlete> draft ) {
+		
+		this.draft = draft;
+		this.gui = gui;
+	}	
+	/**
 	 * starts the game
 	 */
-	public void Start() {
+	public void startUi() {
 		ui.SetUp(this);
+	}
+	/**
+	 * starts the game with gui
+	 */
+	public void startGui() {
+		gui.setup(this);
 	}
 	/**
 	 * finishes setup and starts the main game
 	 */
-	public void finishSetup(String name, ArrayList<Athlete> team, int numWeeks) {
+	public void finishSetup(String name, ArrayList<Athlete> team, int numWeeks, String difficulty) {
+		this.difficulty = difficulty;
 		this.totalWeeks = numWeeks;
 		this.weeksRemaining = this.totalWeeks - this.currentWeek;
 		this.club = new Club(name,team);
 		this.market = new Market(this);
 		this.stadium = new Stadium(this);
-		ui.start(); 	
+		if (gui == null) {
+			ui.start(); 
+		}
+		else if (ui == null) {
+			gui.start();
+		}
 	}
 	/**
 	 * Gets the club

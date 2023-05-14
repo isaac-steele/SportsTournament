@@ -2,6 +2,9 @@ package sportstournament;
 
 import java.util.ArrayList;
 
+import javax.swing.SwingUtilities;
+
+import sportstournament.gui.Gui;
 import sportstournament.main.Athlete;
 import sportstournament.main.GameEnvironment;
 import sportstournament.ui.CommandLine;
@@ -23,11 +26,15 @@ public class Main {
 			draft.add(Athlete.randomAthleteGenerator());
 		}
 		
-		CommandLine ui = new CommandLine();
-		
-		GameEnvironment game = new GameEnvironment(ui, draft);
-		game.Start();
-		
+		 if (args.length > 0 && (args[0].equals("cmd"))) {
+	            CommandLine ui = new CommandLine();
+	        	GameEnvironment game = new GameEnvironment(ui, draft);
+	            game.startUi();
+	        } else {
+	            Gui gui = new Gui();
+	            GameEnvironment game = new GameEnvironment(gui, draft);
+	            SwingUtilities.invokeLater(() -> game.startGui());
+	        }
 		
 	}
 
