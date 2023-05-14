@@ -249,9 +249,9 @@ public class Athlete implements Purchasable {
 	}
 	/**
 	 * To String method for the Athlete Class
-	 */
+	*/
 	public String toString() {
-		return "Name: " + athleteName + "\n" + "Offence: " + offenceStat + "\n" + "Defence: " + defenceStat + "\n" + "Stamina: " + athleteStamina + "\n" + "Price: " + athletePrice + "\nInjured: " + injuryStatus;
+		return "Name: " + athleteName + ", " + "Offence: " + offenceStat + ", " + "Defence: " + defenceStat + ", " + "Stamina: " + athleteStamina + ", " + "Price: " + athletePrice + ", Injured: " + injuryStatus;
 	}
 	
 	/**

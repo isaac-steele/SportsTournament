@@ -2,6 +2,7 @@ package sportstournament.gui;
 
 import java.awt.EventQueue;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Pattern;
 
 import javax.swing.JFrame;
@@ -10,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JList;
 import javax.swing.JToolBar;
+import javax.swing.ListSelectionModel;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
@@ -22,6 +24,11 @@ import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.AbstractListModel;
+import java.awt.Color;
+import java.awt.Font;
 
 public class SetupScreen {
 
@@ -33,6 +40,8 @@ public class SetupScreen {
 	private String difficulty;
 	private ArrayList<Athlete> chosenAthletes;
 	private int numWeeks;
+	private List<Athlete> selectedAthletes =  new ArrayList<Athlete>();
+
 
 	
 
@@ -57,15 +66,16 @@ public class SetupScreen {
 	/**
 	 * Allows for the gui manager to close the window
 	 */
-	public void setupComplete() {
+	public void setupComplete() { 
 		teamName = textField.getText();
+		chosenAthletes = (ArrayList<Athlete>) selectedAthletes;
 		game.finishSetup(teamName, chosenAthletes, numWeeks, difficulty);;
 	}
 	public boolean checkAllSelected() {
 		String name = textField.getText();
 		boolean acceptableName = (Pattern.matches("[a-zA-Z0-9]+", name) && name.length() <= 15 && name.length() >=3);
 		// enable button if a difficulty is chosen, name is right, season lenght is selected, anmd 4 players are selected
-		return acceptableName;
+		return (acceptableName && difficulty!= null && numWeeks >=5 && numWeeks<=15 && selectedAthletes.size() == 4);
 	}
 	/**
 	 * Initialize the contents of the frame.
@@ -76,6 +86,12 @@ public class SetupScreen {
 		setupWindow.setBounds(100, 100, 821, 447);
 		setupWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setupWindow.getContentPane().setLayout(null);
+		
+		JButton btnAccept = new JButton("Accept");
+		btnAccept.setEnabled(false);
+		btnAccept.addActionListener(e -> setupComplete());
+		btnAccept.setBounds(666, 380, 117, 25);
+		setupWindow.getContentPane().add(btnAccept);
 		
 		JLabel lblWelcomeToaside = new JLabel("Welcome to 4-A-Side Football!");
 		lblWelcomeToaside.setBounds(285, 12, 313, 15);
@@ -89,7 +105,19 @@ public class SetupScreen {
 		lblmustBeBetween.setBounds(285, 67, 458, 15);
 		setupWindow.getContentPane().add(lblmustBeBetween);
 		
-		JComboBox comboBox = new JComboBox();
+		Integer[] weeks = {5,6,7,8,9,10,11,12,13,14,15};
+		JComboBox comboBox = new JComboBox(weeks);
+		comboBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				numWeeks = (int) comboBox.getSelectedItem();
+				if(checkAllSelected()) {
+					btnAccept.setEnabled(true);
+				}
+				else {
+					btnAccept.setEnabled(false);
+				}
+			}
+		});
 		comboBox.setBounds(295, 104, 74, 24);
 		setupWindow.getContentPane().add(comboBox);
 		
@@ -102,18 +130,34 @@ public class SetupScreen {
 		setupWindow.getContentPane().add(lblChooseDifficulty);
 		
 		JButton btnEasy = new JButton("Easy");
+		btnEasy.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				difficulty = "Easy";
+				if(checkAllSelected()) {
+					btnAccept.setEnabled(true);
+				}
+				else {
+					btnAccept.setEnabled(false);
+				}
+			}
+		});
 		btnEasy.setBounds(285, 145, 117, 25);
 		setupWindow.getContentPane().add(btnEasy);
 		
 		JButton btnHard = new JButton("Hard");
+		btnHard.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				difficulty = "Hard";
+				if(checkAllSelected()) {
+					btnAccept.setEnabled(true);
+				}
+				else {
+					btnAccept.setEnabled(false);
+				}
+			}
+		});
 		btnHard.setBounds(485, 145, 117, 25);
 		setupWindow.getContentPane().add(btnHard);
-		
-		JButton btnAccept = new JButton("Accept");
-		btnAccept.setEnabled(false);
-		btnAccept.addActionListener(e -> setupComplete());
-		btnAccept.setBounds(666, 380, 117, 25);
-		setupWindow.getContentPane().add(btnAccept);
 		
 		JLabel lblDraftStarting = new JLabel("Draft 4 starting athletes:");
 		lblDraftStarting.setBounds(77, 193, 212, 15);
@@ -158,8 +202,25 @@ public class SetupScreen {
 		DefaultListModel<Athlete> athleteListModel = new DefaultListModel<Athlete>();
 		athleteListModel.addAll(athletesToDraft);
 		JList<Athlete> draftAthletes = new JList<Athlete>(athleteListModel);
-		draftAthletes.setBounds(556, 391, -448, -170);
+		draftAthletes.setVisibleRowCount(10);
+		draftAthletes.addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent e) {
+				selectedAthletes = draftAthletes.getSelectedValuesList();
+				if(checkAllSelected()) {
+					btnAccept.setEnabled(true);
+				}
+				else {
+					btnAccept.setEnabled(false);
+				}
+			}
+		});
+		draftAthletes.setBounds(23, 220, 631, 185);
+		draftAthletes.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		setupWindow.getContentPane().add(draftAthletes);
+		
+		JLabel lblholdCtrlWhile = new JLabel("(Hold Ctrl while selecting)");
+		lblholdCtrlWhile.setBounds(510, 193, 195, 15);
+		setupWindow.getContentPane().add(lblholdCtrlWhile);
 		
 		
 	}
