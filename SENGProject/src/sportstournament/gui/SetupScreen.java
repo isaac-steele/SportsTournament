@@ -10,6 +10,8 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JList;
 import javax.swing.JToolBar;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 import sportstournament.main.Athlete;
 import sportstournament.main.GameEnvironment;
@@ -59,10 +61,11 @@ public class SetupScreen {
 		teamName = textField.getText();
 		game.finishSetup(teamName, chosenAthletes, numWeeks, difficulty);;
 	}
-	public void checkAllSelected() {
+	public boolean checkAllSelected() {
 		String name = textField.getText();
 		boolean acceptableName = (Pattern.matches("[a-zA-Z0-9]+", name) && name.length() <= 15 && name.length() >=3);
-		// enable button if a difficulty is chosen, name is right
+		// enable button if a difficulty is chosen, name is right, season lenght is selected, anmd 4 players are selected
+		return acceptableName;
 	}
 	/**
 	 * Initialize the contents of the frame.
@@ -82,14 +85,9 @@ public class SetupScreen {
 		lblNewLabel.setBounds(71, 50, 202, 15);
 		setupWindow.getContentPane().add(lblNewLabel);
 		
-		textField = new JTextField();
-		textField.setBounds(285, 48, 212, 19);
-		setupWindow.getContentPane().add(textField);
-		textField.setColumns(10);
-		
 		JLabel lblmustBeBetween = new JLabel("(Must be between 3 - 15 characters and no special characters)");
 		lblmustBeBetween.setBounds(285, 67, 458, 15);
-		setupWindow.getContentPane().finishedWindowadd(lblmustBeBetween);
+		setupWindow.getContentPane().add(lblmustBeBetween);
 		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setBounds(295, 104, 74, 24);
@@ -112,6 +110,7 @@ public class SetupScreen {
 		setupWindow.getContentPane().add(btnHard);
 		
 		JButton btnAccept = new JButton("Accept");
+		btnAccept.setEnabled(false);
 		btnAccept.addActionListener(e -> setupComplete());
 		btnAccept.setBounds(666, 380, 117, 25);
 		setupWindow.getContentPane().add(btnAccept);
@@ -120,12 +119,48 @@ public class SetupScreen {
 		lblDraftStarting.setBounds(77, 193, 212, 15);
 		setupWindow.getContentPane().add(lblDraftStarting);
 		
+		textField = new JTextField();
+		textField.setBounds(285, 48, 212, 19);
+		setupWindow.getContentPane().add(textField);
+		textField.setColumns(10);
+		textField.getDocument().addDocumentListener(new DocumentListener() {
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				if(checkAllSelected()) {
+					btnAccept.setEnabled(true);
+				}
+				else {
+					btnAccept.setEnabled(false);
+				}
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				if(checkAllSelected()) {
+					btnAccept.setEnabled(true);
+				}
+				else {
+					btnAccept.setEnabled(false);
+				}
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				if(checkAllSelected()) {
+					btnAccept.setEnabled(true);
+				}
+				else {
+					btnAccept.setEnabled(false);
+				}
+			}
+		});
 		
 		DefaultListModel<Athlete> athleteListModel = new DefaultListModel<Athlete>();
 		athleteListModel.addAll(athletesToDraft);
 		JList<Athlete> draftAthletes = new JList<Athlete>(athleteListModel);
 		draftAthletes.setBounds(556, 391, -448, -170);
 		setupWindow.getContentPane().add(draftAthletes);
+		
 		
 	}
 }
