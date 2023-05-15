@@ -1,6 +1,8 @@
 package sportstournament.gui;
 
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 
@@ -10,17 +12,7 @@ import sportstournament.main.GameEnvironment;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.JPanel;
-import javax.swing.JTabbedPane;
-import java.awt.CardLayout;
-import javax.swing.JList;
-import javax.swing.JScrollBar;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
+
 
 public class ClubScreen extends Screen {
 
@@ -28,10 +20,6 @@ public class ClubScreen extends Screen {
 	private Club club;
 	
 
-	/**
-	 * Launch the application.
-	 */
-	
 
 	/**
 	 * Create the application.
@@ -47,9 +35,6 @@ public class ClubScreen extends Screen {
 		
 	}
 	
-	public void closeWindow() {
-		clubWindow.dispose();
-	}
 
 	/**
 	 * Initialize the contents of the frame.
@@ -80,6 +65,16 @@ public class ClubScreen extends Screen {
 		});
 		btnNewButton_1.setBounds(423, 130, 203, 148);
 		clubWindow.getContentPane().add(btnNewButton_1);
+		
+		JButton btnNewButton_2 = new JButton("Back");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gui.closeClub();
+				gui.openMainScreen();
+			}
+		});
+		btnNewButton_2.setBounds(123, 365, 117, 25);
+		clubWindow.getContentPane().add(btnNewButton_2);
 		
 		
 		DefaultListModel<Athlete> activeTeamModel = new DefaultListModel<Athlete>();

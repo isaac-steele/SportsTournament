@@ -94,6 +94,7 @@ public class Gui {
 	 * opens the club screen
 	 */
 	public void openClub() {
+		clubScreen = new ClubScreen(game, this);
 		clubScreen.open();
 	}
 	/**
@@ -125,7 +126,7 @@ public class Gui {
 	/**
 	 * closes the market screen
 	 */
-	public void closeMarket() {
+	public void closeMarket() {		
 		marketScreen.closeWindow();
 	}
 	
@@ -137,6 +138,18 @@ public class Gui {
 	}
 	
 	public void openTeamPropertiesScreen() {
-		
+		teamPropertiesScreen = new TeamPropertiesScreen(game, this);
+		teamPropertiesScreen.open();
+	}
+	
+	public void openInventoryScreen() {
+		inventoryScreen = new InventoryScreen(game, this);
+		inventoryScreen.open();
+	}
+	public void closeTeamPropertiesScreen() {
+		teamPropertiesScreen.closeWindow();
+	}
+	public void closeInventoryScreen() {
+		inventoryScreen.closeWindow();
 	}
 }

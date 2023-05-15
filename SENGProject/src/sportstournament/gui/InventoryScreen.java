@@ -5,13 +5,24 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import sportstournament.main.Athlete;
+import sportstournament.main.Club;
 import sportstournament.main.GameEnvironment;
+import sportstournament.main.Item;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.awt.event.ActionEvent;
+import javax.swing.JList;
 
 public class InventoryScreen extends Screen {
 
 	private JFrame inventoryWindow;
+	private ArrayList<Item> inventory;
+	private Club club = game.getClub();
+	private ArrayList<Athlete> team;
 
 
 	/**
@@ -19,6 +30,9 @@ public class InventoryScreen extends Screen {
 	 */
 	public InventoryScreen(GameEnvironment game, Gui gui) {
 		super(game, gui);
+		inventory = club.viewItems();
+		team = club.viewActiveTeam();
+		team.addAll(club.viewReserves());
 		initialize();
 		super.window = inventoryWindow;
 	}
@@ -37,13 +51,45 @@ public class InventoryScreen extends Screen {
 		lblItems.setBounds(39, 28, 70, 15);
 		inventoryWindow.getContentPane().add(lblItems);
 		
-		JButton btnUseItem = new JButton("Use Item");
-		btnUseItem.setBounds(307, 348, 117, 25);
-		inventoryWindow.getContentPane().add(btnUseItem);
+		
 		
 		JButton btnClub = new JButton("Club");
+		btnClub.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gui.closeInventoryScreen();
+				gui.openClub();
+			}
+		});
 		btnClub.setBounds(606, 389, 117, 25);
 		inventoryWindow.getContentPane().add(btnClub);
+		
+		DefaultListModel<Item> inventoryModel = new DefaultListModel<Item>();
+		inventoryModel.addAll(inventory);
+		JList inventoryList = new JList(inventoryModel);
+		inventoryList.setBounds(39, 85, 281, 221);
+		inventoryWindow.getContentPane().add(inventoryList);
+		
+		JLabel lblNewLabel = new JLabel("Choose player to use item on");
+		lblNewLabel.setBounds(429, 28, 259, 15);
+		inventoryWindow.getContentPane().add(lblNewLabel);
+		
+		DefaultListModel<Athlete> teamModel = new DefaultListModel<Athlete>();
+		teamModel.addAll(team);
+		JList teamList = new JList(teamModel);
+		teamList.setBounds(406, 85, 287, 221);
+		inventoryWindow.getContentPane().add(teamList);
+		
+		JButton btnUseItem = new JButton("Use Item");
+		btnUseItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int itemIndex = inventoryList.getSelectedIndex();
+				int athleteIndex = teamList.getSelectedIndex();
+				club.useItem(inventory.get(itemIndex), team.get(athleteIndex));
+				gui.closeInventoryScreen();
+				gui.openClub();
+			}
+		});
+		btnUseItem.setBounds(307, 348, 117, 25);
+		inventoryWindow.getContentPane().add(btnUseItem);
 	}
-
 }

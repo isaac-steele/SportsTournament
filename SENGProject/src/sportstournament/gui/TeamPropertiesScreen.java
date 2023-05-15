@@ -15,12 +15,14 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JList;
+import javax.swing.ListSelectionModel;
 
 public class TeamPropertiesScreen extends Screen {
 
 	private JFrame teamWindow;
 	private Club club;
 	private ArrayList<Athlete> activeTeam;
+	private ArrayList<Athlete> reserves;
 
 	/**
 	 * Create the application.
@@ -29,7 +31,9 @@ public class TeamPropertiesScreen extends Screen {
 		super(game,gui);
 		club = game.getClub();
 		activeTeam = club.viewActiveTeam();
+		reserves = club.viewReserves();
 		initialize();
+		super.window = teamWindow;
 	}
 
 	/**
@@ -54,9 +58,7 @@ public class TeamPropertiesScreen extends Screen {
 		lblReserves.setBounds(53, 219, 101, 15);
 		teamWindow.getContentPane().add(lblReserves);
 		
-		JButton btnSwapAthletes = new JButton("Swap Athletes");
-		btnSwapAthletes.setBounds(574, 214, 146, 25);
-		teamWindow.getContentPane().add(btnSwapAthletes);
+		
 		
 		JButton btnClub = new JButton("Club");
 		btnClub.addActionListener(new ActionListener() {
@@ -65,18 +67,40 @@ public class TeamPropertiesScreen extends Screen {
 				gui.openClub();
 			}
 		});
-		btnClub.setBounds(619, 394, 117, 25);
+		btnClub.setBounds(576, 363, 117, 25);
 		teamWindow.getContentPane().add(btnClub);
 		
 		JLabel teamName = new JLabel("");
 		teamName.setText(club.viewName());
-		teamName.setBounds(171, 13, 72, 14);
+		teamName.setBounds(171, 13, 226, 14);
 		teamWindow.getContentPane().add(teamName);
 		
 		DefaultListModel<Athlete> activeTeamModel = new DefaultListModel<>();
 		activeTeamModel.addAll(activeTeam);
 		JList<Athlete> activeTeamList = new JList<>(activeTeamModel);
-		activeTeamList.setBounds(136, 71, 1, 1);
+		activeTeamList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		activeTeamList.setBounds(53, 79, 441, 111);
 		teamWindow.getContentPane().add(activeTeamList);
+		
+		DefaultListModel<Athlete> reservesModel = new DefaultListModel<>();
+		reservesModel.addAll(reserves);
+		JList<Athlete> reservesList = new JList<>(reservesModel);
+		reservesList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		reservesList.setBounds(53, 271, 441, 121);
+		teamWindow.getContentPane().add(reservesList);
+		
+		JButton btnSwapAthletes = new JButton("Swap Athletes");
+		btnSwapAthletes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int activeIndex = activeTeamList.getSelectedIndex();
+				int reserveIndex = reservesList.getSelectedIndex();
+				club.subAthlete(activeTeam.get(activeIndex), reserves.get(reserveIndex));
+				gui.closeTeamPropertiesScreen();
+				gui.openClub();
+				
+			}
+		});
+		btnSwapAthletes.setBounds(532, 214, 146, 25);
+		teamWindow.getContentPane().add(btnSwapAthletes);
 	}
 }
