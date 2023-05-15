@@ -4,32 +4,31 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+
+import sportstournament.main.Athlete;
+import sportstournament.main.Club;
+import sportstournament.main.GameEnvironment;
+
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.awt.event.ActionEvent;
+import javax.swing.JList;
 
-public class TeamPropertiesScreen {
+public class TeamPropertiesScreen extends Screen {
 
-	private JFrame frmTeam;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TeamPropertiesScreen window = new TeamPropertiesScreen();
-					window.frmTeam.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private JFrame teamWindow;
+	private Club club;
+	private ArrayList<Athlete> activeTeam;
 
 	/**
 	 * Create the application.
 	 */
-	public TeamPropertiesScreen() {
+	public TeamPropertiesScreen(GameEnvironment game, Gui gui) {
+		super(game,gui);
+		club = game.getClub();
+		activeTeam = club.viewActiveTeam();
 		initialize();
 	}
 
@@ -37,31 +36,47 @@ public class TeamPropertiesScreen {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frmTeam = new JFrame();
-		frmTeam.setTitle("Team");
-		frmTeam.setBounds(100, 100, 780, 461);
-		frmTeam.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frmTeam.getContentPane().setLayout(null);
+		teamWindow = new JFrame();
+		teamWindow.setTitle("Team");
+		teamWindow.setBounds(100, 100, 780, 461);
+		teamWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		teamWindow.getContentPane().setLayout(null);
 		
 		JLabel lblTeamName = new JLabel("Team Name:");
 		lblTeamName.setBounds(53, 12, 101, 15);
-		frmTeam.getContentPane().add(lblTeamName);
+		teamWindow.getContentPane().add(lblTeamName);
 		
 		JLabel lblStarters = new JLabel("Starters:");
 		lblStarters.setBounds(53, 39, 84, 15);
-		frmTeam.getContentPane().add(lblStarters);
+		teamWindow.getContentPane().add(lblStarters);
 		
 		JLabel lblReserves = new JLabel("Reserves:");
 		lblReserves.setBounds(53, 219, 101, 15);
-		frmTeam.getContentPane().add(lblReserves);
+		teamWindow.getContentPane().add(lblReserves);
 		
 		JButton btnSwapAthletes = new JButton("Swap Athletes");
 		btnSwapAthletes.setBounds(574, 214, 146, 25);
-		frmTeam.getContentPane().add(btnSwapAthletes);
+		teamWindow.getContentPane().add(btnSwapAthletes);
 		
 		JButton btnClub = new JButton("Club");
+		btnClub.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gui.closeTeamPropertiesScreen();
+				gui.openClub();
+			}
+		});
 		btnClub.setBounds(619, 394, 117, 25);
-		frmTeam.getContentPane().add(btnClub);
+		teamWindow.getContentPane().add(btnClub);
+		
+		JLabel teamName = new JLabel("");
+		teamName.setText(club.viewName());
+		teamName.setBounds(171, 13, 72, 14);
+		teamWindow.getContentPane().add(teamName);
+		
+		DefaultListModel<Athlete> activeTeamModel = new DefaultListModel<>();
+		activeTeamModel.addAll(activeTeam);
+		JList<Athlete> activeTeamList = new JList<>(activeTeamModel);
+		activeTeamList.setBounds(136, 71, 1, 1);
+		teamWindow.getContentPane().add(activeTeamList);
 	}
-
 }
