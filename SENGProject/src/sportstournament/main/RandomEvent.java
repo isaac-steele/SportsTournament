@@ -143,7 +143,7 @@ public class RandomEvent {
 		team.addNewAthlete(randomAthlete);
 	}
 	
-	public void doRandomEvent(String difficulty) {
+	public boolean doRandomEvent(String difficulty) {
 	
 		if (difficulty == "Hard") {
 			
