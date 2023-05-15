@@ -4,9 +4,11 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import javax.swing.JTextPane;
 
+import sportstournament.main.Athlete;
 import sportstournament.main.GameEnvironment;
 
 import java.awt.event.ActionListener;
@@ -80,9 +82,28 @@ public class MainScreen extends Screen {
 		JButton btnNewButton = new JButton("Take Bye");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				gui.closeMainScreen();
-				gui.openTakeByeScreen();
+				String randomEventOccurrence = game.takeBye();
+				if (game.getWeeksRemaining() == -1) {
+					gui.endGame();
+				} else {
+					if (randomEventOccurrence == "Athlete Boost") {
+						Athlete boostedAthlete = game.getBooster();
+						String message = "It's your lucky day! " + boostedAthlete.getName() + " stats have been boosted by 10";
+						JOptionPane.showMessageDialog(mainWindow, message, "Random Event", JOptionPane.INFORMATION_MESSAGE);
+					}
+					else if (randomEventOccurrence == "Athlete Quits") {
+						Athlete quitter = game.getQuitter();
+						String message = "Oh no! " + quitter.getName() + " has quit your team. A reserve has been added to your starting team.";
+						JOptionPane.showMessageDialog(mainWindow, message, "Random Event", JOptionPane.INFORMATION_MESSAGE);
+					}
+					else if (randomEventOccurrence == "Athlete Joins") {
+						Athlete joiner = game.getJoiner();
+						String message = "Wow! " + joiner.getName() + " has joined your reserves. Go to club to see their stats.";
+						JOptionPane.showMessageDialog(mainWindow, message, "Random Event", JOptionPane.INFORMATION_MESSAGE);
+					}
+					gui.closeMainScreen();
+					gui.openTakeByeScreen();
+				}
 			}
 		});
 		btnNewButton.setBounds(397, 248, 192, 76);

@@ -2,7 +2,11 @@ package sportstournament.main;
 
 import java.util.ArrayList;
 
+import sportstournament.gui.EndGameScreen;
 import sportstournament.gui.Gui;
+import sportstournament.gui.MarketScreen;
+import sportstournament.gui.StadiumScreen;
+import sportstournament.gui.TakeByeScreen;
 import sportstournament.ui.CommandLine;
 
 /**
@@ -190,8 +194,8 @@ public class GameEnvironment {
 	 * Specially trains an athlete
 	 */
 	public void trainAthlete(Athlete athlete) {
-		athlete.increaseDefence(10);
-		athlete.increaseOffence(10);
+		athlete.increaseDefence(5);
+		athlete.increaseOffence(5);
 	}
 	/**
 	 * Gets the club
@@ -443,18 +447,30 @@ public class GameEnvironment {
 		}
 	}
 		
-	public boolean takeBye() {
+	public String takeBye() {
 		//In command line print out option to specially train one athlete before calling this
 		updateCurrentWeek();
 		updateWeeksRemaining();
 		market = new Market(this);
 		stadium = new Stadium(this);
 		randomEvent = new RandomEvent(club);
-		boolean randomEventOccurrence = randomEvent.doRandomEvent(difficulty);
+		String randomEventOccurrence = randomEvent.doRandomEvent(difficulty);
 		for(Athlete athlete : club.activeTeam) {
 			athlete.restoreStamina();
 		}
 		return randomEventOccurrence;
+	}
+	
+	public Athlete getJoiner() {
+		return randomEvent.getJoiner();
+	}
+	
+	public Athlete getQuitter() {
+		return randomEvent.getQuitter();
+	}
+	
+	public Athlete getBooster() {
+		return randomEvent.getBooster();
 	}
 	
 	/**
@@ -521,6 +537,8 @@ public class GameEnvironment {
 	}
 }
 	
+
+ 
 	
 	
 

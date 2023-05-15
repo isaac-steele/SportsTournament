@@ -51,6 +51,10 @@ public class Gui {
 	 */
 	private InventoryScreen inventoryScreen;
 	/**
+	 * The end game screen
+	 */
+	private EndGameScreen endGameScreen;
+	/**
 	 * Launches the setup window
 	 * @param game
 	 */
@@ -75,6 +79,24 @@ public class Gui {
 		
 		openMainScreen();
 	}
+	/**
+	 * closes take bye screen
+	 */
+	public void takeBye() {
+		closeTakeByeScreen();
+		stadiumScreen = new StadiumScreen(game, this);
+		marketScreen = new MarketScreen(game, this);
+		takeByeScreen = new TakeByeScreen(game, this);
+		openMainScreen();
+	}
+	/**
+	 * Ends the game
+	 */
+	public void endGame() {
+		closeMainScreen();
+		endGameScreen = new EndGameScreen(game, this);
+		endGameScreen.open();
+	}	
 	
 	/**
 	 * opens the main screen
@@ -131,6 +153,7 @@ public class Gui {
 	}
 	
 	public void openTakeByeScreen() {
+		takeByeScreen = new TakeByeScreen(game, this);
 		takeByeScreen.open();
 	}
 	public void closeTakeByeScreen() {

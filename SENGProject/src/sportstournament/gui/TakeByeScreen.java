@@ -12,6 +12,7 @@ import sportstournament.main.GameEnvironment;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ListSelectionEvent;
@@ -61,7 +62,6 @@ public class TakeByeScreen extends Screen {
 		btnTrainAthlete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				game.trainAthlete(chosenAthlete);
-				game.takeBye();
 				gui.takeBye();
 			}
 		});
@@ -91,7 +91,7 @@ public class TakeByeScreen extends Screen {
 				chosenAthlete = startersList.getSelectedValue();
 			}
 		});
-		startersList.setBounds(43, 82, 560, 102);
+		startersList.setBounds(43, 82, 672, 102);
 		takeByeWindow.getContentPane().add(startersList);
 		
 		DefaultListModel<Athlete> reservesListModel = new DefaultListModel<Athlete>();
@@ -100,11 +100,11 @@ public class TakeByeScreen extends Screen {
 		reservesList.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent e) {
 				btnTrainAthlete.setEnabled(true);
-				chosenAthlete = startersList.getSelectedValue();
+				chosenAthlete = reservesList.getSelectedValue();
 			}
 		});
 		reservesList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		reservesList.setBounds(43, 230, 560, 102);
+		reservesList.setBounds(43, 230, 672, 102);
 		takeByeWindow.getContentPane().add(reservesList);
 		
 		JLabel lblTheLastClicked = new JLabel("The last clicked athlete will be the chosen athlete.");

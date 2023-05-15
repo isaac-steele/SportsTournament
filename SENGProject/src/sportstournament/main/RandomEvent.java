@@ -30,6 +30,18 @@ public class RandomEvent {
 		this.team = team;
 	}
 	/**
+	 * The athlete that quits
+	 */
+	private Athlete quitter;
+	/**
+	 * The athlete that joins
+	 */
+	private Athlete booster;
+	/**
+	 * The athlete that joined
+	 */
+	private Athlete joiner;
+	/**
 	 * Creates a random number from 0-100 to be .
 	 */
 	private int statNumber = rng.nextInt(100);
@@ -41,9 +53,29 @@ public class RandomEvent {
 	 */
 	private int joinNumber = rng.nextInt(100);
 	/**
-	 * The athlete index
+	 * Gets the athlete that quits
+	 * 
+	 * @return quitter 
 	 */
-	private int athleteIndex;
+	public Athlete getQuitter() {
+		return quitter;
+	}
+	/**
+	 * Gets the athlete that stats are boosted
+	 * 
+	 * @return booster
+	 */
+	public Athlete getBooster() {
+		return booster;
+	}
+	/**
+	 * Gets the athlete that joined
+	 * 
+	 * @return joiner
+	 */
+	public Athlete getJoiner() {
+		return joiner;
+	}
 	
 	/**
 	 * Returns a random number to be used for a stat boost.
@@ -75,9 +107,9 @@ public class RandomEvent {
 	public void randomAthleteBoost() {
 		int randomInt = rng.nextInt(4);
 		ArrayList<Athlete> activeTeam = team.viewActiveTeam();
-		Athlete boostedAthlete = activeTeam.get(randomInt);
-		boostedAthlete.increaseDefence(17);
-		boostedAthlete.increaseOffence(13);
+		booster = activeTeam.get(randomInt);
+		booster.increaseDefence(10);
+		booster.increaseOffence(10);
 	}
 	/**
 	 * Returns a number which represents the chance an Athlete quits. 
@@ -86,10 +118,13 @@ public class RandomEvent {
 	 */
 	public int getQuitChance() {
 		int randomInt = rng.nextInt(4);
-		athleteIndex = randomInt;
+		ArrayList<Athlete> reserves = team.viewReserves();
 		ArrayList<Athlete> activeTeam = team.viewActiveTeam();
-		Athlete quitter = activeTeam.get(randomInt);
-		if (quitter.getInjuryStatus() == true) {
+		quitter = activeTeam.get(randomInt);
+		if (reserves.size()==0) {
+			return 0;
+		}
+		else if (quitter.getInjuryStatus() == true) {
 			int chance = 20;
 			return chance;
 		} else {
@@ -101,12 +136,10 @@ public class RandomEvent {
 	 * Removes a random Athlete from the team. The Athlete has more of a chance to get removed if they are injured.
 	 */
 	public void randomAthleteQuits() {
-		ArrayList<Athlete> activeTeam = team.viewActiveTeam();
 		ArrayList<Athlete> reserves = team.viewReserves();
-		Athlete quitter = activeTeam.get(athleteIndex);
 		int randomSub = rng.nextInt(reserves.size());
 		Athlete replacement = reserves.get(randomSub);
-		team.subAthlete(quitter, replacement);
+		team.subAthlete(replacement, quitter);
 		team.removeReserve(quitter);
 	}
 	
@@ -140,39 +173,47 @@ public class RandomEvent {
 	 */
 	public void randomAthleteJoins() {
 		Athlete randomAthlete = Athlete.randomAthleteGenerator();
+		joiner = randomAthlete;
 		team.addNewAthlete(randomAthlete);
 	}
 	
-	public boolean doRandomEvent(String difficulty) {
-	
+	public String doRandomEvent(String difficulty) {
+		String randomEventOccurrence = "None";
 		if (difficulty == "Hard") {
 			
 			if(getStatNumber() < 10) {
 				randomAthleteBoost();
+				randomEventOccurrence = "Athlete Boost";
 			}
 		
 			if(getQuitNumber() < getQuitChance()) {
 				randomAthleteQuits();
+				randomEventOccurrence = "Athlete Quits";
 			}
 		
 			if(getJoinNumber() < (getAthleteJoinChance() - 5)) {
 				randomAthleteJoins();
+				randomEventOccurrence = "Athlete Joins";
 			}
 		}
 	
-		if(difficulty == "Easy") {
+		else if(difficulty == "Easy") {
 			if(getStatNumber() < 20) {
 				randomAthleteBoost();
+				randomEventOccurrence = "Athlete Boost";
 			}
 			
 			if(getQuitNumber() < (getQuitChance()) - 5) {
 				randomAthleteQuits();
+				randomEventOccurrence = "Athlete Quits";
 			}
 			
 			if(getJoinNumber() < (getAthleteJoinChance())) {
 				randomAthleteJoins();
+				randomEventOccurrence = "Athlete Joins";
 			}
 		}
+		return randomEventOccurrence;
 	
 	}
 	
