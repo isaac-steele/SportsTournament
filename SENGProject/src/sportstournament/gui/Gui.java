@@ -137,15 +137,6 @@ public class Gui {
 	}
 	
 	public void openTeamPropertiesScreen() {
-		teamPropertiesScreen.open();
-	}
-	public void closeTeamPropertiesScreen() {
-		teamPropertiesScreen.closeWindow();
-	}
-	public void openInventoryScreen() {
-		inventoryScreen.open();
-	}
-	public void closeInventoryScreen() {
-		inventoryScreen.closeWindow();
+		
 	}
 }
