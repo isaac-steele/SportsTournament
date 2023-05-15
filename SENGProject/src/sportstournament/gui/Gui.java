@@ -40,12 +40,20 @@ public class Gui {
 	 */
 	private TakeByeScreen takeByeScreen;
 	
+	
+	/**
+	 * the team properties screen
+	 */
+	private TeamPropertiesScreen teamPropertiesScreen;
+	
+	/**
+	 * the inventory screen
+	 */
+	private InventoryScreen inventoryScreen;
 	/**
 	 * Launches the setup window
 	 * @param game
 	 */
-	
-	
 	public void setup(GameEnvironment game) {
 		this.game = game;
 		ArrayList<Athlete> draftAthletes = game.getDraft();
@@ -62,6 +70,8 @@ public class Gui {
 		stadiumScreen = new StadiumScreen(game, this);
 		marketScreen = new MarketScreen(game, this);
 		takeByeScreen = new TakeByeScreen(game, this);
+		teamPropertiesScreen = new TeamPropertiesScreen(game, this);
+		inventoryScreen = new InventoryScreen(game, this);
 		
 		openMainScreen();
 	}
@@ -124,5 +134,9 @@ public class Gui {
 	}
 	public void closeTakeByeScreen() {
 		takeByeScreen.closeWindow();
+	}
+	
+	public void openTeamPropertiesScreen() {
+		
 	}
 }
