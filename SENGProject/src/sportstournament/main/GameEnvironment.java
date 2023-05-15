@@ -129,6 +129,12 @@ public class GameEnvironment {
 	public void finishSetup(String name, ArrayList<Athlete> team, int numWeeks, String difficulty) {
 		this.difficulty = difficulty;
 		this.totalWeeks = numWeeks;
+		if (difficulty == "Easy") {
+			this.moneyAmount = 150;
+		}
+		else if (difficulty == "Hard") {
+			this.moneyAmount = 100;
+		}
 		this.weeksRemaining = this.totalWeeks - this.currentWeek;
 		this.club = new Club(name,team);
 		this.market = new Market(this);
@@ -139,6 +145,34 @@ public class GameEnvironment {
 		else if (ui == null) {
 			gui.start();
 		}
+	}
+	/**
+	 * Starts the match
+	 */
+	public String startMatch(int num) {
+		ArrayList<Team> matches = getMatches();
+		return stadium.startMatch(club, matches.get(num));
+		
+	}
+	/**
+	 * gets the matches
+	 */
+	public ArrayList<Team> getMatches() {
+		return stadium.getMatches();
+	}
+	/**
+	 * Returns the team name
+	 */
+	public String getTeamName(ArrayList<Team> teams, int index) {
+		Team team = teams.get(index);
+		return team.viewName();
+	}
+	/**
+	 * Gets the players in the team
+	 */
+	public ArrayList<Athlete> getPlayers(ArrayList<Team> teams, int index) {
+		Team team = teams.get(index);
+		return team.viewActiveTeam();
 	}
 	/**
 	 * Gets the club

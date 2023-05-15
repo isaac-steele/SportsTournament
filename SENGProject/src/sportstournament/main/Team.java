@@ -89,19 +89,19 @@ public class Team {
 		String randomName = teamNames[rng.nextInt(teamNames.length)];
 		int weeksRemaining = game.getWeeksRemaining();
 		// As the weeks increases the opponents should be harder
-		if (weeksRemaining < 15 && weeksRemaining > 10) {
-			defenceStat = rng.nextInt(16) + 50;
-			offenceStat = rng.nextInt(16) + 50;
-		}
-		else if (weeksRemaining < 11 && weeksRemaining > 5) {
-			defenceStat = rng.nextInt(16) + 60;
-			offenceStat = rng.nextInt(16) + 60;
-		}
-		else {
-			defenceStat = rng.nextInt(26) + 75;
-			offenceStat = rng.nextInt(26) + 75;
-		}
 		for(int i = 0; i < 4; i++ ) {
+			if (weeksRemaining < 15 && weeksRemaining > 10) {
+				defenceStat = rng.nextInt(16) + 50;
+				offenceStat = rng.nextInt(16) + 50;
+			}
+			else if (weeksRemaining < 11 && weeksRemaining > 5) {
+				defenceStat = rng.nextInt(16) + 60;
+				offenceStat = rng.nextInt(16) + 60;
+			}
+			else {
+				defenceStat = rng.nextInt(26) + 75;
+				offenceStat = rng.nextInt(26) + 75;
+			}
 			Athlete randomAthlete = Athlete.randomAthleteGenerator(defenceStat, offenceStat);
 			athleteList.add(randomAthlete);
 		}

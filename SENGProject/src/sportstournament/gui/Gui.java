@@ -45,13 +45,6 @@ public class Gui {
 	 * @param game
 	 */
 	
-	public Gui() {
-		mainScreen = new MainScreen(game, this);
-		clubScreen = new ClubScreen(game, this);
-		stadiumScreen = new StadiumScreen(game, this);
-		marketScreen = new MarketScreen(game, this);
-		takeByeScreen = new TakeByeScreen(game, this);
-	}
 	
 	public void setup(GameEnvironment game) {
 		this.game = game;
@@ -64,6 +57,11 @@ public class Gui {
 	 */
 	public void start() {
 		setupScreen.closeWindow();
+		mainScreen = new MainScreen(game, this);
+		clubScreen = new ClubScreen(game, this);
+		stadiumScreen = new StadiumScreen(game, this);
+		marketScreen = new MarketScreen(game, this);
+		takeByeScreen = new TakeByeScreen(game, this);
 		
 		openMainScreen();
 	}
@@ -72,6 +70,7 @@ public class Gui {
 	 * opens the main screen
 	 */
 	public void openMainScreen() {
+		mainScreen = new MainScreen(game, this);
 		mainScreen.open();
 	}
 	/**

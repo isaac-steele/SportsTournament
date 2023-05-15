@@ -91,7 +91,7 @@ public class MainScreen extends Screen {
 		JButton btnQuit = new JButton("Quit");
 		btnQuit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				gui.closeMainScreen();
 			}
 		});
 		btnQuit.setBounds(616, 397, 117, 25);
@@ -102,6 +102,7 @@ public class MainScreen extends Screen {
 		mainWindow.getContentPane().add(lblTotalFunds);
 		
 		JLabel lblgetFunds = new JLabel("");
+		lblgetFunds.setText(""+ game.getMoneyAmount());
 		lblgetFunds.setBounds(172, 37, 70, 15);
 		mainWindow.getContentPane().add(lblgetFunds);
 		
@@ -112,5 +113,15 @@ public class MainScreen extends Screen {
 		JLabel lblWeeksRemaining = new JLabel("Weeks Remaining:");
 		lblWeeksRemaining.setBounds(60, 97, 147, 15);
 		mainWindow.getContentPane().add(lblWeeksRemaining);
+		
+		JLabel lblgetCurrentWeek = new JLabel("");
+		lblgetCurrentWeek.setText("" + game.getCurrentWeek());
+		lblgetCurrentWeek.setBounds(182, 64, 70, 15);
+		mainWindow.getContentPane().add(lblgetCurrentWeek);
+		
+		JLabel lblgetWeeksRemaining = new JLabel("");
+		lblgetWeeksRemaining.setText("" + game.getWeeksRemaining());
+		lblgetWeeksRemaining.setBounds(217, 97, 70, 15);
+		mainWindow.getContentPane().add(lblgetWeeksRemaining);
 	}
 }

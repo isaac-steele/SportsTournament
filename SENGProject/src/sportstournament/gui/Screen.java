@@ -24,7 +24,7 @@ public abstract class Screen {
 	/**
 	 * the game environment object
 	 */
-	private final GameEnvironment game;
+	protected final GameEnvironment game;
 	
 	
 	public Screen(final GameEnvironment game, final Gui gui) {

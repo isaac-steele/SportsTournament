@@ -86,7 +86,6 @@ public class Stadium {
 			case "Loss":
 				break;
 			}
-			matches.remove(opponent);
 			return result; 
 		}
 	}

@@ -33,7 +33,7 @@ public class Match {
 			}
 			else if (myDefender.getDefenceStat() < oppDefender.getDefenceStat()) {
 				opponentScore += 10;
-				myDefender.decreaseStamina(10);
+				myDefender.decreaseStamina(20);
 			}
 			else {
 				myScore += 5;
@@ -55,7 +55,7 @@ public class Match {
 			}
 			else if (myAttacker.getOffenceStat() < oppAttacker.getOffenceStat()) {
 				opponentScore += 10;
-				myAttacker.decreaseStamina(10);
+				myAttacker.decreaseStamina(20);
 			}
 			else {
 				myScore +=5;
