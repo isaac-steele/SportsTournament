@@ -198,6 +198,12 @@ public class GameEnvironment {
 		athlete.increaseOffence(5);
 	}
 	/**
+	 * Returns the club name
+	 */
+	public String getClubName() {
+		return club.viewName();
+	}
+	/**
 	 * Gets the club
 	 * 
 	 * @return the club

@@ -94,7 +94,7 @@ public class TeamPropertiesScreen extends Screen {
 			public void actionPerformed(ActionEvent e) {
 				int activeIndex = activeTeamList.getSelectedIndex();
 				int reserveIndex = reservesList.getSelectedIndex();
-				club.subAthlete(activeTeam.get(activeIndex), reserves.get(reserveIndex));
+				club.subAthlete(reserves.get(reserveIndex), activeTeam.get(activeIndex));
 				gui.closeTeamPropertiesScreen();
 				gui.openClub();
 				

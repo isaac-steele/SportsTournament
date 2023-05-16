@@ -67,6 +67,7 @@ class ClubTest {
 		}
 		final Club club = new Club("BOYS", athletes, reserves);
 		ArrayList<Athlete> clubReserves = club.viewReserves();
+		ArrayList<Athlete> clubStarters = club.viewActiveTeam();
 		Athlete newAthlete = Athlete.randomAthleteGenerator();
 		assertThrows(ArrayIndexOutOfBoundsException.class, () -> club.addNewAthlete(newAthlete));
 		assertEquals(5, clubReserves.size());
@@ -78,6 +79,7 @@ class ClubTest {
 		club.addNewAthlete(newAthlete);
 		assertEquals(5, clubReserves.size());
 		assertTrue(clubReserves.contains(newAthlete));
+		assertFalse(clubStarters.contains(newAthlete));
 		assertTrue(club.isTeamFull());
 		
 	}

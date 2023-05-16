@@ -32,6 +32,7 @@ public class InventoryScreen extends Screen {
 		super(game, gui);
 		inventory = club.viewItems();
 		team = club.viewActiveTeam();
+		// cant do this or else all reserves are now in active team. just do two separate jlists.
 		team.addAll(club.viewReserves());
 		initialize();
 		super.window = inventoryWindow;
