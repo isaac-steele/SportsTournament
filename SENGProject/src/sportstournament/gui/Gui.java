@@ -83,6 +83,8 @@ public class Gui {
 		clubScreen = new ClubScreen(game, this);
 		stadiumScreen = new StadiumScreen(game, this);
 		marketScreen = new MarketScreen(game, this);
+		buyAthleteScreen = new buyAthleteScreen(game, this);
+		buyItemScreen = new buyItemScreen(game, this);
 		takeByeScreen = new TakeByeScreen(game, this);
 		teamPropertiesScreen = new TeamPropertiesScreen(game, this);
 		inventoryScreen = new InventoryScreen(game, this);
@@ -154,7 +156,7 @@ public class Gui {
 	 * opens the market screen
 	 */
 	public void OpenMarket() {
-		stadiumScreen.open();
+		marketScreen.open();
 	}
 	/**
 	 * closes the market screen

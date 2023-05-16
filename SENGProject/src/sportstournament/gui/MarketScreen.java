@@ -44,10 +44,22 @@ public class MarketScreen extends Screen{
 		marketWindow.getContentPane().add(lblTotalFunds);
 		
 		JButton btnDraftAthletesBack = new JButton("Buy and sell athletes");
+		btnDraftAthletesBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gui.closeMarket();
+				gui.openBuyAthleteScreen();
+			}
+		});
 		btnDraftAthletesBack.setBounds(37, 105, 244, 259);
 		marketWindow.getContentPane().add(btnDraftAthletesBack);
 		
 		JButton btnViewAvailableItems = new JButton("Buy and sell items");
+		btnViewAvailableItems.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gui.closeMarket();
+				gui.openBuyItemScreen();
+			}
+		});
 		btnViewAvailableItems.setBounds(383, 105, 260, 259);
 		marketWindow.getContentPane().add(btnViewAvailableItems);
 		
