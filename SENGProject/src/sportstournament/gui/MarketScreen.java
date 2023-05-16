@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import sportstournament.main.GameEnvironment;
+import sportstournament.main.Market;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -14,6 +15,7 @@ import java.awt.event.ActionEvent;
 public class MarketScreen extends Screen{
 
 	private JFrame marketWindow;
+	private Market market;
 
 
 	/**
@@ -21,6 +23,7 @@ public class MarketScreen extends Screen{
 	 */
 	public MarketScreen(GameEnvironment game, Gui gui) {
 		super(game, gui);
+		market = game.getMarket();
 		initialize();
 		super.window = marketWindow;
 	}
@@ -36,31 +39,16 @@ public class MarketScreen extends Screen{
 		marketWindow.getContentPane().setLayout(null);
 		
 		JLabel lblTotalFunds = new JLabel("Total Funds:");
-		lblTotalFunds.setBounds(53, 33, 111, 15);
+		lblTotalFunds.setText(String.valueOf(market.getMoney()));
+		lblTotalFunds.setBounds(53, 33, 270, 48);
 		marketWindow.getContentPane().add(lblTotalFunds);
 		
-		JLabel lblYourAthletes = new JLabel("Your Athletes:");
-		lblYourAthletes.setBounds(37, 92, 127, 15);
-		marketWindow.getContentPane().add(lblYourAthletes);
-		
-		JLabel lblYourItems = new JLabel("Your Items:");
-		lblYourItems.setBounds(430, 92, 111, 15);
-		marketWindow.getContentPane().add(lblYourItems);
-		
-		JButton btnDraftAthletesBack = new JButton("Draft athletes back");
-		btnDraftAthletesBack.setBounds(37, 339, 197, 25);
+		JButton btnDraftAthletesBack = new JButton("Buy and sell athletes");
+		btnDraftAthletesBack.setBounds(37, 105, 244, 259);
 		marketWindow.getContentPane().add(btnDraftAthletesBack);
 		
-		JButton btnDraftItemsBack = new JButton("Draft items back");
-		btnDraftItemsBack.setBounds(412, 339, 164, 25);
-		marketWindow.getContentPane().add(btnDraftItemsBack);
-		
-		JButton btnViewAvailableAthletes = new JButton("View available athletes");
-		btnViewAvailableAthletes.setBounds(26, 376, 227, 25);
-		marketWindow.getContentPane().add(btnViewAvailableAthletes);
-		
-		JButton btnViewAvailableItems = new JButton("View Available Items");
-		btnViewAvailableItems.setBounds(408, 376, 179, 25);
+		JButton btnViewAvailableItems = new JButton("Buy and sell items");
+		btnViewAvailableItems.setBounds(383, 105, 260, 259);
 		marketWindow.getContentPane().add(btnViewAvailableItems);
 		
 		JButton btnMainMenu = new JButton("Main Menu");
