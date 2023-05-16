@@ -44,8 +44,8 @@ public class Market {
 	 * view the teams money
 	 * @param team
 	 */
-	public void getMoney() {
-		game.getMoneyAmount();
+	public int getMoney() {
+		return game.getMoneyAmount();
 	}
 	/**
 	 * sets the list of items in the market

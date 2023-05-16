@@ -50,6 +50,16 @@ public class Gui {
 	 * the inventory screen
 	 */
 	private InventoryScreen inventoryScreen;
+	
+	/**
+	 * the screen where athletes can be purchased or sold
+	 */
+	private buyAthleteScreen buyAthleteScreen;
+	
+	/**
+	 * the screen where items can be purchased or sold
+	 */
+	private buyItemScreen buyItemScreen;
 	/**
 	 * The end game screen
 	 */
@@ -76,6 +86,7 @@ public class Gui {
 		takeByeScreen = new TakeByeScreen(game, this);
 		teamPropertiesScreen = new TeamPropertiesScreen(game, this);
 		inventoryScreen = new InventoryScreen(game, this);
+		
 		
 		openMainScreen();
 	}
@@ -152,6 +163,7 @@ public class Gui {
 		marketScreen.closeWindow();
 	}
 	
+	
 	public void openTakeByeScreen() {
 		takeByeScreen = new TakeByeScreen(game, this);
 		takeByeScreen.open();
@@ -160,11 +172,17 @@ public class Gui {
 		takeByeScreen.closeWindow();
 	}
 	
+	/**
+	 * opens the screen where the team can be viewed and substitutions can be made
+	 */
 	public void openTeamPropertiesScreen() {
 		teamPropertiesScreen = new TeamPropertiesScreen(game, this);
 		teamPropertiesScreen.open();
 	}
 	
+	/**
+	 * opens the screen where the inventory can be viewed and items can be used
+	 */
 	public void openInventoryScreen() {
 		inventoryScreen = new InventoryScreen(game, this);
 		inventoryScreen.open();
@@ -174,5 +192,20 @@ public class Gui {
 	}
 	public void closeInventoryScreen() {
 		inventoryScreen.closeWindow();
+	}
+	
+	public void openBuyAthleteScreen() {
+		buyAthleteScreen = new buyAthleteScreen(game, this);
+		buyAthleteScreen.open();
+	}
+	public void openBuyItemScreen() {
+		buyItemScreen = new buyItemScreen(game, this);
+		buyItemScreen.open();
+	}
+	public void closeBuyAthleteScreen() {
+		buyAthleteScreen.closeWindow();
+	}
+	public void closeBuyItemScreen() {
+		buyItemScreen.closeWindow();
 	}
 }
