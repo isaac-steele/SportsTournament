@@ -41,7 +41,8 @@ public class SetupScreen {
 	private ArrayList<Athlete> chosenAthletes;
 	private int numWeeks;
 	private List<Athlete> selectedAthletes =  new ArrayList<Athlete>();
-
+	private int draftFunds = 30;
+	private List<Athlete> oldAthletes = new ArrayList<Athlete>();
 
 	
 
@@ -75,7 +76,21 @@ public class SetupScreen {
 		String name = textField.getText();
 		boolean acceptableName = (Pattern.matches("[a-zA-Z0-9]+", name) && name.length() <= 15 && name.length() >=3);
 		// enable button if a difficulty is chosen, name is right, season lenght is selected, anmd 4 players are selected
-		return (acceptableName && difficulty!= null && numWeeks >=5 && numWeeks<=15 && selectedAthletes.size() == 4);
+		return (acceptableName && difficulty!= null && numWeeks >=5 && numWeeks<=15 && selectedAthletes.size() == 4 && draftFunds >= 0);
+	}
+	
+	public void changeChecker() {
+		for (Athlete oldAthlete : oldAthletes) {
+			if (!selectedAthletes.contains(oldAthlete)) {
+				draftFunds += oldAthlete.getPrice();
+			}
+		}
+		for (Athlete newAthlete : selectedAthletes) {
+			if (!oldAthletes.contains(newAthlete)) {
+				draftFunds -= newAthlete.getPrice();
+			}
+		}
+		oldAthletes = selectedAthletes;
 	}
 	/**
 	 * Initialize the contents of the frame.
@@ -126,7 +141,7 @@ public class SetupScreen {
 		setupWindow.getContentPane().add(lblSelectTheLength);
 		
 		JLabel lblChooseDifficulty = new JLabel("Choose difficulty:");
-		lblChooseDifficulty.setBounds(129, 150, 144, 15);
+		lblChooseDifficulty.setBounds(115, 149, 144, 15);
 		setupWindow.getContentPane().add(lblChooseDifficulty);
 		
 		JButton btnEasy = new JButton("Easy");
@@ -160,7 +175,7 @@ public class SetupScreen {
 		setupWindow.getContentPane().add(btnHard);
 		
 		JLabel lblDraftStarting = new JLabel("Draft 4 starting athletes:");
-		lblDraftStarting.setBounds(77, 193, 212, 15);
+		lblDraftStarting.setBounds(71, 177, 212, 15);
 		setupWindow.getContentPane().add(lblDraftStarting);
 		
 		textField = new JTextField();
@@ -199,6 +214,10 @@ public class SetupScreen {
 			}
 		});
 		
+		JLabel lblBalance = new JLabel("Balance:  $"+ draftFunds);
+		lblBalance.setBounds(666, 239, 117, 16);
+		setupWindow.getContentPane().add(lblBalance);
+		
 		DefaultListModel<Athlete> athleteListModel = new DefaultListModel<Athlete>();
 		athleteListModel.addAll(athletesToDraft);
 		JList<Athlete> draftAthletes = new JList<Athlete>(athleteListModel);
@@ -206,6 +225,9 @@ public class SetupScreen {
 		draftAthletes.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent e) {
 				selectedAthletes = draftAthletes.getSelectedValuesList();
+				changeChecker();
+				lblBalance.setText("Balance:  $"+ draftFunds);
+				
 				if(checkAllSelected()) {
 					btnAccept.setEnabled(true);
 				}
@@ -219,8 +241,21 @@ public class SetupScreen {
 		setupWindow.getContentPane().add(draftAthletes);
 		
 		JLabel lblholdCtrlWhile = new JLabel("(Hold Ctrl while selecting)");
-		lblholdCtrlWhile.setBounds(510, 193, 195, 15);
+		lblholdCtrlWhile.setFont(new Font("Lucida Grande", Font.PLAIN, 12));
+		lblholdCtrlWhile.setBounds(78, 193, 195, 15);
 		setupWindow.getContentPane().add(lblholdCtrlWhile);
+		
+		JLabel lblDefenderSelection = new JLabel("Your first two selections will be your defenders.");
+		lblDefenderSelection.setBounds(295, 176, 313, 16);
+		setupWindow.getContentPane().add(lblDefenderSelection);
+		
+		JLabel lblAttackerSelection = new JLabel("Your last two selections will be your attackers. ");
+		lblAttackerSelection.setBounds(295, 192, 303, 16);
+		setupWindow.getContentPane().add(lblAttackerSelection);
+		
+		JLabel lblBudgetWarning = new JLabel("<html>Choose wisely and<br/>beaware of your budget!");
+		lblBudgetWarning.setBounds(642, 169, 161, 47);
+		setupWindow.getContentPane().add(lblBudgetWarning);
 		
 		
 	}

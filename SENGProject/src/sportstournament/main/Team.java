@@ -73,7 +73,7 @@ public class Team {
 	 * To string method for team
 	 */
 	public String toString() {
-		return "Team Name: " + name + "\n\n" + activeTeam.get(0).toString() + "\n" + activeTeam.get(1).toString() + "\n" + activeTeam.get(2).toString() + "\n" + activeTeam.get(3).toString();
+		return "Team Name: " + name + "\n\nDefenders:\n" + activeTeam.get(0).toString() + "\n" + activeTeam.get(1).toString() + "\n\nAttackers:\n" + activeTeam.get(2).toString() + "\n" + activeTeam.get(3).toString();
 	}
 	/**
 	 * Generates a random team based on the weeks remaining.

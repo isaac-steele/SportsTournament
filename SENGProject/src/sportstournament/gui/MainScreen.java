@@ -88,7 +88,7 @@ public class MainScreen extends Screen {
 				} else {
 					if (randomEventOccurrence == "Athlete Boost") {
 						Athlete boostedAthlete = game.getBooster();
-						String message = "It's your lucky day! " + boostedAthlete.getName() + " stats have been boosted by 10";
+						String message = "It's your lucky day! " + boostedAthlete.getName() + "'s stats have been boosted by 10";
 						JOptionPane.showMessageDialog(mainWindow, message, "Random Event", JOptionPane.INFORMATION_MESSAGE);
 					}
 					else if (randomEventOccurrence == "Athlete Quits") {

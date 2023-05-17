@@ -1,6 +1,7 @@
 package sportstournament.main;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import sportstournament.gui.EndGameScreen;
 import sportstournament.gui.Gui;
@@ -177,6 +178,16 @@ public class GameEnvironment {
 	public ArrayList<Athlete> getPlayers(ArrayList<Team> teams, int index) {
 		Team team = teams.get(index);
 		return team.viewActiveTeam();
+	}
+	/**
+	 * Gets the total price of the team
+	 */
+	public int getTeamPrice(List<Athlete> athletes) {
+		int price = 0;
+		for (Athlete athlete: athletes) {
+			price += athlete.getPrice();
+		}
+		return price;
 	}
 	/**
 	 * Gets the active team
