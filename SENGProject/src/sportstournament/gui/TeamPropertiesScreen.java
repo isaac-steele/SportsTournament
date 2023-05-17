@@ -15,7 +15,10 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 public class TeamPropertiesScreen extends Screen {
 
@@ -90,11 +93,29 @@ public class TeamPropertiesScreen extends Screen {
 		teamWindow.getContentPane().add(reservesList);
 		
 		JButton btnSwapAthletes = new JButton("Swap Athletes");
+		btnSwapAthletes.setEnabled(false);
+		
+		 ListSelectionListener selectionListener = new ListSelectionListener() {
+		        public void valueChanged(ListSelectionEvent event) {
+		            if (activeTeamList.getSelectedIndex()!= -1 && reservesList.getSelectedIndex()!= -1) {
+		            	btnSwapAthletes.setEnabled(true);
+		            }
+		            else {
+		            	btnSwapAthletes.setEnabled(false);
+		            }
+		        }
+		 };
+		   
+		activeTeamList.addListSelectionListener(selectionListener);
+		reservesList.addListSelectionListener(selectionListener);
+		
 		btnSwapAthletes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int activeIndex = activeTeamList.getSelectedIndex();
 				int reserveIndex = reservesList.getSelectedIndex();
+				String message =  activeTeam.get(activeIndex).getName()+" subbed off for "+reserves.get(reserveIndex).getName();
 				club.subAthlete(reserves.get(reserveIndex), activeTeam.get(activeIndex));
+				JOptionPane.showMessageDialog(teamWindow, message, "Athletes swapped", JOptionPane.INFORMATION_MESSAGE);
 				gui.closeTeamPropertiesScreen();
 				gui.openClub();
 				

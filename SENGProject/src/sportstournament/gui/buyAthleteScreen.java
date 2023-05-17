@@ -28,6 +28,13 @@ public class buyAthleteScreen extends Screen{
 	private ArrayList<Athlete> freeAgents;
 	private ArrayList<Athlete> activeTeam;
 	private ArrayList<Athlete> reserves;
+	private JList<Athlete> availableAthletesList;
+	private JList<Athlete> reservesList;
+	private JList<Athlete> activeTeamList;
+	private JButton sellStarterBtn;
+	private JButton sellReserveBtn;
+	private JButton buyReserveBtn;
+	private JButton buyStarterBtn;
  
 	/**
 	 * Create the application.
@@ -41,6 +48,7 @@ public class buyAthleteScreen extends Screen{
 		initialize();
 		this.window = frame;
 	}
+	
 
 	/**
 	 * Initialize the contents of the frame.
@@ -49,152 +57,156 @@ public class buyAthleteScreen extends Screen{
 	 * 
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 766, 489);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
-		
-		
-		
-		
-		JButton backBtn = new JButton("Back");
-		backBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				gui.closeBuyAthleteScreen();
-				gui.OpenMarket();
-			}
-		});
-		backBtn.setBounds(39, 34, 117, 25);
-		frame.getContentPane().add(backBtn);
-		
-		
-		DefaultListModel<Athlete> availableAthletesModel= new DefaultListModel<Athlete>();
-		availableAthletesModel.addAll(freeAgents);
-		JList availableAthletesList = new JList(availableAthletesModel);
-		
-		
-		availableAthletesList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		availableAthletesList.setBounds(39, 93, 262, 229);
-		frame.getContentPane().add(availableAthletesList);
-		
-		DefaultListModel<Athlete> reservesModel = new DefaultListModel<>();
-		reservesModel.addAll(reserves);
-		JList<Athlete> reservesList = new JList<>(reservesModel);
-		reservesList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		reservesList.setBounds(377, 38, 325, 137);
-		frame.getContentPane().add(reservesList);
-		
-		DefaultListModel<Athlete> activeTeamModel = new DefaultListModel<>();
-		activeTeamModel.addAll(activeTeam);
-		JList<Athlete> activeTeamList = new JList<>(activeTeamModel);
-		activeTeamList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		activeTeamList.setBounds(377, 245, 325, 137);
-		frame.getContentPane().add(activeTeamList);
-		
-		JButton sellStarterBtn = new JButton("Sell starter");
-		sellStarterBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				int sellIndex = activeTeamList.getSelectedIndex();
-				int replaceIndex = reservesList.getSelectedIndex();
-				market.returnStarter(activeTeam.get(sellIndex), reserves.get(replaceIndex), game.getClub());
-				gui.closeBuyAthleteScreen();
-				gui.OpenMarket();
-				
-			}
-		});
-		sellStarterBtn.setBounds(491, 200, 117, 25);
-		frame.getContentPane().add(sellStarterBtn);
-		
-		JButton sellReserveBtn = new JButton("Sell reserve");
-		sellReserveBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				int sellIndex = reservesList.getSelectedIndex();
-				market.returnReserve(reserves.get(sellIndex), game.getClub());
-				gui.closeBuyAthleteScreen();
-				gui.OpenMarket();
-			}
-		});
-		sellReserveBtn.setBounds(491, 408, 144, 25);
-		frame.getContentPane().add(sellReserveBtn);
-		
-		JLabel lblPleaseSelectA = new JLabel("Please select a starter to take off ");
-		lblPleaseSelectA.setFont(new Font("Dialog", Font.BOLD, 10));
-		lblPleaseSelectA.setBounds(192, 413, 203, 15);
-		frame.getContentPane().add(lblPleaseSelectA);
-		
-		JButton buyReserveBtn = new JButton("Buy as reserve");
-		buyReserveBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				int buyIndex = availableAthletesList.getSelectedIndex();
-				market.buyReserve(freeAgents.get(buyIndex), game.getClub());
-				gui.closeBuyAthleteScreen();
-				gui.OpenMarket();
-			}
-		});
-		buyReserveBtn.setBounds(12, 350, 170, 60);
-		frame.getContentPane().add(buyReserveBtn);
-		
-		JButton buyStarterBtn = new JButton("Buy as starter ");
-		buyStarterBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(frame, "Please select an athlete to replace the starter");
-				int buyIndex = availableAthletesList.getSelectedIndex();
-				int subOffIndex = activeTeamList.getSelectedIndex();
-				market.buyStarter(freeAgents.get(buyIndex), activeTeam.get(subOffIndex), game.getClub());
-				gui.closeBuyAthleteScreen();
-				gui.OpenMarket();
-				
-			}
-		});
-		buyStarterBtn.setBounds(192, 334, 157, 60);
-		frame.getContentPane().add(buyStarterBtn);
-		
-		
-		availableAthletesList.addListSelectionListener(new ListSelectionListener() {
-			public void valueChanged(ListSelectionEvent listSelectionEvent) {
-				if (!listSelectionEvent.getValueIsAdjusting()) {
-					if (availableAthletesList.getSelectedIndex() != -1) {
-						buyReserveBtn.setEnabled(true);
-						if (activeTeamList.getSelectedIndex() != -1) {
-							buyStarterBtn.setEnabled(true);
-						}
-					}
-					
-				}
-			}
-		});
-		
-		/**
-		 * enables the sell reserve button
-		 */
-		reservesList.addListSelectionListener(new ListSelectionListener() {
-			public void valueChanged(ListSelectionEvent listSelectionEvent) {
-				if (!listSelectionEvent.getValueIsAdjusting()) {
-					if (reservesList.getSelectedIndex() != -1 && availableAthletesList.getSelectedIndex() == -1) {
-						sellReserveBtn.setEnabled(true);
-					}
-					
-					
-				}
-			}
-		});
-		/**
-		 * enables the sell starter button
-		 */
-		activeTeamList.addListSelectionListener(new ListSelectionListener() {
-			public void valueChanged(ListSelectionEvent listSelectionEvent) {
-				if (!listSelectionEvent.getValueIsAdjusting()) {
-					if (activeTeamList.getSelectedIndex() != -1 && availableAthletesList.getSelectedIndex() == -1 && reservesList.getSelectedIndex() != -1) {
-						sellStarterBtn.setEnabled(true);
-					}
-					
-					
-				}
-			}
-		});
-		
-		
-		
-		
+	    frame = new JFrame();
+	    frame.setBounds(100, 100, 931, 561);
+	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    frame.getContentPane().setLayout(null);
+
+	    JButton backBtn = new JButton("Back");
+	    backBtn.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            gui.closeBuyAthleteScreen();
+	            gui.OpenMarket();
+	        }
+	    });
+	    backBtn.setBounds(39, 34, 117, 25);
+	    frame.getContentPane().add(backBtn);
+
+	    DefaultListModel<Athlete> availableAthletesModel = new DefaultListModel<>();
+	    availableAthletesModel.addAll(freeAgents);
+	    availableAthletesList = new JList<>(availableAthletesModel);
+	    availableAthletesList.setFont(new Font("Tahoma", Font.PLAIN, 9));
+	    availableAthletesList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+	    availableAthletesList.setBounds(22, 78, 418, 229);
+	    frame.getContentPane().add(availableAthletesList);
+
+	    DefaultListModel<Athlete> reservesModel = new DefaultListModel<>();
+	    reservesModel.addAll(reserves);
+	    reservesList = new JList<>(reservesModel);
+	    reservesList.setFont(new Font("Tahoma", Font.PLAIN, 9));
+	    reservesList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+	    reservesList.setBounds(466, 304, 426, 175);
+	    frame.getContentPane().add(reservesList);
+
+	    DefaultListModel<Athlete> activeTeamModel = new DefaultListModel<>();
+	    activeTeamModel.addAll(activeTeam);
+	    activeTeamList = new JList<>(activeTeamModel);
+	    activeTeamList.setFont(new Font("Tahoma", Font.PLAIN, 9));
+
+	    activeTeamList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+	    activeTeamList.setBounds(466, 39, 426, 175);
+	    frame.getContentPane().add(activeTeamList);
+
+	    sellStarterBtn = new JButton("Sell starter");
+	    sellStarterBtn.setEnabled(false);
+	    sellStarterBtn.setBounds(466, 224, 117, 25);
+	    frame.getContentPane().add(sellStarterBtn);
+
+	    sellReserveBtn = new JButton("Sell reserve");
+	    sellReserveBtn.setEnabled(false);
+	    sellReserveBtn.setBounds(466, 489, 144, 25);
+	    frame.getContentPane().add(sellReserveBtn);
+
+	    buyReserveBtn = new JButton("Buy as reserve");
+	    buyReserveBtn.setEnabled(false);
+	    buyReserveBtn.setBounds(259, 340, 170, 60);
+	    frame.getContentPane().add(buyReserveBtn);
+
+	    buyStarterBtn = new JButton("Buy as starter");
+	    buyStarterBtn.setEnabled(false);
+	    buyStarterBtn.setBounds(10, 340, 157, 60);
+	    frame.getContentPane().add(buyStarterBtn);
+
+	    ListSelectionListener selectionListener = new ListSelectionListener() {
+	        public void valueChanged(ListSelectionEvent event) {
+	            updateButton();
+	        }
+	    };
+
+	    availableAthletesList.addListSelectionListener(selectionListener);
+	    activeTeamList.addListSelectionListener(selectionListener);
+	    reservesList.addListSelectionListener(selectionListener);
+
+	    sellStarterBtn.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            int sellIndex = activeTeamList.getSelectedIndex();
+	            int replaceIndex = reservesList.getSelectedIndex();
+	            String message =  "Starter: "+activeTeam.get(sellIndex).getName()+" sold and replaced with reserve: "+reserves.get(replaceIndex).getName();
+	            market.returnStarter(activeTeam.get(sellIndex), reserves.get(replaceIndex), game.getClub());
+	            JOptionPane.showMessageDialog(frame,message,"starter sold", JOptionPane.INFORMATION_MESSAGE);
+	            gui.closeBuyAthleteScreen();
+	            gui.OpenMarket();
+	            
+	        }
+	    });
+
+	    sellReserveBtn.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            int sellIndex = reservesList.getSelectedIndex();
+	            String message =  "Reserve: "+reserves.get(sellIndex).getName()+" sold";
+	            market.returnReserve(reserves.get(sellIndex), game.getClub());
+	            JOptionPane.showMessageDialog(frame,message,"reserve sold", JOptionPane.INFORMATION_MESSAGE);
+	            gui.closeBuyAthleteScreen();
+	            gui.OpenMarket();
+	        }
+	    });
+
+	   
+
+	    buyReserveBtn.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            int buyIndex = availableAthletesList.getSelectedIndex();
+	            String message =  "Free agent: "+freeAgents.get(buyIndex).getName()+" purchased and sent to reserves";
+	            market.buyReserve(freeAgents.get(buyIndex), game.getClub());
+	            JOptionPane.showMessageDialog(frame,message,"reserve purchased", JOptionPane.INFORMATION_MESSAGE);
+	            gui.closeBuyAthleteScreen();
+	            gui.OpenMarket();
+	        }
+	    });
+	    
+	    buyStarterBtn.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            int buyIndex = availableAthletesList.getSelectedIndex();
+	            int subIndex = activeTeamList.getSelectedIndex();
+	            String message =  "Athlete: "+freeAgents.get(buyIndex).getName()+" purchased subbed on for starter: "+activeTeam.get(subIndex).getName()+", ";
+	            JOptionPane.showMessageDialog(frame,message,"starter purchased", JOptionPane.INFORMATION_MESSAGE);
+	            market.buyStarter(freeAgents.get(buyIndex),activeTeam.get(subIndex), game.getClub());
+	            gui.closeBuyAthleteScreen();
+	            gui.OpenMarket();
+	        }
+	    });
+	    
+	    
+	    JLabel lblPleaseSelectA = new JLabel("Please select a starter to take off ");
+	    lblPleaseSelectA.setFont(new Font("Dialog", Font.BOLD, 10));
+	    lblPleaseSelectA.setBounds(10, 413, 203, 15);
+	    frame.getContentPane().add(lblPleaseSelectA);
+	    
+	    JLabel lblNewLabel = new JLabel("Please select a reserve to sub on");
+	    lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 10));
+	    lblNewLabel.setBounds(643, 230, 193, 13);
+	    frame.getContentPane().add(lblNewLabel);
+	    
+	    JLabel lblNewLabel_1 = new JLabel("Starting Lineup");
+	    lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 12));
+	    lblNewLabel_1.setBounds(610, 16, 127, 13);
+	    frame.getContentPane().add(lblNewLabel_1);
+	    
+	    JLabel lblNewLabel_1_1 = new JLabel("Reserves");
+	    lblNewLabel_1_1.setFont(new Font("Tahoma", Font.BOLD, 12));
+	    lblNewLabel_1_1.setBounds(621, 281, 127, 13);
+	    frame.getContentPane().add(lblNewLabel_1_1);
+	}
+
+	private void updateButton() {
+	    boolean buyStarterEnabled = activeTeamList.getSelectedIndex() != -1 && availableAthletesList.getSelectedIndex() != -1;
+	    boolean buyReserveEnabled = availableAthletesList.getSelectedIndex() != -1;
+	    boolean sellStarterEnabled = reservesList.getSelectedIndex() != -1 && activeTeamList.getSelectedIndex() != -1;
+	    boolean sellReserveEnabled = reservesList.getSelectedIndex() != -1;
+
+	    buyStarterBtn.setEnabled(buyStarterEnabled);
+	    buyReserveBtn.setEnabled(buyReserveEnabled);
+	    sellStarterBtn.setEnabled(sellStarterEnabled);
+	    sellReserveBtn.setEnabled(sellReserveEnabled);
 	}
 }

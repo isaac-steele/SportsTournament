@@ -142,6 +142,10 @@ public class Market {
 		}
 	}
 	
+	public void sellItem(Item item, Club club) {
+		club.removeItem(item);
+		game.setMoneyAmount(game.getMoneyAmount() + item.getPrice());
+	}
 	/**
 	 * returns a reserve to the market
 	 * @param athlete

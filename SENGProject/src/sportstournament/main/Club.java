@@ -104,7 +104,21 @@ public class Club extends Team{
 		inventory.add(item);
 	}
 	
-	
+	/**
+	 * removes given item from inventory
+	 * @param item
+	 */
+	public void removeItem(Item item) {
+		inventory.remove(item);
+	}
+
+	/**
+	 * @param inventory the inventory to set
+	 */
+	public void setInventory(ArrayList<Item> inventory) {
+		this.inventory = inventory;
+	}
+
 	/**
 	 * takes a reserve and an active player and adds the reserve to the active team and the active player to the reserves
 	 * @param player Player to be put on team
