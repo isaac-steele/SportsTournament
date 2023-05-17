@@ -135,10 +135,10 @@ public class GameEnvironment {
 		this.difficulty = difficulty;
 		this.totalWeeks = numWeeks;
 		if (difficulty == "Easy") {
-			this.moneyAmount = 150;
+			this.moneyAmount = 50;
 		}
 		else if (difficulty == "Hard") {
-			this.moneyAmount = 100;
+			this.moneyAmount = 30;
 		}
 		this.weeksRemaining = this.totalWeeks - this.currentWeek;
 		this.club = new Club(name,team);

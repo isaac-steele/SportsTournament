@@ -10,6 +10,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JToolBar;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.DocumentEvent;
@@ -29,6 +30,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.AbstractListModel;
 import java.awt.Color;
 import java.awt.Font;
+import javax.swing.SwingConstants;
 
 public class SetupScreen {
 
@@ -74,7 +76,7 @@ public class SetupScreen {
 	}
 	public boolean checkAllSelected() {
 		String name = textField.getText();
-		boolean acceptableName = (Pattern.matches("[a-zA-Z0-9]+", name) && name.length() <= 15 && name.length() >=3);
+		boolean acceptableName = (Pattern.matches("[a-zA-Z0-9]+(\\s)?[a-zA-Z0-9]+", name) && name.length() <= 15 && name.length() >=3);
 		// enable button if a difficulty is chosen, name is right, season lenght is selected, anmd 4 players are selected
 		return (acceptableName && difficulty!= null && numWeeks >=5 && numWeeks<=15 && selectedAthletes.size() == 4 && draftFunds >= 0);
 	}
@@ -103,8 +105,33 @@ public class SetupScreen {
 		setupWindow.getContentPane().setLayout(null);
 		
 		JButton btnAccept = new JButton("Accept");
+		btnAccept.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				for (Athlete athlete: selectedAthletes) {
+					String message = "Choose a nickname for " + athlete.getName() +"\n(Between 5 to 15 characters)";
+					String selection = (String) JOptionPane.showInputDialog(setupWindow, message, "Nickname athlete", JOptionPane.PLAIN_MESSAGE);
+					if (selection != null) {
+						while (selection.length() < 5 | selection.length() > 15 | !(Pattern.matches("[a-zA-Z0-9]+(\\s)?[a-zA-Z0-9]+", selection))) {
+							if (selection.length() == 0) {
+								break;
+							}
+							JOptionPane.showMessageDialog(setupWindow, "Please enter a valid nickname!", "Invalid Nickname", JOptionPane.ERROR_MESSAGE);
+							selection = (String) JOptionPane.showInputDialog(setupWindow, message, "Nickname athlete", JOptionPane.PLAIN_MESSAGE);
+							if (selection == null) {
+								break;
+							}
+						}
+					}
+					if (selection != null) {
+						if (selection.length() >=5 && selection.length() <=15 && (Pattern.matches("[a-zA-Z0-9]+(\\s)?[a-zA-Z0-9]+", selection))) {
+							athlete.setName(selection);
+						}	
+					}
+				}
+				setupComplete();
+			}
+		});
 		btnAccept.setEnabled(false);
-		btnAccept.addActionListener(e -> setupComplete());
 		btnAccept.setBounds(666, 380, 117, 25);
 		setupWindow.getContentPane().add(btnAccept);
 		
@@ -215,7 +242,7 @@ public class SetupScreen {
 		});
 		
 		JLabel lblBalance = new JLabel("Balance:  $"+ draftFunds);
-		lblBalance.setBounds(666, 239, 117, 16);
+		lblBalance.setBounds(666, 312, 117, 16);
 		setupWindow.getContentPane().add(lblBalance);
 		
 		DefaultListModel<Athlete> athleteListModel = new DefaultListModel<Athlete>();
@@ -245,16 +272,9 @@ public class SetupScreen {
 		lblholdCtrlWhile.setBounds(78, 193, 195, 15);
 		setupWindow.getContentPane().add(lblholdCtrlWhile);
 		
-		JLabel lblDefenderSelection = new JLabel("Your first two selections will be your defenders.");
-		lblDefenderSelection.setBounds(295, 176, 313, 16);
-		setupWindow.getContentPane().add(lblDefenderSelection);
-		
-		JLabel lblAttackerSelection = new JLabel("Your last two selections will be your attackers. ");
-		lblAttackerSelection.setBounds(295, 192, 303, 16);
-		setupWindow.getContentPane().add(lblAttackerSelection);
-		
-		JLabel lblBudgetWarning = new JLabel("<html>Choose wisely and<br/>beaware of your budget!");
-		lblBudgetWarning.setBounds(642, 169, 161, 47);
+		JLabel lblBudgetWarning = new JLabel("<html>Choose wisely and<br/>be aware of your budget!");
+		lblBudgetWarning.setHorizontalAlignment(SwingConstants.CENTER);
+		lblBudgetWarning.setBounds(666, 233, 144, 47);
 		setupWindow.getContentPane().add(lblBudgetWarning);
 		
 		

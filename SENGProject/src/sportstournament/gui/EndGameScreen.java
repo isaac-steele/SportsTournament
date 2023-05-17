@@ -73,25 +73,25 @@ public class EndGameScreen extends Screen{
 		JLabel lblGetTeamName = new JLabel("");
 		lblGetTeamName.setText(game.getClubName());
 		lblGetTeamName.setFont(new Font("Dialog", Font.BOLD, 20));
-		lblGetTeamName.setBounds(184, 67, 159, 25);
+		lblGetTeamName.setBounds(199, 67, 159, 25);
 		endGameWindow.getContentPane().add(lblGetTeamName);
 		
 		JLabel lblGetSeasonDuration = new JLabel("");
 		lblGetSeasonDuration.setText(game.getTotalWeeks()+ " weeks");
 		lblGetSeasonDuration.setFont(new Font("Dialog", Font.BOLD, 20));
-		lblGetSeasonDuration.setBounds(230, 155, 150, 25);
+		lblGetSeasonDuration.setBounds(253, 155, 150, 25);
 		endGameWindow.getContentPane().add(lblGetSeasonDuration);
 		
 		JLabel lblGetMoneyGained = new JLabel("");
 		lblGetMoneyGained.setText("$"+game.getMoneyAmount());
 		lblGetMoneyGained.setFont(new Font("Dialog", Font.BOLD, 20));
-		lblGetMoneyGained.setBounds(208, 247, 150, 25);
+		lblGetMoneyGained.setBounds(221, 247, 150, 25);
 		endGameWindow.getContentPane().add(lblGetMoneyGained);
 		
 		JLabel lblGetPointsGained = new JLabel("");
 		lblGetPointsGained.setText(""+game.getPoints());
 		lblGetPointsGained.setFont(new Font("Dialog", Font.BOLD, 20));
-		lblGetPointsGained.setBounds(202, 342, 128, 25);
+		lblGetPointsGained.setBounds(221, 342, 128, 25);
 		endGameWindow.getContentPane().add(lblGetPointsGained);
 	}
 }

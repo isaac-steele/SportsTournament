@@ -88,20 +88,66 @@ public class Team {
 		String[] teamNames = {"Eagles", "Hornets", "Crusaders", "Titans", "Sharks", "Wolverines", "Hurricanes", "Hawks", "Snakes", "Serpents", "Cheetahs", "Panthers", "Lions", "Tigers"};
 		String randomName = teamNames[rng.nextInt(teamNames.length)];
 		int weeksRemaining = game.getWeeksRemaining();
+		int totalWeeks = game.getTotalWeeks();
 		// As the weeks increases the opponents should be harder
 		for(int i = 0; i < 4; i++ ) {
-			if (weeksRemaining < 15 && weeksRemaining > 10) {
-				defenceStat = rng.nextInt(16) + 50;
-				offenceStat = rng.nextInt(16) + 50;
+			if (totalWeeks <= 15 && totalWeeks >= 12) {
+				if (weeksRemaining < 15 && weeksRemaining > 10) {
+					defenceStat = rng.nextInt(16) + 50;
+					offenceStat = rng.nextInt(16) + 50;
+				}
+				else if (weeksRemaining < 11 && weeksRemaining > 5) {
+					defenceStat = rng.nextInt(16) + 60;
+					offenceStat = rng.nextInt(16) + 60;
+				}
+				else {
+					defenceStat = rng.nextInt(26) + 75;
+					offenceStat = rng.nextInt(26) + 75;
+				}
 			}
-			else if (weeksRemaining < 11 && weeksRemaining > 5) {
-				defenceStat = rng.nextInt(16) + 60;
-				offenceStat = rng.nextInt(16) + 60;
+			else if (totalWeeks <= 11 && totalWeeks >=9) {
+				if (weeksRemaining < 11 && weeksRemaining > 7) {
+					defenceStat = rng.nextInt(16) + 50;
+					offenceStat = rng.nextInt(16) + 50;
+				}
+				else if (weeksRemaining < 8 && weeksRemaining > 3) {
+					defenceStat = rng.nextInt(16) + 60;
+					offenceStat = rng.nextInt(16) + 60;
+				}
+				else {
+					defenceStat = rng.nextInt(26) + 75;
+					offenceStat = rng.nextInt(26) + 75;
+				}
 			}
+			else if (totalWeeks <= 8 && totalWeeks >=6) {
+				if (weeksRemaining < 8 && weeksRemaining > 4) {
+					defenceStat = rng.nextInt(16) + 50;
+					offenceStat = rng.nextInt(16) + 50;
+				}
+				else if (weeksRemaining < 5 && weeksRemaining > 2) {
+					defenceStat = rng.nextInt(16) + 60;
+					offenceStat = rng.nextInt(16) + 60;
+				}
+				else {
+					defenceStat = rng.nextInt(26) + 75;
+					offenceStat = rng.nextInt(26) + 75;
+				}
+			} 
 			else {
-				defenceStat = rng.nextInt(26) + 75;
-				offenceStat = rng.nextInt(26) + 75;
+				if (weeksRemaining < 5 && weeksRemaining > 3) {
+					defenceStat = rng.nextInt(16) + 50;
+					offenceStat = rng.nextInt(16) + 50;
+				}
+				else if (weeksRemaining < 4 && weeksRemaining > 1) {
+					defenceStat = rng.nextInt(16) + 60;
+					offenceStat = rng.nextInt(16) + 60;
+				}
+				else {
+					defenceStat = rng.nextInt(26) + 75;
+					offenceStat = rng.nextInt(26) + 75;
+				}
 			}
+
 			Athlete randomAthlete = Athlete.randomAthleteGenerator(defenceStat, offenceStat);
 			athleteList.add(randomAthlete);
 		}
