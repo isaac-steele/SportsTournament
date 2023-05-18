@@ -54,17 +54,17 @@ public class TeamPropertiesScreen extends Screen {
 		
 		JLabel lblTeamName = new JLabel("Team Name:");
 		lblTeamName.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblTeamName.setBounds(53, 13, 101, 15);
+		lblTeamName.setBounds(23, 13, 101, 15);
 		teamWindow.getContentPane().add(lblTeamName);
 		
 		JLabel lblStarters = new JLabel("Starters:");
 		lblStarters.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblStarters.setBounds(53, 54, 84, 15);
+		lblStarters.setBounds(36, 52, 84, 15);
 		teamWindow.getContentPane().add(lblStarters);
 		
 		JLabel lblReserves = new JLabel("Reserves:");
 		lblReserves.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblReserves.setBounds(53, 239, 101, 15);
+		lblReserves.setBounds(36, 228, 101, 15);
 		teamWindow.getContentPane().add(lblReserves);
 		
 		
@@ -77,27 +77,29 @@ public class TeamPropertiesScreen extends Screen {
 				gui.openClub();
 			}
 		});
-		btnClub.setBounds(610, 340, 142, 52);
+		btnClub.setBounds(599, 367, 142, 52);
 		teamWindow.getContentPane().add(btnClub);
 		
 		JLabel teamName = new JLabel("");
 		teamName.setFont(new Font("Tahoma", Font.BOLD, 14));
 		teamName.setText(club.viewName());
-		teamName.setBounds(171, 13, 226, 14);
+		teamName.setBounds(136, 13, 226, 14);
 		teamWindow.getContentPane().add(teamName);
 		
 		DefaultListModel<Athlete> activeTeamModel = new DefaultListModel<>();
 		activeTeamModel.addAll(activeTeam);
 		activeTeamList = new JList<>(activeTeamModel);
+		activeTeamList.setFont(new Font("Dialog", Font.BOLD, 11));
 		activeTeamList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		activeTeamList.setBounds(23, 79, 560, 135);
+		activeTeamList.setBounds(23, 79, 715, 100);
 		teamWindow.getContentPane().add(activeTeamList);
 		
 		DefaultListModel<Athlete> reservesModel = new DefaultListModel<>();
 		reservesModel.addAll(reserves);
 		reservesList = new JList<>(reservesModel);
+		reservesList.setFont(new Font("Dialog", Font.BOLD, 11));
 		reservesList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		reservesList.setBounds(23, 264, 560, 128);
+		reservesList.setBounds(23, 255, 715, 100);
 		teamWindow.getContentPane().add(reservesList);
 		
 		JButton btnSwapAthletes = new JButton("Swap Athletes");
@@ -130,7 +132,7 @@ public class TeamPropertiesScreen extends Screen {
 				
 			}
 		});
-		btnSwapAthletes.setBounds(610, 111, 142, 62);
+		btnSwapAthletes.setBounds(599, 193, 137, 52);
 		teamWindow.getContentPane().add(btnSwapAthletes);
 	}
 }

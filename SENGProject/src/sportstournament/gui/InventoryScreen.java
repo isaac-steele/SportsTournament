@@ -49,13 +49,13 @@ public class InventoryScreen extends Screen {
 	private void initialize() {
 		inventoryWindow = new JFrame();
 		inventoryWindow.setTitle("Inventory");
-		inventoryWindow.setBounds(100, 100, 756, 456);
+		inventoryWindow.setBounds(100, 100, 830, 490);
 		inventoryWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		inventoryWindow.getContentPane().setLayout(null);
 		
 		JLabel lblItems = new JLabel("Available Items:");
 		lblItems.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblItems.setBounds(39, 48, 147, 15);
+		lblItems.setBounds(51, 37, 147, 15);
 		inventoryWindow.getContentPane().add(lblItems);
 		
 		
@@ -68,25 +68,26 @@ public class InventoryScreen extends Screen {
 				gui.openClub();
 			}
 		});
-		btnClub.setBounds(551, 350, 136, 44);
+		btnClub.setBounds(567, 386, 174, 44);
 		inventoryWindow.getContentPane().add(btnClub);
 		
 		DefaultListModel<Item> inventoryModel = new DefaultListModel<Item>();
 		inventoryModel.addAll(inventory);
 		JList inventoryList = new JList(inventoryModel);
-		inventoryList.setBounds(39, 85, 281, 221);
+		inventoryList.setBounds(39, 64, 702, 101);
 		inventoryWindow.getContentPane().add(inventoryList);
 		
 		JLabel lblNewLabel = new JLabel("Please select a player to use item on");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblNewLabel.setBounds(448, 47, 259, 15);
+		lblNewLabel.setBounds(39, 198, 287, 15);
 		inventoryWindow.getContentPane().add(lblNewLabel);
 		
 		DefaultListModel<Athlete> teamModel = new DefaultListModel<Athlete>();
 		teamModel.addAll(reserves);
 		teamModel.addAll(activeTeam);
 		teamList = new JList(teamModel);
-		teamList.setBounds(406, 85, 287, 221);
+		teamList.setFont(new Font("Dialog", Font.BOLD, 11));
+		teamList.setBounds(39, 233, 702, 141);
 		inventoryWindow.getContentPane().add(teamList);
 		
 		
@@ -98,7 +99,7 @@ public class InventoryScreen extends Screen {
 			public void actionPerformed(ActionEvent e) {
 				int itemIndex = inventoryList.getSelectedIndex();
 				int athleteIndex = teamList.getSelectedIndex();
-				if (athleteIndex > 4) {
+				if (athleteIndex >= 4) {
 					athleteIndex -= 4;
 					club.useItem(inventory.get(itemIndex), reserves.get(athleteIndex));
 				}
@@ -109,7 +110,7 @@ public class InventoryScreen extends Screen {
 				gui.openClub();
 			}
 		});
-		btnUseItem.setBounds(39, 350, 174, 44);
+		btnUseItem.setBounds(567, 177, 174, 44);
 		inventoryWindow.getContentPane().add(btnUseItem);
 		
 		ListSelectionListener selectionListener = new ListSelectionListener() {
