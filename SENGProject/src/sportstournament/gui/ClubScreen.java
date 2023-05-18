@@ -55,7 +55,7 @@ public class ClubScreen extends Screen {
 				gui.openTeamPropertiesScreen();
 			}
 		});
-		btnNewButton.setBounds(73, 100, 253, 208);
+		btnNewButton.setBounds(96, 100, 253, 208);
 		clubWindow.getContentPane().add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("View Inventory");
@@ -66,7 +66,7 @@ public class ClubScreen extends Screen {
 				gui.openInventoryScreen();
 			}
 		});
-		btnNewButton_1.setBounds(409, 100, 253, 208);
+		btnNewButton_1.setBounds(415, 100, 253, 208);
 		clubWindow.getContentPane().add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("Back");

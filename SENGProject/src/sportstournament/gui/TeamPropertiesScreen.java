@@ -54,7 +54,7 @@ public class TeamPropertiesScreen extends Screen {
 		
 		JLabel lblTeamName = new JLabel("Team Name:");
 		lblTeamName.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblTeamName.setBounds(23, 13, 101, 15);
+		lblTeamName.setBounds(23, 13, 101, 27);
 		teamWindow.getContentPane().add(lblTeamName);
 		
 		JLabel lblStarters = new JLabel("Starters:");
@@ -83,7 +83,7 @@ public class TeamPropertiesScreen extends Screen {
 		JLabel teamName = new JLabel("");
 		teamName.setFont(new Font("Tahoma", Font.BOLD, 14));
 		teamName.setText(club.viewName());
-		teamName.setBounds(136, 13, 226, 14);
+		teamName.setBounds(136, 13, 226, 26);
 		teamWindow.getContentPane().add(teamName);
 		
 		DefaultListModel<Athlete> activeTeamModel = new DefaultListModel<>();

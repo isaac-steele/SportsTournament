@@ -83,13 +83,13 @@ public class Club extends Team{
 		
 		switch(item) {
 		case PROTEIN_SHAKE:
-			athlete.setDefenceStat(athlete.getDefenceStat() + item.getStatBoost());
+			athlete.increaseDefence(item.getStatBoost());
 			break;
 		case ENERGY_DRINK:
-			athlete.setStamina(athlete.getStamina() + item.getStatBoost());
+			athlete.increaseStamina(item.getStatBoost());
 			break;
 		case KNEE_SLEEVE:
-			athlete.setOffenceStat(athlete.getOffenceStat() + item.getStatBoost());
+			athlete.increaseOffence(item.getStatBoost());
 			break;
 		}
 		

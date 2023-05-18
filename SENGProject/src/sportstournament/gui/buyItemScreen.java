@@ -124,7 +124,7 @@ public class buyItemScreen extends Screen{
 			public void actionPerformed(ActionEvent e) {
 				int buyIndex = availableItemsList.getSelectedIndex();
 				String message = availableItems.get(buyIndex).name()+" purchased for $"+availableItems.get(buyIndex).getPrice();
-				JOptionPane.showMessageDialog(frame, message, "item purchased", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(frame, message, "Item Purchased", JOptionPane.INFORMATION_MESSAGE);
 				market.buyItem(availableItems.get(buyIndex), game.getClub());
 				gui.closeBuyItemScreen();
 				gui.OpenMarket();

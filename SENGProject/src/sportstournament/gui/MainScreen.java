@@ -128,7 +128,7 @@ public class MainScreen extends Screen {
 		mainWindow.getContentPane().add(lblgetFunds);
 		
 		JLabel lblCurrentWeek = new JLabel("Current Week:");
-		lblCurrentWeek.setBounds(60, 64, 117, 15);
+		lblCurrentWeek.setBounds(60, 70, 117, 15);
 		mainWindow.getContentPane().add(lblCurrentWeek);
 		
 		JLabel lblWeeksRemaining = new JLabel("Weeks Remaining:");
@@ -137,12 +137,12 @@ public class MainScreen extends Screen {
 		
 		JLabel lblgetCurrentWeek = new JLabel("");
 		lblgetCurrentWeek.setText("" + game.getCurrentWeek());
-		lblgetCurrentWeek.setBounds(172, 64, 70, 15);
+		lblgetCurrentWeek.setBounds(168, 70, 70, 15);
 		mainWindow.getContentPane().add(lblgetCurrentWeek);
 		
 		JLabel lblgetWeeksRemaining = new JLabel("");
 		lblgetWeeksRemaining.setText("" + game.getWeeksRemaining());
-		lblgetWeeksRemaining.setBounds(200, 97, 70, 15);
+		lblgetWeeksRemaining.setBounds(201, 97, 70, 15);
 		mainWindow.getContentPane().add(lblgetWeeksRemaining);
 	}
 }
