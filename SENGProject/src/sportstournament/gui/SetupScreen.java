@@ -43,7 +43,7 @@ public class SetupScreen {
 	private ArrayList<Athlete> chosenAthletes;
 	private int numWeeks;
 	private List<Athlete> selectedAthletes =  new ArrayList<Athlete>();
-	private int draftFunds = 30;
+	private int draftFunds = 22;
 	private List<Athlete> oldAthletes = new ArrayList<Athlete>();
 
 	

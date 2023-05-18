@@ -1,6 +1,7 @@
 package sportstournament;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import javax.swing.SwingUtilities;
 
@@ -19,11 +20,13 @@ import sportstournament.ui.CommandLine;
 public class Main {
 	
 	public static void main(String[] args) {
-		
+		Random rng = new Random();
 		final ArrayList<Athlete> draft = new ArrayList<Athlete>();
 		
 		while (draft.size() <= 10) {
-			draft.add(Athlete.randomAthleteGenerator());
+			int offenceStat = rng.nextInt(16) + 50;
+			int defenceStat = rng.nextInt(16) + 50;
+			draft.add(Athlete.randomAthleteGenerator(defenceStat, offenceStat));
 		}
 		
 		 if (args.length > 0 && (args[0].equals("cmd"))) {

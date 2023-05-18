@@ -73,7 +73,7 @@ public class EndGameScreen extends Screen{
 		JLabel lblGetTeamName = new JLabel("");
 		lblGetTeamName.setText(game.getClubName());
 		lblGetTeamName.setFont(new Font("Dialog", Font.BOLD, 20));
-		lblGetTeamName.setBounds(199, 67, 159, 25);
+		lblGetTeamName.setBounds(199, 67, 382, 25);
 		endGameWindow.getContentPane().add(lblGetTeamName);
 		
 		JLabel lblGetSeasonDuration = new JLabel("");

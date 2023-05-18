@@ -68,7 +68,7 @@ public class TakeByeScreen extends Screen {
 		btnTrainAthlete.setBounds(548, 357, 167, 25);
 		takeByeWindow.getContentPane().add(btnTrainAthlete);
 		
-		JLabel lblTheChosenAthlete = new JLabel("<html>The chosen athlete will get a +10 boost for<br/>both their offence and defence stats.<html>");
+		JLabel lblTheChosenAthlete = new JLabel("<html>The chosen athlete will get a +5 boost for<br/>both their offence and defence stats.<html>");
 		lblTheChosenAthlete.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTheChosenAthlete.setBounds(43, 344, 317, 38);
 		takeByeWindow.getContentPane().add(lblTheChosenAthlete);
