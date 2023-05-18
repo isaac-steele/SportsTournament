@@ -69,7 +69,7 @@ public class buyAthleteScreen extends Screen{
 	            gui.OpenMarket();
 	        }
 	    });
-	    backBtn.setBounds(39, 34, 117, 25);
+	    backBtn.setBounds(770, 489, 117, 25);
 	    frame.getContentPane().add(backBtn);
 
 	    DefaultListModel<Athlete> availableAthletesModel = new DefaultListModel<>();
@@ -77,7 +77,7 @@ public class buyAthleteScreen extends Screen{
 	    availableAthletesList = new JList<>(availableAthletesModel);
 	    availableAthletesList.setFont(new Font("Tahoma", Font.PLAIN, 9));
 	    availableAthletesList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-	    availableAthletesList.setBounds(22, 78, 418, 229);
+	    availableAthletesList.setBounds(25, 103, 418, 229);
 	    frame.getContentPane().add(availableAthletesList);
 
 	    DefaultListModel<Athlete> reservesModel = new DefaultListModel<>();
@@ -85,7 +85,7 @@ public class buyAthleteScreen extends Screen{
 	    reservesList = new JList<>(reservesModel);
 	    reservesList.setFont(new Font("Tahoma", Font.PLAIN, 9));
 	    reservesList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-	    reservesList.setBounds(466, 304, 426, 175);
+	    reservesList.setBounds(466, 304, 426, 160);
 	    frame.getContentPane().add(reservesList);
 
 	    DefaultListModel<Athlete> activeTeamModel = new DefaultListModel<>();
@@ -94,12 +94,12 @@ public class buyAthleteScreen extends Screen{
 	    activeTeamList.setFont(new Font("Tahoma", Font.PLAIN, 9));
 
 	    activeTeamList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-	    activeTeamList.setBounds(466, 39, 426, 175);
+	    activeTeamList.setBounds(466, 39, 426, 160);
 	    frame.getContentPane().add(activeTeamList);
 
 	    sellStarterBtn = new JButton("Sell starter");
 	    sellStarterBtn.setEnabled(false);
-	    sellStarterBtn.setBounds(466, 224, 117, 25);
+	    sellStarterBtn.setBounds(476, 223, 117, 25);
 	    frame.getContentPane().add(sellStarterBtn);
 
 	    sellReserveBtn = new JButton("Sell reserve");
@@ -109,12 +109,12 @@ public class buyAthleteScreen extends Screen{
 
 	    buyReserveBtn = new JButton("Buy as reserve");
 	    buyReserveBtn.setEnabled(false);
-	    buyReserveBtn.setBounds(259, 340, 170, 60);
+	    buyReserveBtn.setBounds(259, 373, 170, 60);
 	    frame.getContentPane().add(buyReserveBtn);
 
 	    buyStarterBtn = new JButton("Buy as starter");
 	    buyStarterBtn.setEnabled(false);
-	    buyStarterBtn.setBounds(10, 340, 157, 60);
+	    buyStarterBtn.setBounds(57, 373, 157, 60);
 	    frame.getContentPane().add(buyStarterBtn);
 
 	    ListSelectionListener selectionListener = new ListSelectionListener() {
@@ -178,8 +178,8 @@ public class buyAthleteScreen extends Screen{
 	    
 	    
 	    JLabel lblPleaseSelectA = new JLabel("Please select a starter to take off ");
-	    lblPleaseSelectA.setFont(new Font("Dialog", Font.BOLD, 10));
-	    lblPleaseSelectA.setBounds(10, 413, 203, 15);
+	    lblPleaseSelectA.setFont(new Font("Dialog", Font.BOLD, 11));
+	    lblPleaseSelectA.setBounds(25, 464, 235, 15);
 	    frame.getContentPane().add(lblPleaseSelectA);
 	    
 	    JLabel lblNewLabel = new JLabel("Please select a reserve to sub on");
@@ -196,11 +196,25 @@ public class buyAthleteScreen extends Screen{
 	    lblNewLabel_1_1.setFont(new Font("Tahoma", Font.BOLD, 12));
 	    lblNewLabel_1_1.setBounds(621, 281, 127, 13);
 	    frame.getContentPane().add(lblNewLabel_1_1);
+	    
+	    JLabel lblNewLabel_2 = new JLabel("Maximum of 5 reserves");
+	    lblNewLabel_2.setFont(new Font("Dialog", Font.BOLD, 11));
+	    lblNewLabel_2.setBounds(272, 464, 185, 15);
+	    frame.getContentPane().add(lblNewLabel_2);
+	    
+	    JLabel lblNewLabel_3 = new JLabel("Current Funds:");
+	    lblNewLabel_3.setBounds(25, 39, 117, 35);
+	    frame.getContentPane().add(lblNewLabel_3);
+	    
+	    JLabel fundsLabel = new JLabel();
+	    fundsLabel.setText("$"+game.getMoneyAmount());
+	    fundsLabel.setBounds(144, 39, 159, 35);
+	    frame.getContentPane().add(fundsLabel);
 	}
 
 	private void updateButton() {
 	    boolean buyStarterEnabled = activeTeamList.getSelectedIndex() != -1 && availableAthletesList.getSelectedIndex() != -1;
-	    boolean buyReserveEnabled = availableAthletesList.getSelectedIndex() != -1;
+	    boolean buyReserveEnabled = availableAthletesList.getSelectedIndex() != -1 && availableAthletesList.getSelectedIndex() <= 4;
 	    boolean sellStarterEnabled = reservesList.getSelectedIndex() != -1 && activeTeamList.getSelectedIndex() != -1;
 	    boolean sellReserveEnabled = reservesList.getSelectedIndex() != -1;
 
