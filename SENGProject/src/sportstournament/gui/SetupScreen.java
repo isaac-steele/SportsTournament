@@ -100,7 +100,7 @@ public class SetupScreen {
 	private void initialize() {
 		setupWindow = new JFrame();
 		setupWindow.setTitle("4-A-Side Football");
-		setupWindow.setBounds(100, 100, 821, 447);
+		setupWindow.setBounds(100, 100, 866, 454);
 		setupWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setupWindow.getContentPane().setLayout(null);
 		
@@ -132,7 +132,7 @@ public class SetupScreen {
 			}
 		});
 		btnAccept.setEnabled(false);
-		btnAccept.setBounds(666, 380, 117, 25);
+		btnAccept.setBounds(700, 380, 117, 25);
 		setupWindow.getContentPane().add(btnAccept);
 		
 		JLabel lblWelcomeToaside = new JLabel("Welcome to 4-A-Side Football!");
@@ -242,7 +242,7 @@ public class SetupScreen {
 		});
 		
 		JLabel lblBalance = new JLabel("Balance:  $"+ draftFunds);
-		lblBalance.setBounds(666, 312, 117, 16);
+		lblBalance.setBounds(700, 308, 117, 16);
 		setupWindow.getContentPane().add(lblBalance);
 		
 		DefaultListModel<Athlete> athleteListModel = new DefaultListModel<Athlete>();
@@ -263,7 +263,7 @@ public class SetupScreen {
 				}
 			}
 		});
-		draftAthletes.setBounds(23, 220, 631, 185);
+		draftAthletes.setBounds(23, 220, 659, 185);
 		draftAthletes.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		setupWindow.getContentPane().add(draftAthletes);
 		
@@ -274,7 +274,7 @@ public class SetupScreen {
 		
 		JLabel lblBudgetWarning = new JLabel("<html>Choose wisely and<br/>be aware of your budget!");
 		lblBudgetWarning.setHorizontalAlignment(SwingConstants.CENTER);
-		lblBudgetWarning.setBounds(666, 233, 144, 47);
+		lblBudgetWarning.setBounds(700, 233, 144, 47);
 		setupWindow.getContentPane().add(lblBudgetWarning);
 		
 		
