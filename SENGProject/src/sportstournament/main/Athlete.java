@@ -261,7 +261,7 @@ public class Athlete implements Purchasable {
 		Random rng = new Random();
 		int randomDefence = rng.nextInt(51) + 50;
 		int randomOffence = rng.nextInt(51) + 50;
-		int price = (Math.max(randomDefence, randomOffence)) / 10;
+		int price = ((randomDefence + randomOffence)) / 20;
 		String[] firstNames = {"John", "Matt", "Henry", "David", "Harry", "Joe", "Will", "Jack", "Luke", "Zach", "Ben", "James", "Adam", "Eric"};
 		String[] lastNames = {"Smith", "Wilson", "Lee", "Turner", "Adams", "Baker", "Young", "Thomposon", "Clark", "Garcia", "Rodriguez", "Martinez", "Patel", "Miller"};
 		String randomFirstName = firstNames[rng.nextInt(14)];
@@ -279,7 +279,7 @@ public class Athlete implements Purchasable {
 	 */
 	public static Athlete randomAthleteGenerator(int randomDefence, int randomOffence ) {
 		Random rng = new Random();
-		int price = (Math.max(randomDefence, randomOffence)) / 10;
+		int price = ((randomDefence + randomOffence)) / 20;
 		String[] firstNames = {"John", "Matt", "Henry", "David", "Harry", "Joe", "Will", "Jack", "Luke", "Zach", "Ben", "James", "Adam", "Eric"};
 		String[] lastNames = {"Smith", "Wilson", "Lee", "Turner", "Adams", "Baker", "Young", "Thomposon", "Clark", "Garcia", "Rodriguez", "Martinez", "Patel", "Miller"};
 		String randomFirstName = firstNames[rng.nextInt(14)];
