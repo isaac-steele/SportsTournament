@@ -77,7 +77,7 @@ public class TeamPropertiesScreen extends Screen {
 				gui.openClub();
 			}
 		});
-		btnClub.setBounds(544, 340, 177, 52);
+		btnClub.setBounds(610, 340, 142, 52);
 		teamWindow.getContentPane().add(btnClub);
 		
 		JLabel teamName = new JLabel("");
@@ -90,14 +90,14 @@ public class TeamPropertiesScreen extends Screen {
 		activeTeamModel.addAll(activeTeam);
 		activeTeamList = new JList<>(activeTeamModel);
 		activeTeamList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		activeTeamList.setBounds(53, 79, 441, 135);
+		activeTeamList.setBounds(23, 79, 560, 135);
 		teamWindow.getContentPane().add(activeTeamList);
 		
 		DefaultListModel<Athlete> reservesModel = new DefaultListModel<>();
 		reservesModel.addAll(reserves);
 		reservesList = new JList<>(reservesModel);
 		reservesList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		reservesList.setBounds(53, 264, 441, 128);
+		reservesList.setBounds(23, 264, 560, 128);
 		teamWindow.getContentPane().add(reservesList);
 		
 		JButton btnSwapAthletes = new JButton("Swap Athletes");
@@ -130,7 +130,7 @@ public class TeamPropertiesScreen extends Screen {
 				
 			}
 		});
-		btnSwapAthletes.setBounds(544, 79, 177, 62);
+		btnSwapAthletes.setBounds(610, 111, 142, 62);
 		teamWindow.getContentPane().add(btnSwapAthletes);
 	}
 }
