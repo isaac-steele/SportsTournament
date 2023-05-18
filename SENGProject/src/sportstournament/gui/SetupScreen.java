@@ -108,10 +108,10 @@ public class SetupScreen {
 		btnAccept.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				for (Athlete athlete: selectedAthletes) {
-					String message = "Choose a nickname for " + athlete.getName() +"\n(Between 5 to 15 characters)";
+					String message = "Choose a nickname for " + athlete.getName() +"\n(Between 3 to 15 characters)";
 					String selection = (String) JOptionPane.showInputDialog(setupWindow, message, "Nickname athlete", JOptionPane.PLAIN_MESSAGE);
 					if (selection != null) {
-						while (selection.length() < 5 | selection.length() > 15 | !(Pattern.matches("[a-zA-Z0-9]+(\\s)?[a-zA-Z0-9]+", selection))) {
+						while (selection.length() < 3 | selection.length() > 15 | !(Pattern.matches("[a-zA-Z0-9]+(\\s)?[a-zA-Z0-9]+", selection))) {
 							if (selection.length() == 0) {
 								break;
 							}
@@ -123,7 +123,7 @@ public class SetupScreen {
 						}
 					}
 					if (selection != null) {
-						if (selection.length() >=5 && selection.length() <=15 && (Pattern.matches("[a-zA-Z0-9]+(\\s)?[a-zA-Z0-9]+", selection))) {
+						if (selection.length() >=3 && selection.length() <=15 && (Pattern.matches("[a-zA-Z0-9]+(\\s)?[a-zA-Z0-9]+", selection))) {
 							athlete.setName(selection);
 						}	
 					}
