@@ -39,7 +39,7 @@ public class MarketScreen extends Screen{
 		marketWindow.getContentPane().setLayout(null);
 		
 		JLabel lblTotalFunds = new JLabel("Total Funds:");
-		lblTotalFunds.setText(String.valueOf(market.getMoney()));
+		lblTotalFunds.setText("");
 		lblTotalFunds.setBounds(53, 33, 270, 48);
 		marketWindow.getContentPane().add(lblTotalFunds);
 		
@@ -50,7 +50,7 @@ public class MarketScreen extends Screen{
 				gui.openBuyAthleteScreen();
 			}
 		});
-		btnDraftAthletesBack.setBounds(37, 105, 244, 259);
+		btnDraftAthletesBack.setBounds(79, 73, 270, 259);
 		marketWindow.getContentPane().add(btnDraftAthletesBack);
 		
 		JButton btnViewAvailableItems = new JButton("Buy and sell items");
@@ -60,7 +60,7 @@ public class MarketScreen extends Screen{
 				gui.openBuyItemScreen();
 			}
 		});
-		btnViewAvailableItems.setBounds(383, 105, 260, 259);
+		btnViewAvailableItems.setBounds(422, 73, 260, 259);
 		marketWindow.getContentPane().add(btnViewAvailableItems);
 		
 		JButton btnMainMenu = new JButton("Main Menu");
