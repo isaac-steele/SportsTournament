@@ -114,7 +114,7 @@ public class InventoryScreen extends Screen {
 		
 		ListSelectionListener selectionListener = new ListSelectionListener() {
 	        public void valueChanged(ListSelectionEvent event) {
-	            if (teamList.getSelectedIndex() != -1) {
+	            if (teamList.getSelectedIndex() != -1 && inventoryList.getSelectedIndex()!= -1) {
 	            	btnUseItem.setEnabled(true);
 	            }
 	            else {
@@ -123,7 +123,8 @@ public class InventoryScreen extends Screen {
 	        }
 	    };
 	    
-	    teamList.addListSelectionListener(selectionListener); 
+	    teamList.addListSelectionListener(selectionListener);
+	    inventoryList.addListSelectionListener(selectionListener);
 	}
 	
 }
