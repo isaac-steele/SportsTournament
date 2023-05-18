@@ -12,6 +12,7 @@ import sportstournament.main.GameEnvironment;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
+import java.awt.Font;
 
 
 public class ClubScreen extends Screen {
@@ -47,33 +48,36 @@ public class ClubScreen extends Screen {
 		clubWindow.getContentPane().setLayout(null);
 		
 		JButton btnNewButton = new JButton("View Team");
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				gui.closeClub();
 				gui.openTeamPropertiesScreen();
 			}
 		});
-		btnNewButton.setBounds(80, 130, 203, 148);
+		btnNewButton.setBounds(73, 100, 253, 208);
 		clubWindow.getContentPane().add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("View Inventory");
+		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				gui.closeClub();
 				gui.openInventoryScreen();
 			}
 		});
-		btnNewButton_1.setBounds(423, 130, 203, 148);
+		btnNewButton_1.setBounds(409, 100, 253, 208);
 		clubWindow.getContentPane().add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("Back");
+		btnNewButton_2.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				gui.closeClub();
 				gui.openMainScreen();
 			}
 		});
-		btnNewButton_2.setBounds(123, 365, 117, 25);
+		btnNewButton_2.setBounds(73, 368, 137, 32);
 		clubWindow.getContentPane().add(btnNewButton_2);
 		
 		

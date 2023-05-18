@@ -156,6 +156,7 @@ public class Gui {
 	 * opens the market screen
 	 */
 	public void OpenMarket() {
+		marketScreen = new MarketScreen(game, this);
 		marketScreen.open();
 	}
 	/**
