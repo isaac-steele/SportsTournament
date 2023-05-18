@@ -26,6 +26,8 @@ public class TeamPropertiesScreen extends Screen {
 	private Club club;
 	private ArrayList<Athlete> activeTeam;
 	private ArrayList<Athlete> reserves;
+	private JList<Athlete> activeTeamList;
+    private JList<Athlete> reservesList;
 
 	/**
 	 * Create the application.
@@ -80,14 +82,14 @@ public class TeamPropertiesScreen extends Screen {
 		
 		DefaultListModel<Athlete> activeTeamModel = new DefaultListModel<>();
 		activeTeamModel.addAll(activeTeam);
-		JList<Athlete> activeTeamList = new JList<>(activeTeamModel);
+		activeTeamList = new JList<>(activeTeamModel);
 		activeTeamList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		activeTeamList.setBounds(53, 79, 441, 111);
 		teamWindow.getContentPane().add(activeTeamList);
 		
 		DefaultListModel<Athlete> reservesModel = new DefaultListModel<>();
 		reservesModel.addAll(reserves);
-		JList<Athlete> reservesList = new JList<>(reservesModel);
+		reservesList = new JList<>(reservesModel);
 		reservesList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		reservesList.setBounds(53, 271, 441, 121);
 		teamWindow.getContentPane().add(reservesList);
