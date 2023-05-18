@@ -27,7 +27,7 @@ public enum Item implements Purchasable {
 	private String stat;
 	
 	public String toString() {
-		return this.name()+": Boosts a players "+getStat()+" by "+getStatBoost();
+		return this.name()+": Boosts a players "+getStat()+" by "+getStatBoost() +"($"+getPrice()+")";
 	}
 	
 	/**
