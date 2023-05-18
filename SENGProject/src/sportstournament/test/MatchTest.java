@@ -31,7 +31,7 @@ class MatchTest {
 		ArrayList<Athlete> clubTeam = myClub.viewActiveTeam();
 		Athlete myFirstDefender = clubTeam.get(0);
 		Athlete myFirstAttacker = clubTeam.get(2);
-		assertEquals(60,myFirstAttacker.getStamina());
+		assertEquals(50,myFirstAttacker.getStamina());
 		assertEquals(70,myFirstDefender.getStamina());
 		myFirstAttacker.setStamina(3);
 		myFirstAttacker.setOffenceStat(83);
@@ -45,6 +45,7 @@ class MatchTest {
 		Athlete mySecondDefender = clubTeam.get(1);
 		mySecondDefender.setDefenceStat(60);
 		myFirstAttacker.setOffenceStat(81);
+		myFirstAttacker.setStamina(30);
 		String lossResult = Match.playMatch(myClub, opps);
 		assertEquals("Loss", lossResult);
 		assertEquals(0, myFirstDefender.getStamina());

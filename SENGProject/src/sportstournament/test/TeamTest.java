@@ -16,7 +16,7 @@ class TeamTest {
 			team.add(athlete);
 		}
 		Team newTeam = new Team("Panthers", team, game);
-		String expectedString = new String("Team Name: Panthers\n\n"+team.get(0).toString()+"\n"+team.get(1).toString()+"\n"+team.get(2).toString()+"\n"+team.get(3).toString());
+		String expectedString = new String("Team Name: Panthers\n\nDefenders:\n"+team.get(0).toString()+"\n"+team.get(1).toString()+"\n\nAttackers:\n"+team.get(2).toString()+"\n"+team.get(3).toString());
 		assertEquals(expectedString, newTeam.toString());
 	}
 }
