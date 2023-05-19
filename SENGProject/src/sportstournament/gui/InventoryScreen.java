@@ -83,8 +83,8 @@ public class InventoryScreen extends Screen {
 		inventoryWindow.getContentPane().add(lblNewLabel);
 		
 		DefaultListModel<Athlete> teamModel = new DefaultListModel<Athlete>();
-		teamModel.addAll(reserves);
 		teamModel.addAll(activeTeam);
+		teamModel.addAll(reserves);
 		teamList = new JList(teamModel);
 		teamList.setFont(new Font("Dialog", Font.BOLD, 11));
 		teamList.setBounds(39, 233, 702, 141);
