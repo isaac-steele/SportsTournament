@@ -2,50 +2,67 @@ package sportstournament.main;
 
 /**
  * An enum with three possible types of items.
- * Sets a default price and stat boost for each type
- * @author rsc103
+ * Each item has a price, a stat boost, and the stat that the boost is applied to.
+ * 
+ * @author Isaac Steele and Reuben Schoonbee
  *
  */
 public enum Item implements Purchasable {
 	
+	/**
+	 * The three types of items.
+	 */
 	PROTEIN_SHAKE(3, 5, "Defence"), 
 	ENERGY_DRINK(5,10, "Stamina"),
 	KNEE_SLEEVE(4,5, "Offence");
 	
 	/**
-	 * items price
+	 * The price of the item.
 	 */
 	private int price;
 	/**
-	 * the items stat boost value
+	 * The item's stat boost value
 	 */
 	private int statBoost;
 	
 	/**
-	 * type of stat the item boosts
+	 * The type of stat the item boosts
 	 */
+	
 	private String stat;
 	
+	/**
+	 * The to string method for the given item.
+	 * 
+	 * @return Returns the representation of an item in string format.
+	 */
+	@Override
 	public String toString() {
 		return this.name()+": Boosts a players "+getStat()+" by "+getStatBoost() +"  ($"+getPrice()+")";
 	}
 	
 	/**
-	 * @return the stat type the item boosts
+	 * returns the type of stat the item boosts.
+	 * 
+	 * @return The stat type the item boosts
 	 */
 	public String getStat() {
 		return stat;
 	}
 
 	/**
-	 * @return the items price
+	 * Returns the price of the item
+	 * 
+	 * @return the item's price
 	 */
 	public int getPrice() {
 		return price;
 	}
 
 	/**
-	 * @return the items stat boost
+	 * Returns the value of the item's stat boost.
+	 * 
+	 * @return the item,s stat boost
 	 */
 	public int getStatBoost() {
 		return statBoost;
@@ -53,9 +70,11 @@ public enum Item implements Purchasable {
 
 
 	/**
-	 * @param price
-	 * @param statBoost
-	 * default constructor for item
+	 * The default constructor for an Item, which sets all of its attributes.
+	 * 
+	 * @param price The price of the Item
+	 * @param statBoost The stat boost of the Item
+	 * @param stat The stat the item boosts.
 	 */
 	Item(int price, int statBoost, String stat){
 		this.price = price;

@@ -5,25 +5,13 @@ import java.util.Random;
 
 
 /**
- * This class implements an Athlete which has different statistics and can have a nickname.
- * Athletes also have positions in which they play.
- * Athletes can either be actively in the team or in the reserves.
- * Items can be used on an Athlete which has an effect on them.
- * Athletes can be injured.
- * The position an Athlete plays affects the stat they use in a game.
- * After a match an Athlete loses their stamina, if their team loses their stamina is reduced further.
- * Athletes can be drafted back to the market. 
- * In the market, Athletes will be available for contracting. There will be 3 - 5 to choose from and their price and stats will be displayed.
- * When an Athlete is contracted they can be added to the team or the reserves. If added to the team, an existing team member will be added to the reserves and the new Athlete will take their place.
- * There may be factors that affect the type of Athletes sold.
- * When a bye is taken: Athletes in the market are updated, Athletes' stamina's are restored, an option to train an Athlete to boost their stats.
- * 
- * Random events:
- * - Small chance an Athlete gets a stat boost while resting.
- * - An Athlete quits (low chance) - increased chance if Athlete was injured the previous week.
- * - A random new Athlete joins (low chance) - increased chance based on free slots in reserves.
- * 
- * @author Isaac Steele 
+ * This class implements an Athlete which has different statistics (offence, defence, stamina), a nickname, an injury status, and a price.
+ * The price of an athlete is determined by the average of their stats and scaled down by a factor of 10.
+ * An athlete becomes injured when their stamina reaches 0 and can no longer perform in matches.
+ * The position they play is determined by their index in the active team.
+ * This class also contains a random Athlete generator which gives an athlete a random name and stats. 
+
+ * @author Isaac Steele and Reuben Schoonbee
  *
  */ 
 
@@ -66,7 +54,7 @@ public class Athlete implements Purchasable {
 	/**
 	 * The main constructor for Athlete.
 	 * 
-	 * @param tempName The given name for the Athlete.
+	 * @param tempName The given name for the Athlete.and can have 
 	 * @param tempOffenceStat The given offence stat of the Athlete.
 	 * @param tempDefenceStat The given defence stat of the Athlete.
 	 * @param tempPrice The given price of the Athlete.
@@ -114,7 +102,7 @@ public class Athlete implements Purchasable {
 	}
 	
 	/** 
-	 * Returns the Athlete's offence stat.
+	 * Returns the Athlete's offence stat.and can have 
 	 * 
 	 * @return The offensive statistic of the Athlete.
 	 */
@@ -188,7 +176,7 @@ public class Athlete implements Purchasable {
 		athletePrice = price;
 	}
 	
-	/** 
+	/** and can have 
 	 * Increases the offence stat of the Athlete.
 	 * 
 	 * @param offenceBoost The value to increase the offence stat by.
@@ -249,13 +237,18 @@ public class Athlete implements Purchasable {
 	}
 	/**
 	 * To String method for the Athlete Class
+	 * 
+	 * @return Returns the representation of an athlete in the form of a string.
 	*/
+	@Override
 	public String toString() {
 		return "Name: " + athleteName + ", " + "Offence: " + offenceStat + ", " + "Defence: " + defenceStat + ", " + "Stamina: " + athleteStamina + ", " + "Price: " + athletePrice + ", Injured: " + injuryStatus;
 	}
 	
 	/**
 	 * Random Athlete Generator
+	 * 
+	 * @return Returns a random athlete with their stats between 50 and 100 and a name randomly selected from a default list of names.
 	 */
 	public static Athlete randomAthleteGenerator() {
 		Random rng = new Random();
@@ -263,7 +256,7 @@ public class Athlete implements Purchasable {
 		int randomOffence = rng.nextInt(51) + 50;
 		int price = ((randomDefence + randomOffence)) / 20;
 		String[] firstNames = {"John", "Matt", "Henry", "David", "Harry", "Joe", "Will", "Jack", "Luke", "Zach", "Ben", "James", "Adam", "Eric"};
-		String[] lastNames = {"Smith", "Wilson", "Lee", "Turner", "Adams", "Baker", "Young", "Thomposon", "Clark", "Garcia", "Rodriguez", "Martinez", "Patel", "Miller"};
+		String[] lastNames = {"Smith", "Wilson", "Lee", "Turner", "Adams", "Baker", "Young", "Thompson", "Clark", "Garcia", "Rodriguez", "Martinez", "Patel", "Miller"};
 		String randomFirstName = firstNames[rng.nextInt(14)];
 		String randomLastName = lastNames[rng.nextInt(14)];
 		String randomName = randomFirstName + " " + randomLastName;
@@ -274,14 +267,15 @@ public class Athlete implements Purchasable {
 	/**
 	 * Random Athlete Generator based on the number of weeks remaining
 	 * 
-	 * @param randomDefence A randomly generated defence stat based on the weeks remaining
-	 * @param randomOffence A randomly generated offence stat based on the weeks remaining
+	 * @param randomDefence A randomly generated defence stat based on the weeks remaining and total weeks
+	 * @param randomOffence A randomly generated offence stat based on the weeks remaining and total weeks
+	 * @return Returns a random athlete with stats generated based on the total number of weeks and weeks remaining. This method is called through the Team class.
 	 */
 	public static Athlete randomAthleteGenerator(int randomDefence, int randomOffence ) {
 		Random rng = new Random();
 		int price = ((randomDefence + randomOffence)) / 20;
 		String[] firstNames = {"John", "Matt", "Henry", "David", "Harry", "Joe", "Will", "Jack", "Luke", "Zach", "Ben", "James", "Adam", "Eric"};
-		String[] lastNames = {"Smith", "Wilson", "Lee", "Turner", "Adams", "Baker", "Young", "Thomposon", "Clark", "Garcia", "Rodriguez", "Martinez", "Patel", "Miller"};
+		String[] lastNames = {"Smith", "Wilson", "Lee", "Turner", "Adams", "Baker", "Young", "Thompson", "Clark", "Garcia", "Rodriguez", "Martinez", "Patel", "Miller"};
 		String randomFirstName = firstNames[rng.nextInt(14)];
 		String randomLastName = lastNames[rng.nextInt(14)];
 		String randomName = randomFirstName + " " + randomLastName;
