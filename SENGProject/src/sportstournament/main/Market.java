@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /**
  * This class implements a Market where Athlete's and Item's can be purchased and sold.
  * 
- * @author rsc103
+ * @author Isaac Steele and Reuben Schoonbee
  *
  */
 
@@ -86,7 +86,9 @@ public class Market {
 	 * Adds an Athlete from the Market to the Club's reserves and removes the Athlete from the Market.
 	 * 
 	 * @param newAthlete The Athlete to be bought and added to the reserves
-	 * @param club The instance of Club that the Athlete will join their reserves.
+	 * @param club The instance of Club that the Athlete will join 
+	 * 
+	 * @return Returns a String that is either an error message because there's insufficient funds or a confirmation of purchase.
 	 */
 	public String buyReserve(Athlete newAthlete, Club club) {
 		try {
@@ -104,11 +106,12 @@ public class Market {
 		}
 	}
 	/**
-	 * buys a new athlete from the market and puts them on the reserves
-	 * then substitutes the other given player for the new one
-	 * @param newAthlete
-	 * @param subAthlete
-	 * @param team
+	 * Buys a new Athlete from the Market, puts them on the reserves and then substitutes the chosen Athlete in the active team with the new Athlete.
+	 * @param newAthlete The Athlete purchased from the Market
+	 * @param subAthlete The Athlete to be subbed off the active team and put on the reserves.
+	 * @param club The instance of Club that the Athlete will join.
+	 * 
+	 *  @return Returns a String that is either an error message because there's insufficient funds or a confirmation of purchase.
 	 */
 	public String buyStarter(Athlete newAthlete, Athlete subAthlete, Club club) {
 		try {
@@ -129,9 +132,12 @@ public class Market {
 	}
 	
 	/**
-	 * purchase item from market 
-	 * @param item
-	 * @param team
+	 * Buys an Item from the Market.
+	 * 
+	 * @param item The Item to be purchased
+	 * @param club The instance of Club that the Item will be added to
+	 * 
+	 * @return Returns a String that is either an error message because there's insufficient funds or a confirmation of purchase.
 	 */
 	public String buyItem(Item item, Club club) {
 		try {
@@ -144,33 +150,41 @@ public class Market {
 		}
 	}
 	
+	/**
+	 * Sells an Item back to the market for half its price.
+	 * 
+	 * @param item The Item to be sold
+	 * @param club The instance of Club that the item belongs to.
+	 */
 	public void sellItem(Item item, Club club) {
 		club.removeItem(item);
-		game.setMoneyAmount(game.getMoneyAmount() + item.getPrice());
+		game.updateMoney(item.getPrice() / 2);
 	}
 	/**
-	 * returns a reserve to the market
-	 * @param athlete
-	 * @param team
+	 * Sell a reserve back to the Market for half its price.
+	 * 
+	 * @param reserve The reserve to be sold
+	 * @param club The instance of Club the reserve belongs to
+	 * 
 	 */
-	public void returnReserve(Athlete athlete, Club club) {
+	public void sellReserve(Athlete reserve, Club club) {
 		
-		game.updateMoney((athlete.getPrice() / 2));
-		freeAgents.add(athlete);
-		club.removeReserve(athlete);
+		game.updateMoney((reserve.getPrice() / 2));
+		freeAgents.add(reserve);
+		club.removeReserve(reserve);
 	}
 	
 	/**
-	 * subs the athlete to be returned with another then returns the original athlete to the market
-	 * @param athlete
-	 * @param replacement
-	 * @param team
+	 * Sells a starter back to the Market for half its price.
+	 * @param starter The starter to be sold back to the Market
+	 * @param replacement The reserve that replaces the starter in the active team.
+	 * @param club The instance of Club that the starter and replacement belong to.
 	 */
-	public void returnStarter(Athlete athlete, Athlete replacement,Club club) {
-		game.updateMoney((athlete.getPrice() / 2));
-		club.subAthlete(replacement, athlete);
-		club.removeReserve(athlete);
-		freeAgents.add(athlete);
+	public void sellStarter(Athlete starter, Athlete replacement,Club club) {
+		game.updateMoney((starter.getPrice() / 2));
+		club.subAthlete(replacement, starter);
+		club.removeReserve(starter);
+		freeAgents.add(starter);
 	}
 
 

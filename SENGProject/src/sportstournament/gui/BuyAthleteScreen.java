@@ -132,7 +132,7 @@ public class BuyAthleteScreen extends Screen{
 	            int sellIndex = activeTeamList.getSelectedIndex();
 	            int replaceIndex = reservesList.getSelectedIndex();
 	            String message =  "Starter: "+activeTeam.get(sellIndex).getName()+" sold and replaced with reserve: "+reserves.get(replaceIndex).getName();
-	            market.returnStarter(activeTeam.get(sellIndex), reserves.get(replaceIndex), game.getClub());
+	            market.sellStarter(activeTeam.get(sellIndex), reserves.get(replaceIndex), game.getClub());
 	            JOptionPane.showMessageDialog(frame,message,"Starter Sold", JOptionPane.INFORMATION_MESSAGE);
 	            gui.closeBuyAthleteScreen();
 	            gui.OpenMarket();
@@ -144,7 +144,7 @@ public class BuyAthleteScreen extends Screen{
 	        public void actionPerformed(ActionEvent e) {
 	            int sellIndex = reservesList.getSelectedIndex();
 	            String message =  "Reserve: "+reserves.get(sellIndex).getName()+" sold";
-	            market.returnReserve(reserves.get(sellIndex), game.getClub());
+	            market.sellReserve(reserves.get(sellIndex), game.getClub());
 	            JOptionPane.showMessageDialog(frame,message,"Reserve Sold", JOptionPane.INFORMATION_MESSAGE);
 	            gui.closeBuyAthleteScreen();
 	            gui.OpenMarket();
