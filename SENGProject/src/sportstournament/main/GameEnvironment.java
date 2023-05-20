@@ -11,27 +11,10 @@ import sportstournament.gui.TakeByeScreen;
 import sportstournament.ui.CommandLine;
 
 /**
- * This class contains the main game. It keeps track of the game and handles requests from the UI.
- * The player starts off in week 1 with a default amount of money. They can draft players and improve their stats with items.
- * The player can view their money, the current week and the weeks remaining.
- * If they go to the Club, they can view properties of their team and/or view their inventory.
- * If they go to the Stadium, they can see a few matches and they can choose to play them.
- * If they go to the Market:
- * - They can see their current money.
- * - Athletes and Items can be drafted back to the Market.
- * - They can view Athletes that are available for contracting including their price and their stats.
- * - They can view Items that are for sale including their price and effect
- * The player can take a bye:
- * - All items/athletes in the market are updated randomly
- * - All matches are updated
- * - All Athletes' stamina's are restored.
- * - An option will appear to give the chance to improve an Athlete's stats through a boot camp.
- * The game will end once either:
- * - No more weeks remaining
- * - The player has insufficient funds to purchase more Athletes or their team is not full enough.
+ * This class implements a GameEnvironment. It keeps track of the game, such as the weeks, money, and points. 
+ * It handles requests from the UI and updates the state of the game where necessary.
  * 
- * Should be the same for GUI and command line UI
- * 
+ 
  * @author Isaac Steele + Reuben Schoonbee
  *
  */
@@ -42,29 +25,28 @@ public class GameEnvironment {
 	 */
 	private ArrayList<Athlete> draft;
 	/**
-	 * A random event object
+	 * An instance of RandomEvent which is used when a bye is taken
 	 */
 	private RandomEvent randomEvent;
 	/**
-	 * the club object which will be used for the entirety of the game
+	 * An instance of Club which will be used for the entirety of the game
 	 */
 	private Club club;
 	/**
-	 * the market object which will be used for the entirety of the game
+	 * An instance of Market which will be refreshed when a bye is taken
 	 */
 	private Market market;
 	
 	/**
-	 * the stadium object which will be used for the entirety of the game
+	 *An instance of Stadium which will be refreshed when a bye is taken
 	 */
 	private Stadium stadium;
 	/**
-	 * user interface instance
-	 * final variable
+	 * An instance of CommandLine which is used when the game is run as a command line application
 	 */
 	private CommandLine ui;
 	/**
-	 * gui instance
+	 * An instance of Gui which is used when the game is run as a graphical application
 	 */
 	private Gui gui;
 	/**
@@ -92,14 +74,14 @@ public class GameEnvironment {
 	 */
 	private int points = 0;
 	/**
-	 * Game Environment constructor used for testing
+	 * GameEnvironment constructor used for testing
 	 */
 	public GameEnvironment() {
 	}
 	/**
-	 * constructor for game environment, used once at the beginning of the game form the main method
-	 * @param ui
-	 * @param draft
+	 * A constructor for GameEnvironment, called from the Main class to begin the setup of the game.
+	 * @param ui The instance of CommandLine being used.
+	 * @param draft A list of Athletes to be drafted.
 	 */
 	public GameEnvironment(CommandLine ui, ArrayList<Athlete> draft ) {
 		
@@ -107,9 +89,9 @@ public class GameEnvironment {
 		this.ui = ui;
 	}	
 	/**
-	 * constructor for the gui
-	 * @param gui
-	 * @param draft
+	 * A constructor for GameEnvironment, called from the Main class to begin the setup of the game.
+	 * @param gui The instance of Gui being used.
+	 * @param draft A list of Athletes to be drafted.
 	 */
 	public GameEnvironment(Gui gui, ArrayList<Athlete> draft ) {
 		
@@ -117,19 +99,24 @@ public class GameEnvironment {
 		this.gui = gui;
 	}	
 	/**
-	 * starts the game
+	 * Starts the game for a command line application
 	 */
 	public void startUi() {
 		ui.SetUp(this);
 	}
 	/**
-	 * starts the game with gui
+	 * Starts the game for a graphical application
 	 */
 	public void startGui() {
 		gui.setup(this);
 	}
 	/**
-	 * finishes setup and starts the main game
+	 * Finishes setup and starts the main game
+	 * 
+	 * @param name The chosen name for the team
+	 * @param team The list of Athletes drafted.
+	 * @param numWeeks The chosen number of weeks for the game
+	 * @param difficulty The selected difficulty
 	 */
 	public void finishSetup(String name, ArrayList<Athlete> team, int numWeeks, String difficulty) {
 		this.difficulty = difficulty;
@@ -153,6 +140,9 @@ public class GameEnvironment {
 	}
 	/**
 	 * Starts the match
+	 * 
+	 * @param num The index of the match to start
+	 * @return The result of the match
 	 */
 	public String startMatch(int num) {
 		ArrayList<Team> matches = getMatches();
@@ -160,20 +150,30 @@ public class GameEnvironment {
 		
 	}
 	/**
-	 * gets the matches
+	 * Gets the matches
+	 * 
+	 * @return A list of teams that you can play.
 	 */
 	public ArrayList<Team> getMatches() {
 		return stadium.getMatches();
 	}
 	/**
 	 * Returns the team name
+	 * 
+	 * @param teams A list of Teams
+	 * @param index The index of the team to get the name of
+	 * @return the team name
 	 */
 	public String getTeamName(ArrayList<Team> teams, int index) {
 		Team team = teams.get(index);
 		return team.viewName();
 	}
 	/**
-	 * Gets the players in the team
+	 * Gets the Athletes in the team
+	 * 
+	 * @param teams A list of Teams
+	 * @param index The index of the team to return the Athletes of.
+	 * @return A list of Athletes, representing the team.
 	 */
 	public ArrayList<Athlete> getPlayers(ArrayList<Team> teams, int index) {
 		Team team = teams.get(index);
@@ -181,6 +181,9 @@ public class GameEnvironment {
 	}
 	/**
 	 * Gets the total price of the team
+	 * 
+	 * @param athletes A list of Athletes
+	 * @return The sum of the prices of all Athletes in the team
 	 */
 	public int getTeamPrice(List<Athlete> athletes) {
 		int price = 0;
@@ -191,58 +194,72 @@ public class GameEnvironment {
 	}
 	/**
 	 * Gets the active team
+	 * 
+	 * @return the active team of the Club
 	 */
 	public ArrayList<Athlete> getActiveTeam() {
 		return club.viewActiveTeam();
 	}
 	/**
 	 * Gets the reserves
+	 * 
+	 * @return The reserves of the Club
 	 */
 	public ArrayList<Athlete> getReserves() {
 		return club.viewReserves();
 	}
 	/**
-	 * Specially trains an athlete
+	 * Specially trains an Athlete
+	 * 
+	 * @param athlete The chosen Athlete to be specially trained.
 	 */
 	public void trainAthlete(Athlete athlete) {
 		athlete.increaseDefence(5);
 		athlete.increaseOffence(5);
 	}
 	/**
-	 * Returns the club name
+	 * Returns the Club name
+	 * 
+	 * @return the name of the Club
 	 */
 	public String getClubName() {
 		return club.viewName();
 	}
 	/**
-	 * Gets the club
+	 * Gets the Club
 	 * 
-	 * @return the club
+	 * @return the Club
 	 */
 	public Club getClub() {
 		return club;
 	}	
 	/**
-	 * @return the market
+	 * Returns the Market.
+	 * 
+	 * @return the Market
 	 */
 	public Market getMarket() {
 		return market;
 	}
 	/*
-	 * Gets the stadium
+	 * Gets the Stadium
 	 * 
-	 * @return the stadium
+	 * @return the Stadium
 	 */
 	public Stadium getStadium() {
 		return stadium;
 	}
 	/**
-	 * @return the draft
+	 * Returns a list of drafted Athletes
+	 * 
+	 * @return The drafted Athletes
 	 */
 	public ArrayList<Athlete> getDraft() {
 		return draft;
 	}
 	/**
+	 * Returns the total weeks
+	 * 
 	 * @return the amount of weeks the game shall be played for
 	 */
 	public int getTotalWeeks() {
@@ -297,13 +314,17 @@ public class GameEnvironment {
 		this.moneyAmount = money;
 	}
 	/**
-	 * Updates the amount of money the player wins.
+	 * Updates the amount of money 
+	 * 
+	 * @param The amount of money gained.
 	 */
 	public void updateMoney(int gains) {
 		this.moneyAmount += gains;
 	}
 	/**
-	 * Decreases the money
+	 * Decreases the total money
+	 * 
+	 * @param The amount of money to decrease the total by.
 	 */
 	public void decreaseMoney(int withdraw) {
 		if (this.moneyAmount - withdraw < 0) {
@@ -356,50 +377,10 @@ public class GameEnvironment {
 		return difficulty;
 	}
 	
-	/*
-	 * On the main user interface, the options printed out will be:
-	 * -Go to Club: 1
-	 * -Go to Stadium: 2
-	 * -Go to Market: 3
-	 * -Take a bye: 4
-	 */
-	
-	/*
-	 * If 1 is selected:
-	 * - View properties: 1
-	 * - View inventory: 2
-	 */
-	
-	/*
-	 * If 2 is selected:
-	 * - Match 1: 1
-	 * - Match 2: 2
-	 * - Match 3 : 3
-	 */
-	
-	/*
-	 * If 3 is selected:
-	 * - call getMoneyAmount()
-	 * - Draft Athlete back to market: 1
-	 * - Draft Item back to market: 2
-	 * - View available Athletes: 3
-	 * - View available Items: 4
-	 */
-	
-	/*
-	 * If 4 is selected:
-	 * - All Purchasable Items/Athletes update randomly
-	 * - For all Athletes call restoreStamina()
-	 * - Randomly generate new matches
-	 * - Specially train Athlete: 1
-	 * - call random events method
-	 */
-	
-	
-	
 	/**
-	 * takes and handles users input selection from the club screen
-	 * @param selection
+	 * Takes and handles users input selection from the club screen
+	 * 
+	 * @param selection The selected number which each correlate to a different option.
 	 */
 	public void handleClubOptions(int selection) {
 		
@@ -465,7 +446,6 @@ public class GameEnvironment {
 	}
 		
 	public String takeBye() {
-		//In command line print out option to specially train one athlete before calling this
 		updateCurrentWeek();
 		updateWeeksRemaining();
 		market = new Market(this);

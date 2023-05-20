@@ -105,7 +105,7 @@ class MarketTest {
 		ArrayList<Athlete> freeAgents = market.getFreeAgents();
 		Athlete reserve = new Athlete("Bob", 57, 82, 6);
 		reserves.add(reserve);
-		market.returnReserve(reserve, club);
+		market.sellReserve(reserve, club);
 		assertEquals(253, game.getMoneyAmount());
 		assertTrue(freeAgents.contains(reserve));
 		assertFalse(reserves.contains(reserve));
@@ -128,7 +128,7 @@ class MarketTest {
 		Athlete reserve = new Athlete("Bob", 57, 82, 6);
 		Athlete starter = starters.get(0);
 		reserves.add(reserve);
-		market.returnStarter(starter, reserve, club);
+		market.sellStarter(starter, reserve, club);
 		assertEquals(252, game.getMoneyAmount());
 		assertTrue(freeAgents.contains(starter));
 		assertEquals(0, reserves.size());
