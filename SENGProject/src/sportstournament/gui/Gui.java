@@ -54,12 +54,12 @@ public class Gui {
 	/**
 	 * the screen where athletes can be purchased or sold
 	 */
-	private buyAthleteScreen buyAthleteScreen;
+	private BuyAthleteScreen buyAthleteScreen;
 	
 	/**
 	 * the screen where items can be purchased or sold
 	 */
-	private buyItemScreen buyItemScreen;
+	private BuyItemScreen buyItemScreen;
 	/**
 	 * The end game screen
 	 */
@@ -83,8 +83,8 @@ public class Gui {
 		clubScreen = new ClubScreen(game, this);
 		stadiumScreen = new StadiumScreen(game, this);
 		marketScreen = new MarketScreen(game, this);
-		buyAthleteScreen = new buyAthleteScreen(game, this);
-		buyItemScreen = new buyItemScreen(game, this);
+		buyAthleteScreen = new BuyAthleteScreen(game, this);
+		buyItemScreen = new BuyItemScreen(game, this);
 		takeByeScreen = new TakeByeScreen(game, this);
 		teamPropertiesScreen = new TeamPropertiesScreen(game, this);
 		inventoryScreen = new InventoryScreen(game, this);
@@ -198,11 +198,11 @@ public class Gui {
 	}
 	
 	public void openBuyAthleteScreen() {
-		buyAthleteScreen = new buyAthleteScreen(game, this);
+		buyAthleteScreen = new BuyAthleteScreen(game, this);
 		buyAthleteScreen.open();
 	}
 	public void openBuyItemScreen() {
-		buyItemScreen = new buyItemScreen(game, this);
+		buyItemScreen = new BuyItemScreen(game, this);
 		buyItemScreen.open();
 	}
 	public void closeBuyAthleteScreen() {

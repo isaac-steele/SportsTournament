@@ -3,8 +3,8 @@ package sportstournament.main;
 import java.util.ArrayList;
 
 /**
- * contains the source code for the market interface
- * where items can be purchased and players can be added/released
+ * This class implements a Market where Athlete's and Item's can be purchased and sold.
+ * 
  * @author rsc103
  *
  */
@@ -12,21 +12,21 @@ import java.util.ArrayList;
 public class Market {
 	
 	/**
-	 * list of available items for purchase
+	 * List of available Items for purchase
 	 */
 	private ArrayList<Item> availableItems = new ArrayList<Item>();
 	/**
-	 * list of available free agents
+	 * List of available Athletes for purchase.
 	 */
 	private ArrayList<Athlete> freeAgents = new ArrayList<Athlete>();
 	/**
-	 * The game environment
+	 * The game environment. 
 	 */
 	private GameEnvironment game;
 	/**
-	 * default constructor for market
-	 * sets availableItems to all possible items
-	 * creates a list of random athletes to be available for purchase
+	 * Default constructor for Market
+	 * Adds 3 items to the market
+	 * Creates a list of random athletes to be available for purchase.
 	 */
 	public Market(GameEnvironment game) {
 		this.game = game;
@@ -41,50 +41,52 @@ public class Market {
 
 	}
 	/**
-	 * view the teams money
-	 * @param team
+	 * View the available funds
+	 * 
+	 * @return The money in the current state of the game.
 	 */
 	public int getMoney() {
 		return game.getMoneyAmount();
 	}
-	/**
-	 * sets the list of items in the market
-	 * @param availableItems
-	 */
-	
 	
 	/**
-	 * @return list of available items
+	 * Returns a list of Items available for purchase.
+	 * @return  A list of Items available for purchase.
 	 */
 	public ArrayList<Item> viewAvailableItems() {
 		return availableItems;
 	}
 	/**
-	 * @return list of available players to be drafted
+	 * Returns a list of available Athletes in the Market.
+	 * 
+	 * @return A list of available Athletes in the Market.
 	 */
 	public ArrayList<Athlete> getFreeAgents() {
 		return freeAgents;
 	}
 	
 	/**
-	 * @param athlete
-	 * adds a new fre agent to the market
+	 * Adds a new Athlete to be available for purchase in the Market.
+	 * 
+	 * @param The Athlete to be added.
 	 */
 	public void addFreeAgent(Athlete athlete) {
 		freeAgents.add(athlete);
 	}
 	/**
-	 * sets the list of free agents
-	 * @param freeAgents
+	 * Sets the list of available Athletes in the market.
+	 * 
+	 * @param a list of Athletes to be made available for purchase.
 	 */
 	public void setFreeAgents(ArrayList<Athlete> freeAgents) {
 		this.freeAgents = freeAgents;
 	}
 	
 	/**
-	 * adds an athlete from market to the teams reserves and removes the athlete from the market
-	 * @param newAthlete
-	 * @param team
+	 * Adds an Athlete from the Market to the Club's reserves and removes the Athlete from the Market.
+	 * 
+	 * @param newAthlete The Athlete to be bought and added to the reserves
+	 * @param club The instance of Club that the Athlete will join their reserves.
 	 */
 	public String buyReserve(Athlete newAthlete, Club club) {
 		try {

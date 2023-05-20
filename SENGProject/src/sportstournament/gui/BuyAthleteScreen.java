@@ -21,7 +21,7 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.JLabel;
 import java.awt.Font;
 
-public class buyAthleteScreen extends Screen{
+public class BuyAthleteScreen extends Screen{
 
 	private JFrame frame;
 	private Market market;
@@ -39,7 +39,7 @@ public class buyAthleteScreen extends Screen{
 	/**
 	 * Create the application.
 	 */
-	public buyAthleteScreen(GameEnvironment game, Gui gui) {
+	public BuyAthleteScreen(GameEnvironment game, Gui gui) {
 		super(game,gui);
 		market = game.getMarket();
 		freeAgents = market.getFreeAgents();

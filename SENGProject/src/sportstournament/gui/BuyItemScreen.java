@@ -21,7 +21,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import java.awt.Font;
 
-public class buyItemScreen extends Screen{
+public class BuyItemScreen extends Screen{
 
 	private JFrame frame;
 	private Market market;
@@ -33,7 +33,7 @@ public class buyItemScreen extends Screen{
 	/**
 	 * Create the application.
 	 */
-	public buyItemScreen(GameEnvironment game, Gui gui) {
+	public BuyItemScreen(GameEnvironment game, Gui gui) {
 		super(game, gui);
 		market = game.getMarket();
 		availableItems = market.viewAvailableItems();
