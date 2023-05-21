@@ -92,8 +92,8 @@ public class Market {
 	 */
 	public String buyReserve(Athlete newAthlete, Club club) {
 		try {
+			club.addNewAthlete(newAthlete) ;
 			game.decreaseMoney(newAthlete.getPrice());
-			club.addNewAthlete(newAthlete);
 			freeAgents.remove(newAthlete);
 		
 			if (freeAgents.size() == 2) {
@@ -104,6 +104,10 @@ public class Market {
 		catch(ArithmeticException error) {
 			return error.getMessage();
 		}
+		catch(ArrayIndexOutOfBoundsException e) {
+			return e.getMessage();
+		}
+		
 	}
 	/**
 	 * Buys a new Athlete from the Market, puts them on the reserves and then substitutes the chosen Athlete in the active team with the new Athlete.

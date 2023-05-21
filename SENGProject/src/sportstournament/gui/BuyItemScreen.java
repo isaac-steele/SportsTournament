@@ -40,8 +40,19 @@ public class BuyItemScreen extends Screen{
 		inventory = game.getClub().viewItems();
 		initialize();
 		this.window = frame;
-		frame.getContentPane().setLayout(null);
+
 		
+		
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.getContentPane().setLayout(null);
+		frame.setBounds(100, 100, 734, 434);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		DefaultListModel<Item> availableItemsModel= new DefaultListModel<Item>();
 		availableItemsModel.addAll(availableItems);
 		DefaultListModel<Item> inventoryModel= new DefaultListModel<Item>();
@@ -124,8 +135,14 @@ public class BuyItemScreen extends Screen{
 			public void actionPerformed(ActionEvent e) {
 				int buyIndex = availableItemsList.getSelectedIndex();
 				String message = availableItems.get(buyIndex).name()+" purchased for $"+availableItems.get(buyIndex).getPrice();
-				JOptionPane.showMessageDialog(frame, message, "Item Purchased", JOptionPane.INFORMATION_MESSAGE);
-				market.buyItem(availableItems.get(buyIndex), game.getClub());
+				if (market.buyItem(availableItems.get(buyIndex), game.getClub()) == "You cannot afford this!") {
+					JOptionPane.showMessageDialog(frame, "You cannot afford this item", "Insufficient funds", JOptionPane.ERROR_MESSAGE);
+					
+				}
+				else {
+					JOptionPane.showMessageDialog(frame, message, "Item Purchased", JOptionPane.INFORMATION_MESSAGE);
+
+				}
 				gui.closeBuyItemScreen();
 				gui.OpenMarket();
 			}
@@ -141,14 +158,5 @@ public class BuyItemScreen extends Screen{
 				gui.OpenMarket();
 			}
 		});
-	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 734, 434);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 }
