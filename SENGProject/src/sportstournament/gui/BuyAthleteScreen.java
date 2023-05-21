@@ -157,8 +157,18 @@ public class BuyAthleteScreen extends Screen{
 	        public void actionPerformed(ActionEvent e) {
 	            int buyIndex = availableAthletesList.getSelectedIndex();
 	            String message =  "Free agent: "+freeAgents.get(buyIndex).getName()+" purchased and sent to reserves";
-	            market.buyReserve(freeAgents.get(buyIndex), game.getClub());
-	            JOptionPane.showMessageDialog(frame,message,"Reserve Purchased", JOptionPane.INFORMATION_MESSAGE);
+	            String result = market.buyReserve(freeAgents.get(buyIndex), game.getClub());
+	            if (result == "You cannot afford this") {
+					JOptionPane.showMessageDialog(frame, "You cannot afford this athlete", "Insufficient funds", JOptionPane.ERROR_MESSAGE);
+	            }
+	            else if (result == "Maximum size of reserves is 5") {
+					JOptionPane.showMessageDialog(frame, "You may only have a maximum of 5 reserves", "Reserves full", JOptionPane.ERROR_MESSAGE);
+
+	            }
+	            else {
+		            JOptionPane.showMessageDialog(frame,message,"Reserve Purchased", JOptionPane.INFORMATION_MESSAGE);
+
+	            }
 	            gui.closeBuyAthleteScreen();
 	            gui.OpenMarket();
 	        }
@@ -169,8 +179,18 @@ public class BuyAthleteScreen extends Screen{
 	            int buyIndex = availableAthletesList.getSelectedIndex();
 	            int subIndex = activeTeamList.getSelectedIndex();
 	            String message =  "Athlete: "+freeAgents.get(buyIndex).getName()+" purchased and subbed on for starter: "+activeTeam.get(subIndex).getName()+", ";
-	            JOptionPane.showMessageDialog(frame,message,"Starter Purchased", JOptionPane.INFORMATION_MESSAGE);
-	            market.buyStarter(freeAgents.get(buyIndex),activeTeam.get(subIndex), game.getClub());
+	            String result = market.buyStarter(freeAgents.get(buyIndex),activeTeam.get(subIndex), game.getClub());
+	            if (result== "You cannot afford this!") {
+					JOptionPane.showMessageDialog(frame, "You cannot afford this athlete", "Insufficient funds", JOptionPane.ERROR_MESSAGE);
+	            }
+	            else if  (result == "Maximum size of reserves is 5") {
+		            JOptionPane.showMessageDialog(frame,"Your team is full", "Team full", JOptionPane.ERROR_MESSAGE);
+
+	            }
+	            else {
+		            JOptionPane.showMessageDialog(frame,message,"Starter Purchased", JOptionPane.INFORMATION_MESSAGE);
+
+	            }
 	            gui.closeBuyAthleteScreen();
 	            gui.OpenMarket();
 	        }

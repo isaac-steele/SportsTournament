@@ -16,6 +16,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -49,7 +50,7 @@ public class InventoryScreen extends Screen {
 	private void initialize() {
 		inventoryWindow = new JFrame();
 		inventoryWindow.setTitle("Inventory");
-		inventoryWindow.setBounds(100, 100, 830, 490);
+		inventoryWindow.setBounds(100, 100, 829, 580);
 		inventoryWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		inventoryWindow.getContentPane().setLayout(null);
 		
@@ -68,13 +69,13 @@ public class InventoryScreen extends Screen {
 				gui.openClub();
 			}
 		});
-		btnClub.setBounds(567, 386, 174, 44);
+		btnClub.setBounds(608, 489, 174, 44);
 		inventoryWindow.getContentPane().add(btnClub);
 		
 		DefaultListModel<Item> inventoryModel = new DefaultListModel<Item>();
 		inventoryModel.addAll(inventory);
 		JList inventoryList = new JList(inventoryModel);
-		inventoryList.setBounds(39, 64, 702, 101);
+		inventoryList.setBounds(39, 64, 743, 101);
 		inventoryWindow.getContentPane().add(inventoryList);
 		
 		JLabel lblNewLabel = new JLabel("Please select a player to use item on");
@@ -87,7 +88,7 @@ public class InventoryScreen extends Screen {
 		teamModel.addAll(reserves);
 		teamList = new JList(teamModel);
 		teamList.setFont(new Font("Dialog", Font.BOLD, 11));
-		teamList.setBounds(39, 233, 702, 141);
+		teamList.setBounds(39, 233, 743, 246);
 		inventoryWindow.getContentPane().add(teamList);
 		
 		
@@ -97,20 +98,26 @@ public class InventoryScreen extends Screen {
 		btnUseItem.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnUseItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int itemIndex = inventoryList.getSelectedIndex();
+				int itemIndex = inventoryList.getSelectedIndex(); 
 				int athleteIndex = teamList.getSelectedIndex();
+				String message;
 				if (athleteIndex >= 4) {
 					athleteIndex -= 4;
+					message = inventory.get(itemIndex).name()+" used on "+reserves.get(athleteIndex).getName();
 					club.useItem(inventory.get(itemIndex), reserves.get(athleteIndex));
 				}
 				else {
+					message = inventory.get(itemIndex).name()+" used on "+activeTeam.get(athleteIndex).getName();
 					club.useItem(inventory.get(itemIndex), activeTeam.get(athleteIndex));
+
 				}
+				
+				JOptionPane.showMessageDialog(inventoryWindow, message,"Item used", JOptionPane.INFORMATION_MESSAGE);
 				gui.closeInventoryScreen();
 				gui.openClub();
 			}
 		});
-		btnUseItem.setBounds(567, 177, 174, 44);
+		btnUseItem.setBounds(608, 175, 174, 44);
 		inventoryWindow.getContentPane().add(btnUseItem);
 		
 		ListSelectionListener selectionListener = new ListSelectionListener() {
