@@ -6,27 +6,31 @@ import java.util.Random;
 
 
 /**
- * the general class for team, will be used both for the players own team and opposing teams
- * parent class of club
- * @author rsc103
+ * This class implements a Team which has a name, an active team that contains 4 players.
+ * It is also the parent class of Club
+ * @author Isaac Steele and Reuben Schoonbee
  *
  */
 
 public class Team {
 	/**
-	 * The game environment.
+	 * A GameEnvironment object which holds the current state of the application.
 	 */
 	protected GameEnvironment game;
 	/**
-	 * The teams name
+	 * The team name
 	 */
 	protected String name;
 	/**
-	 * List of active players
+	 * A list of Athletes which make up the active team.
 	 */
 	protected ArrayList<Athlete> activeTeam;
 	/**
-	 * Default constructor for team
+	 * Default constructor for Team
+	 * 
+	 * @param name The team name
+	 * @param activeTeam A list of Athletes which make up the active team
+	 * @param game The current state of the game
 	 */
 	public Team(String name, ArrayList<Athlete> activeTeam, GameEnvironment game) {
 		setName(name);
@@ -34,51 +38,58 @@ public class Team {
 		this.game = game;
 	}
 	/** 
-	 * Constructor for team without game environment.
+	 * Constructor for Team without game environment.
+	 * 
+	 * @param name The team name
+	 * @param activeTeam A list of Athletes which make up the active team
 	 */
 	public Team(String name, ArrayList<Athlete> activeTeam) {
 		setName(name);
 		this.activeTeam = activeTeam;
 	}
 	/**
-	 * Team Constructor
+	 * Team Constructor which is used when the active team is not provided.
+	 * 
+	 * @param game The current state of the game
 	 */
 	public Team(GameEnvironment game) {
 		this.game = game;
 	}
 	/**
-	 * returns the team name
-	 * @return name The name of team
+	 * Returns the team name
+	 * @return The name of team
 	 */
 	public String viewName() {
 		return name;
 	}
 	
 	/**
-	 * sets team name
-	 * @param name
+	 * Sets the team name
+	 * @param The name of the team
 	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 	
 	/**
-	 * returns list of active players on the team
-	 * @ return activeTeam
+	 * Returns a list of Athletes on the active team
+	 * @return a list of Athletes on the active team
 	 */
 	public ArrayList<Athlete> viewActiveTeam() {
 		return activeTeam;
 	}
 	/** 
 	 * To string method for team
+	 * 
+	 * @return A string that contains the team name, and all the athletes and their positions
 	 */
 	public String toString() {
 		return "Team Name: " + name + "\n\nDefenders:\n" + activeTeam.get(0).toString() + "\n" + activeTeam.get(1).toString() + "\n\nAttackers:\n" + activeTeam.get(2).toString() + "\n" + activeTeam.get(3).toString();
 	}
 	/**
-	 * Generates a random team based on the weeks remaining.
+	 * Generates a random Team based on the weeks remaining and the total weeks
 	 * 
-	 * @return a random team
+	 * @return A randomly generated Team
 	 */
 	public Team randomTeamGenerator() {
 		int defenceStat;

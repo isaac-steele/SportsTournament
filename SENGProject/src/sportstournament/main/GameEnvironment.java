@@ -444,7 +444,11 @@ public class GameEnvironment {
 			
 		}
 	}
-		
+	/**
+	 * Moves the game to the next week. Updates the Market and Stadium and has a chance a random event occurs.
+	 * 	
+	 * @return A string that contains the random event that occurred or "None" if none occur.
+	 */
 	public String takeBye() {
 		updateCurrentWeek();
 		updateWeeksRemaining();
@@ -458,22 +462,34 @@ public class GameEnvironment {
 		return randomEventOccurrence;
 	}
 	
+	/**
+	 * Returns the athlete that randomly joined the team.
+	 * 
+	 * @return the athlete that randomly joined the team.
+	 */
 	public Athlete getJoiner() {
 		return randomEvent.getJoiner();
 	}
-	
+	/**
+	 * Returns the athlete that randomly quit your team.
+	 * 
+	 * @return the athlete that randomly quit your team.
+	 */
 	public Athlete getQuitter() {
 		return randomEvent.getQuitter();
 	}
-	
+	/**
+	 * Returns the athlete that got the stat boost.
+	 * @return the athlete that got the stat boost.
+	 */
 	public Athlete getBooster() {
 		return randomEvent.getBooster();
 	}
 	
 	/**
-	 * takes the users selection for item and athlete and uses the item on the athlete
-	 * @param itemIndex
-	 * @param athleteIndex
+	 * Takes the users' selection for item and athlete and uses the item on the athlete
+	 * @param itemIndex the index of the item to use
+	 * @param athleteIndex the index of the athlete that is using the item
 	 */
 	public void handleItemUse(int itemIndex, int athleteIndex) {
 		
@@ -492,8 +508,7 @@ public class GameEnvironment {
 	
 
 	/**
-	 * called from within club to return to the main club screen
-	 * 
+	 * Returns to club
 	 */
 	public void returnToClub() {
 		ui.printClubOptions();
@@ -502,9 +517,9 @@ public class GameEnvironment {
 	}
 	
 	/**
-	 * handles bye and offers the user the option of specially training an athlete
+	 *Offers the user the option of specially training an athlete
 	 */
-	public void handleBye() {
+	public void trainAthlete() {
 		
 
 	   	ArrayList<Athlete> activeTeam = club.viewActiveTeam();

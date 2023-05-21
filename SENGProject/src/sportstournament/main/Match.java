@@ -4,18 +4,21 @@ import java.util.ArrayList;
 
 
 /**
- * Matches will be generated randomly and will get harder as weeks go on.
- * In a match, the stat of their position will be compared.
+ * This class implements a Match in which two teams compete based on the stats of the athletes in each team
  * 
  * 
- * @author Isaac Steele
+ * @author Isaac Steele and Reuben Schoonbee
  *
  */
 
 public class Match {
 	
 	/**
-	 * Play match
+	 * Takes your team and an opposition team and goes through each team comparing each athletes stats. 
+	 * The athlete with the higher stat gains points for their team.
+	 * The team with the most points wins
+	 * 
+	 * @return The result of the match.
 	 */
 	public static String playMatch(Club me, Team opponent) {
 		int myScore = 0;

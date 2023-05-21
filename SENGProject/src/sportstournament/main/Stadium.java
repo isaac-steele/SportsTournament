@@ -1,26 +1,30 @@
 package sportstournament.main;
 
 /**
- * stadium class where the player can see and select a match to play
+ * This class implements a Stadium where the player can see 3 matches and select which one they want to play
+ * 
+ * @author Isaac Steele and Reuben Schoonbee
  */
 
 import java.util.ArrayList;
 
 public class Stadium {
 	/**
-	 * list of possible matches to play
+	 * A list of possible matches to play
 	 */
 	private ArrayList<Team> matches = new ArrayList<Team>();
 	/**
-	 *Game Environment object
+	 *Instantiates a GameEnvironment object
 	 */
 	private GameEnvironment game;
 	/**
-	 * Club Object
+	 * Instantiates a Team object
 	 */
 	private Team team;
 	/**
-	 * default constructor for stadium which creates list of matches
+	 * A default constructor for Stadium which creates a list of possible matches to play
+	 * 
+	 * @param game An instance of GameEnvironment which holds the current state of the game
 	 */
 	public Stadium(GameEnvironment game) {
 		this.team = new Team(game);
@@ -33,14 +37,19 @@ public class Stadium {
 	}
 	
 	/** 
-	 * @return the available matches
+	 * Returns a list of Team objects which represent the matches available to play.
+	 * 
+	 * @return The matches available to play
 	 */
 	public ArrayList<Team> getMatches() {
 		return matches;
 	}
 
 	/**
-	 * helper function that checks if all the players on the active team are injured
+	 * Checks if all the players on the active team are injured
+	 * 
+	 * @param team The instance of Club that will be checked to see if the active team has any injuries.
+	 * @return A boolean that is true if the whole team is injured and false if at least one player is healthy.
 	 */
 	public static boolean checkTeamInjuries(Club team) {
 		
@@ -52,8 +61,12 @@ public class Stadium {
 		return true;
 	}
 	/**
-	 * checks if the team is eligible to play a match
-	 * if so, it simulates the match
+	 * Checks if the team is eligible to play a match and if so, it starts the match and rewards the user depending on the result of the match.
+	 * 
+	 * @param club An instance of Club that contains the user's team.
+	 * @param opponent The selected opponent that the user's team will verse
+	 * 
+	 * @return A string representing the result of the match.
 	 */
 	public String startMatch(Club club, Team opponent) {
 		String difficulty = game.getDifficulty();

@@ -3,7 +3,7 @@ package sportstournament.main;
 /**
  * This interface declares the methods common between Item and Athlete.
  * 
- * @author Isaac Steele
+ * @author Isaac Steele and Reuben Schoonbee
  *
  */
 
