@@ -12,6 +12,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -52,6 +53,7 @@ public class BuyItemScreen extends Screen{
 		frame = new JFrame();
 		frame.getContentPane().setLayout(null);
 		frame.setBounds(100, 100, 734, 434);
+		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		DefaultListModel<Item> availableItemsModel= new DefaultListModel<Item>();
 		availableItemsModel.addAll(availableItems);
@@ -69,14 +71,20 @@ public class BuyItemScreen extends Screen{
 		sellItemBtn.setBounds(64, 357, 117, 25);
 		frame.getContentPane().add(sellItemBtn);
 		
+		
+		
 		JList availableItemsList = new JList(availableItemsModel);
 		availableItemsList.setBounds(48, 73, 615, 106);
 		frame.getContentPane().add(availableItemsList);
 		
+	
 		JList inventoryList = new JList(inventoryModel);
 		inventoryList.setFont(new Font("Dialog", Font.BOLD, 12));
 		inventoryList.setBounds(48, 239, 615, 106);
-		frame.getContentPane().add(inventoryList);
+		JScrollPane itemsScrollPane = new JScrollPane(inventoryList);
+		itemsScrollPane.setLocation(48, 239);
+		itemsScrollPane.setSize(615, 106);
+		frame.getContentPane().add(itemsScrollPane);
 		
 		JButton btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
