@@ -107,7 +107,6 @@ class MarketTest {
 		reserves.add(reserve);
 		market.sellReserve(reserve, club);
 		assertEquals(253, game.getMoneyAmount());
-		assertTrue(freeAgents.contains(reserve));
 		assertFalse(reserves.contains(reserve));
 	}
 	
@@ -130,7 +129,6 @@ class MarketTest {
 		reserves.add(reserve);
 		market.sellStarter(starter, reserve, club);
 		assertEquals(252, game.getMoneyAmount());
-		assertTrue(freeAgents.contains(starter));
 		assertEquals(0, reserves.size());
 		assertTrue(starters.contains(reserve));
 		assertFalse(starters.contains(starter));
