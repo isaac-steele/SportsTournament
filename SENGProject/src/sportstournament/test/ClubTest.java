@@ -83,5 +83,18 @@ class ClubTest {
 		assertTrue(club.isTeamFull());
 		
 	}
+	
+	@Test
+	public void removeItemTest() {
+		ArrayList<Item> items = new ArrayList<Item>();
+		items.add(Item.PROTEIN_SHAKE);
+		Athlete tempathlete = new  Athlete("Miles", 70, 70, 7);
+		ArrayList<Athlete> athletes = new ArrayList<Athlete>();
+		athletes.add(tempathlete);
+		Club club = new Club("BOB", athletes);
+		club.setInventory(items);
+		club.removeItem(Item.PROTEIN_SHAKE);
+		assertTrue(club.viewItems().size() == 0);
+	}
 
 }

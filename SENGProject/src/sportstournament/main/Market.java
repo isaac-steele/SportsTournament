@@ -133,6 +133,9 @@ public class Market {
 			return error.getMessage();
 			
 		}
+		catch(ArrayIndexOutOfBoundsException e) {
+			return e.getMessage();
+		}
 	}
 	
 	/**
@@ -162,7 +165,7 @@ public class Market {
 	 */
 	public void sellItem(Item item, Club club) {
 		club.removeItem(item);
-		game.updateMoney(item.getPrice() / 2);
+		game.updateMoney(item.getPrice());
 	}
 	/**
 	 * Sell a reserve back to the Market for half its price.
@@ -174,7 +177,6 @@ public class Market {
 	public void sellReserve(Athlete reserve, Club club) {
 		
 		game.updateMoney((reserve.getPrice() / 2));
-		freeAgents.add(reserve);
 		club.removeReserve(reserve);
 	}
 	
@@ -188,7 +190,6 @@ public class Market {
 		game.updateMoney((starter.getPrice() / 2));
 		club.subAthlete(replacement, starter);
 		club.removeReserve(starter);
-		freeAgents.add(starter);
 	}
 
 
