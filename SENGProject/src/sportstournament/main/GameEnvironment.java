@@ -519,7 +519,7 @@ public class GameEnvironment {
 	/**
 	 *Offers the user the option of specially training an athlete
 	 */
-	public void trainAthlete() {
+	public void speciallyTrainAthlete() {
 		
 
 	   	ArrayList<Athlete> activeTeam = club.viewActiveTeam();

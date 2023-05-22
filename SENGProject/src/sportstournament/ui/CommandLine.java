@@ -52,7 +52,7 @@ public class CommandLine {
 		final String name = getName();
 		final ArrayList<Athlete> team = draftAthletes(game);
 		final int numWeeks = getNumWeeks();
-;		game.finishSetup(name, team, numWeeks);
+;		game.finishSetup(name, team, numWeeks, "Easy");
 	
 	}
 	/**
@@ -184,7 +184,7 @@ public class CommandLine {
 				MarketOptions();
 				break;
 			case(4):
-				game.handleBye();
+				game.speciallyTrainAthlete();
 				game.takeBye();
 				break;
 			}
@@ -386,7 +386,7 @@ public class CommandLine {
 					returnToMarket();
 					break;
 				}
-				game.getMarket().returnReserve(game.getClub().viewReserves().get(athleteIndex), game);
+				game.getMarket().sellReserve(game.getClub().viewReserves().get(athleteIndex), game.getClub());
 				break;
 			case(2):
 				returnToMarket();
