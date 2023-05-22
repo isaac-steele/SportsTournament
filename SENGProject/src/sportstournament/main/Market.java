@@ -119,8 +119,9 @@ public class Market {
 	 */
 	public String buyStarter(Athlete newAthlete, Athlete subAthlete, Club club) {
 		try {
-			game.decreaseMoney(newAthlete.getPrice());
+			
 			club.addNewAthlete(newAthlete);
+			game.decreaseMoney(newAthlete.getPrice());
 			club.subAthlete(newAthlete, subAthlete);
 			freeAgents.remove(newAthlete);
 			
