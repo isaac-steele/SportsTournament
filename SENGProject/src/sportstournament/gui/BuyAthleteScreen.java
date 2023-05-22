@@ -158,7 +158,7 @@ public class BuyAthleteScreen extends Screen{
 	            int buyIndex = availableAthletesList.getSelectedIndex();
 	            String message =  "Free agent: "+freeAgents.get(buyIndex).getName()+" purchased and sent to reserves";
 	            String result = market.buyReserve(freeAgents.get(buyIndex), game.getClub());
-	            if (result == "You cannot afford this") {
+	            if (result == "You cannot afford this!") {
 					JOptionPane.showMessageDialog(frame, "You cannot afford this athlete", "Insufficient funds", JOptionPane.ERROR_MESSAGE);
 	            }
 	            else if (result == "Maximum size of reserves is 5") {
@@ -183,6 +183,7 @@ public class BuyAthleteScreen extends Screen{
 	            if (result== "You cannot afford this!") {
 					JOptionPane.showMessageDialog(frame, "You cannot afford this athlete", "Insufficient funds", JOptionPane.ERROR_MESSAGE);
 	            }
+	            
 	            else if  (result == "Maximum size of reserves is 5") {
 		            JOptionPane.showMessageDialog(frame,"Your team is full", "Team full", JOptionPane.ERROR_MESSAGE);
 

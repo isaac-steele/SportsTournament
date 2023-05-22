@@ -17,10 +17,12 @@ import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import java.awt.Font;
+import java.awt.ScrollPane;
 
 public class InventoryScreen extends Screen {
 
@@ -75,8 +77,11 @@ public class InventoryScreen extends Screen {
 		DefaultListModel<Item> inventoryModel = new DefaultListModel<Item>();
 		inventoryModel.addAll(inventory);
 		JList inventoryList = new JList(inventoryModel);
-		inventoryList.setBounds(39, 64, 743, 101);
-		inventoryWindow.getContentPane().add(inventoryList);
+		JScrollPane inventoryScrollPane = new JScrollPane(inventoryList);
+		inventoryScrollPane.setSize(524, 122);
+		inventoryScrollPane.setLocation(48, 64);
+		inventoryWindow.getContentPane().add(inventoryScrollPane);
+		
 		
 		JLabel lblNewLabel = new JLabel("Please select a player to use item on");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -119,7 +124,8 @@ public class InventoryScreen extends Screen {
 		});
 		btnUseItem.setBounds(608, 175, 174, 44);
 		inventoryWindow.getContentPane().add(btnUseItem);
-		
+		inventoryList.setBounds(51, 64, 521, 119);
+	
 		ListSelectionListener selectionListener = new ListSelectionListener() {
 	        public void valueChanged(ListSelectionEvent event) {
 	            if (teamList.getSelectedIndex() != -1 && inventoryList.getSelectedIndex()!= -1) {
@@ -132,7 +138,8 @@ public class InventoryScreen extends Screen {
 	    };
 	    
 	    teamList.addListSelectionListener(selectionListener);
-	    inventoryList.addListSelectionListener(selectionListener);
+		inventoryList.addListSelectionListener(selectionListener);
+		
 	}
 	
 }

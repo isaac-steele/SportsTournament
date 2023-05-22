@@ -209,6 +209,7 @@ public class SetupScreen {
 		textField.setBounds(285, 48, 212, 19);
 		setupWindow.getContentPane().add(textField);
 		textField.setColumns(10);
+		//This DocumentListener comes from the RocketManager Example in Lab 6
 		textField.getDocument().addDocumentListener(new DocumentListener() {
 			@Override
 			public void insertUpdate(DocumentEvent e) {

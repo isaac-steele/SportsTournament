@@ -91,7 +91,7 @@ class MarketTest {
 	}
 	
 	@Test
-	public void returnReserveTest() {
+	public void sellReserveTest() {
 		ArrayList<Athlete> myTeam = new ArrayList<Athlete>();
 		for(int i = 0; i < 4; i++) {
 			Athlete myAthlete = new Athlete("George", 60, 72, 5);
@@ -112,7 +112,7 @@ class MarketTest {
 	}
 	
 	@Test
-	public void returnStarterTest() {
+	public void sellStarterTest() {
 		ArrayList<Athlete> myTeam = new ArrayList<Athlete>();
 		for(int i = 0; i < 4; i++) {
 			Athlete myAthlete = new Athlete("George", 60, 72, 5);
@@ -134,6 +134,20 @@ class MarketTest {
 		assertEquals(0, reserves.size());
 		assertTrue(starters.contains(reserve));
 		assertFalse(starters.contains(starter));
+	}
+	
+	@Test
+	public void sellItemTest() {
+		GameEnvironment game = new GameEnvironment();
+		Team team = new Team(game);
+		game.setMoneyAmount(250);
+		Market market = new Market(game);
+		ArrayList<Athlete> myTeam = team.randomTeamGenerator().viewActiveTeam();
+		Club club = new Club("Pumas", myTeam);
+		club.addItem(Item.ENERGY_DRINK);
+		market.sellItem(Item.ENERGY_DRINK, club);
+		assertEquals(255, market.getMoney());
+		assertFalse(club.viewItems().contains(Item.ENERGY_DRINK));
 	}
 
 }

@@ -103,6 +103,30 @@ public class RandomEvent {
 		return joinNumber;
 	}
 	/**
+	 * Sets the number used to determine if a random athlete's stats are increased.
+	 * 
+	 * @param num The number used to determine if a random athlete's stats are increased.
+	 */
+	public void setStatNumber(int num) {
+		statNumber = num;
+	}
+	/**
+	 * Sets the number used to determine if a random athlete joins
+	 * 
+	 * @param num The number used to determine if a random athlete joins
+	 */
+	public void setJoinNumber(int num) {
+		joinNumber = num;
+	}
+	/**
+	 * Sets the number used to determine if a random athlete quits.
+	 * 
+	 * @param The number used to determine if a random athlete quits.
+	 */
+	public void setQuitNumber(int num) {
+		quitNumber = num;
+	}
+	/**
 	 * Randomly chooses an athlete and boosts their stats.
 	 */
 	public void randomAthleteBoost() {
@@ -190,7 +214,6 @@ public class RandomEvent {
 	public String doRandomEvent(String difficulty) {
 		String randomEventOccurrence = "None";
 		if (difficulty == "Hard") {
-			
 			if(getStatNumber() < 10) {
 				randomAthleteBoost();
 				randomEventOccurrence = "Athlete Boost";

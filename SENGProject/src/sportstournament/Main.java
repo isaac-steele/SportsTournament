@@ -33,7 +33,7 @@ public class Main {
 			int defenceStat = rng.nextInt(16) + 50;
 			draft.add(Athlete.randomAthleteGenerator(defenceStat, offenceStat));
 		}
-		
+		// This if statement comes from the RocketManager Example in Lab 6
 		 if (args.length > 0 && (args[0].equals("cmd"))) {
 	            CommandLine ui = new CommandLine();
 	        	GameEnvironment game = new GameEnvironment(ui, draft);

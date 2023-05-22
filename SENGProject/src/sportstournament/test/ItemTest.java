@@ -16,7 +16,7 @@ class ItemTest {
 		assertEquals(3, price);
 		assertEquals(5, statBoost);
 		assertEquals("Defence", stat);
-		assertEquals("PROTEIN_SHAKE: Boosts a players Defence by 5", proteinShake.toString());
+		assertEquals("PROTEIN_SHAKE: Boosts a players Defence by 5  ($3)", proteinShake.toString());
 	}
 	
 	@Test
@@ -28,7 +28,7 @@ class ItemTest {
 		assertEquals(5, price);
 		assertEquals(10, statBoost);
 		assertEquals("Stamina", stat);
-		assertEquals("ENERGY_DRINK: Boosts a players Stamina by 10", energyDrink.toString());
+		assertEquals("ENERGY_DRINK: Boosts a players Stamina by 10  ($5)", energyDrink.toString());
 	}
 	 
 	@Test
@@ -40,7 +40,7 @@ class ItemTest {
 		assertEquals(4, price);
 		assertEquals(5, statBoost);
 		assertEquals("Offence", stat);
-		assertEquals("KNEE_SLEEVE: Boosts a players Offence by 5", kneeSleeve.toString());
+		assertEquals("KNEE_SLEEVE: Boosts a players Offence by 5  ($4)", kneeSleeve.toString());
 		
 	}
 
