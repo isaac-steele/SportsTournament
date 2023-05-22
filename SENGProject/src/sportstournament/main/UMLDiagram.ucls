@@ -35,8 +35,8 @@
   </class>  
   <class id="5" language="java" name="sportstournament.main.GameEnvironment" project="sengproject" 
     file="/sengproject/SENGProject/src/sportstournament/main/GameEnvironment.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="722" y="606"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    <position height="970" width="360" x="554" y="121"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
