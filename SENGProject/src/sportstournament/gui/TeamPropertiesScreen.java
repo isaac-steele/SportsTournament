@@ -59,12 +59,12 @@ public class TeamPropertiesScreen extends Screen {
 		
 		JLabel lblStarters = new JLabel("Starters:");
 		lblStarters.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblStarters.setBounds(36, 52, 84, 15);
+		lblStarters.setBounds(23, 52, 84, 15);
 		teamWindow.getContentPane().add(lblStarters);
 		
 		JLabel lblReserves = new JLabel("Reserves:");
 		lblReserves.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblReserves.setBounds(36, 228, 101, 15);
+		lblReserves.setBounds(23, 228, 101, 15);
 		teamWindow.getContentPane().add(lblReserves);
 		
 		
@@ -90,8 +90,8 @@ public class TeamPropertiesScreen extends Screen {
 		activeTeamModel.addAll(activeTeam);
 		activeTeamList = new JList<>(activeTeamModel);
 		activeTeamList.setFont(new Font("Dialog", Font.BOLD, 11));
-		activeTeamList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		activeTeamList.setBounds(23, 79, 715, 100);
+		activeTeamList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		activeTeamList.setBounds(94, 79, 644, 84);
 		teamWindow.getContentPane().add(activeTeamList);
 		
 		DefaultListModel<Athlete> reservesModel = new DefaultListModel<>();
@@ -102,17 +102,35 @@ public class TeamPropertiesScreen extends Screen {
 		reservesList.setBounds(23, 255, 715, 100);
 		teamWindow.getContentPane().add(reservesList);
 		
-		JButton btnSwapAthletes = new JButton("Swap Athletes");
+		JButton btnSwapAthletes = new JButton("Sub athlete");
 		btnSwapAthletes.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnSwapAthletes.setEnabled(false);
 		
+		JButton btnSwapPositions = new JButton("Swap positions");
+		btnSwapPositions.setBounds(424, 191, 154, 52);
+		btnSwapPositions.setEnabled(false);
+		teamWindow.getContentPane().add(btnSwapPositions);
+		
 		 ListSelectionListener selectionListener = new ListSelectionListener() {
 		        public void valueChanged(ListSelectionEvent event) {
-		            if (activeTeamList.getSelectedIndex()!= -1 && reservesList.getSelectedIndex()!= -1) {
+		        	int[] selections = activeTeamList.getSelectedIndices();
+		        	if (selections.length == 2) {
+			        	System.out.println("2");
+
+		        		btnSwapPositions.setEnabled(true);
+		        		btnSwapAthletes.setEnabled(false);
+		        	}
+		        	else if (selections.length == 1 && reservesList.getSelectedIndex()!= -1) {
+			        	System.out.println("1");
+
 		            	btnSwapAthletes.setEnabled(true);
+		            	btnSwapPositions.setEnabled(false);
 		            }
 		            else {
+			        	System.out.println("else");
+
 		            	btnSwapAthletes.setEnabled(false);
+		            	btnSwapPositions.setEnabled(false);
 		            }
 		        }
 		 };
@@ -122,7 +140,7 @@ public class TeamPropertiesScreen extends Screen {
 		
 		btnSwapAthletes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int activeIndex = activeTeamList.getSelectedIndex();
+				int activeIndex = activeTeamList.getSelectedIndices()[0];
 				int reserveIndex = reservesList.getSelectedIndex();
 				String message =  activeTeam.get(activeIndex).getName()+" subbed off for "+reserves.get(reserveIndex).getName();
 				club.subAthlete(reserves.get(reserveIndex), activeTeam.get(activeIndex));
@@ -132,7 +150,46 @@ public class TeamPropertiesScreen extends Screen {
 				
 			}
 		});
-		btnSwapAthletes.setBounds(599, 193, 137, 52);
+		
+		btnSwapPositions.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int[] indices = activeTeamList.getSelectedIndices();
+				club.swapPositions(indices[0], indices[1]);
+				String message = activeTeam.get(indices[0]).getName()+" swapped position with "+ activeTeam.get(indices[1]).getName();
+				JOptionPane.showMessageDialog(teamWindow, message, "Athletes swapped positions", JOptionPane.INFORMATION_MESSAGE);
+				gui.closeTeamPropertiesScreen();
+				gui.openClub();
+				
+			}
+		});
+		
+		
+		
+		
+		
+		btnSwapAthletes.setBounds(590, 193, 146, 52);
 		teamWindow.getContentPane().add(btnSwapAthletes);
+		
+		JLabel lblNewLabel = new JLabel("Defender");
+		lblNewLabel.setFont(new Font("Dialog", Font.BOLD, 11));
+		lblNewLabel.setBounds(22, 79, 70, 15);
+		teamWindow.getContentPane().add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("Defender");
+		lblNewLabel_1.setFont(new Font("Dialog", Font.BOLD, 11));
+		lblNewLabel_1.setBounds(23, 95, 70, 15);
+		teamWindow.getContentPane().add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("Attacker");
+		lblNewLabel_2.setFont(new Font("Dialog", Font.BOLD, 11));
+		lblNewLabel_2.setBounds(23, 110, 70, 15);
+		teamWindow.getContentPane().add(lblNewLabel_2);
+		
+		JLabel lblAttacker = new JLabel("Attacker");
+		lblAttacker.setFont(new Font("Dialog", Font.BOLD, 11));
+		lblAttacker.setBounds(23, 126, 70, 15);
+		teamWindow.getContentPane().add(lblAttacker);
+		
+		
 	}
 }

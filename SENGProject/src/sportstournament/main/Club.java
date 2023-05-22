@@ -2,6 +2,7 @@ package sportstournament.main;
 
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 
 /**
@@ -174,6 +175,16 @@ public class Club extends Team{
 		reserves.remove(athlete);
 		setTeamFull(false);
 			
+	}
+	
+	/**
+	 * takes two indices of athletes in active team and swaps their position in the list
+	 * this allows the user to change the athletes positions
+	 * @param index1
+	 * @param index2
+	 */
+	public void swapPositions(int index1, int index2) {
+		Collections.swap(activeTeam, index1, index2);
 	}
 	
 }
