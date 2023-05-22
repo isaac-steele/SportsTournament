@@ -5,10 +5,17 @@ import java.util.ArrayList;
 import sportstournament.main.Athlete;
 import sportstournament.main.GameEnvironment;
 
+/**
+ * This class controls the opening and closing of all screens.
+ * 
+ * 
+ * @author Isaac Steele and Reuben Schoonbee
+ *
+ */
 public class Gui {
 	
 	/**
-	 * The game environment it interacts with
+	 * The instance of GameEnvironment it interacts with
 	 */
 	private GameEnvironment game;
 	/**
@@ -42,22 +49,22 @@ public class Gui {
 	
 	
 	/**
-	 * the team properties screen
+	 * The team properties screen
 	 */
 	private TeamPropertiesScreen teamPropertiesScreen;
 	
 	/**
-	 * the inventory screen
+	 * The inventory screen
 	 */
 	private InventoryScreen inventoryScreen;
 	
 	/**
-	 * the screen where athletes can be purchased or sold
+	 * The screen where athletes can be purchased or sold
 	 */
 	private BuyAthleteScreen buyAthleteScreen;
 	
 	/**
-	 * the screen where items can be purchased or sold
+	 * The screen where items can be purchased or sold
 	 */
 	private BuyItemScreen buyItemScreen;
 	/**
@@ -66,7 +73,7 @@ public class Gui {
 	private EndGameScreen endGameScreen;
 	/**
 	 * Launches the setup window
-	 * @param game
+	 * @param game the instance of GameEnvironment that this class interacts with
 	 */
 	public void setup(GameEnvironment game) {
 		this.game = game;
@@ -75,7 +82,8 @@ public class Gui {
 	}
 	
 	/**
-	 * Launches the main screen
+	 * Instantiates all the windows after setup is complete.
+	 * Launches the main screen.
 	 */
 	public void start() {
 		setupScreen.closeWindow();
@@ -93,7 +101,7 @@ public class Gui {
 		openMainScreen();
 	}
 	/**
-	 * closes take bye screen
+	 * Closes take bye screen and updates the stadium and market screens.
 	 */
 	public void takeBye() {
 		closeTakeByeScreen();
@@ -103,7 +111,7 @@ public class Gui {
 		openMainScreen();
 	}
 	/**
-	 * Ends the game
+	 * Ends the game by closing the main screen and opening the end game screen.
 	 */
 	public void endGame() {
 		closeMainScreen();
@@ -112,71 +120,76 @@ public class Gui {
 	}	
 	
 	/**
-	 * opens the main screen
+	 * Opens the main screen
 	 */
 	public void openMainScreen() {
 		mainScreen = new MainScreen(game, this);
 		mainScreen.open();
 	}
 	/**
-	 * closes the main screen
+	 * Closes the main screen
 	 */
 	public void closeMainScreen() {
 		mainScreen.closeWindow();
 	}
 	
 	/**
-	 * opens the club screen
+	 * Opens the club screen
 	 */
 	public void openClub() {
 		clubScreen = new ClubScreen(game, this);
 		clubScreen.open();
 	}
 	/**
-	 * closes the club screen
+	 * Closes the club screen
 	 */
 	public void closeClub() {
 		clubScreen.closeWindow();
 	}
 	
 	/**
-	 * opens the stadium screen
+	 * Opens the stadium screen
 	 */
 	public void OpenStadium() {
 		stadiumScreen.open();
 	}
 	/**
-	 * closes the stadium screen
+	 * Closes the stadium screen
 	 */
 	public void closeStadium() {
 		stadiumScreen.closeWindow();
 	}
 	
 	/**
-	 * opens the market screen
+	 * Opens the market screen
 	 */
 	public void OpenMarket() {
 		marketScreen = new MarketScreen(game, this);
 		marketScreen.open();
 	}
 	/**
-	 * closes the market screen
+	 * Closes the market screen
 	 */
 	public void closeMarket() {		
 		marketScreen.closeWindow();
 	}
 	
-	
+	/**
+	 * Opens the take bye screen
+	 */
 	public void openTakeByeScreen() {
 		takeByeScreen = new TakeByeScreen(game, this);
 		takeByeScreen.open();
 	}
+	/**
+	 * Closes the take bye screen
+	 */
 	public void closeTakeByeScreen() {
 		takeByeScreen.closeWindow();
 	}
 	
 	/**
-	 * opens the screen where the team can be viewed and substitutions can be made
+	 * Opens the screen where the team can be viewed and substitutions can be made
 	 */
 	public void openTeamPropertiesScreen() {
 		teamPropertiesScreen = new TeamPropertiesScreen(game, this);
@@ -184,30 +197,47 @@ public class Gui {
 	}
 	
 	/**
-	 * opens the screen where the inventory can be viewed and items can be used
+	 * Opens the screen where the inventory can be viewed and items can be used
 	 */
 	public void openInventoryScreen() {
 		inventoryScreen = new InventoryScreen(game, this);
 		inventoryScreen.open();
 	}
+	/**
+	 * Closes the screen where the team can be viewed and substitutions can be made
+	 */
 	public void closeTeamPropertiesScreen() {
 		teamPropertiesScreen.closeWindow();
 	}
+	/**
+	 * Closes the screen where the inventory can be viewed and items can be used
+	 */
 	public void closeInventoryScreen() {
 		inventoryScreen.closeWindow();
 	}
-	
+	/**
+	 * Opens the screen where athletes can be purchased and sold
+	 */
 	public void openBuyAthleteScreen() {
 		buyAthleteScreen = new BuyAthleteScreen(game, this);
 		buyAthleteScreen.open();
 	}
+	/**
+	 * Opens the screen where items can be purchased and sold
+	 */
 	public void openBuyItemScreen() {
 		buyItemScreen = new BuyItemScreen(game, this);
 		buyItemScreen.open();
 	}
+	/**
+	 * Closes the screen where athletes can be purchased and sold
+	 */
 	public void closeBuyAthleteScreen() {
 		buyAthleteScreen.closeWindow();
 	}
+	/**
+	 * Closes the screen where items can be purchased and sold.
+	 */
 	public void closeBuyItemScreen() {
 		buyItemScreen.closeWindow();
 	}

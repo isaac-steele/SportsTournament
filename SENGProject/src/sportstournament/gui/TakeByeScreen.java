@@ -1,6 +1,5 @@
 package sportstournament.gui;
 
-import java.awt.EventQueue;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
@@ -12,7 +11,6 @@ import sportstournament.main.GameEnvironment;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JList;
-import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ListSelectionEvent;
@@ -20,20 +18,37 @@ import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+ * This class implements a TakeByeScreen which is opened when the take bye button is pressed.
+ * It gives the option for the player to specially train an athlete
+ * 
+ * @author Isaac Steele and Reuben Schoonbee
+ *
+ */
 public class TakeByeScreen extends Screen {
 
+	/**
+	 * The JFrame where all contents are displayed
+	 */
 	private JFrame takeByeWindow;
+	/**
+	 * The list of athletes in the active team
+	 */
 	private ArrayList<Athlete> starters;
+	/** 
+	 * The list of athletes in the reserves
+	 */
 	private ArrayList<Athlete> reserves;
+	/**
+	 * The selected athlete to specially train
+	 */
 	private Athlete chosenAthlete;
 
 	/**
-	 * Launch the application.
-	 */
-	
-
-	/**
-	 * Create the application.
+	 * The constructor for TakeByeScreen. Sets the starters and the reserves.
+	 * 
+	 * @param game The GameEnvironment object that keeps track of the game
+	 * @param gui The Gui object that is used to open and close windows
 	 */
 	public TakeByeScreen(GameEnvironment game, Gui gui) {
 		super(game, gui);
@@ -53,9 +68,9 @@ public class TakeByeScreen extends Screen {
 		takeByeWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		takeByeWindow.getContentPane().setLayout(null);
 		
-		JLabel lblChooseAthleteTo = new JLabel("Choose athlete to specially train:");
-		lblChooseAthleteTo.setBounds(43, 25, 317, 15);
-		takeByeWindow.getContentPane().add(lblChooseAthleteTo);
+		JLabel lblChooseAthleteToTrain = new JLabel("Choose athlete to specially train:");
+		lblChooseAthleteToTrain.setBounds(43, 25, 317, 15);
+		takeByeWindow.getContentPane().add(lblChooseAthleteToTrain);
 		
 		JButton btnTrainAthlete = new JButton("Train athlete");
 		btnTrainAthlete.setEnabled(false);
@@ -68,10 +83,10 @@ public class TakeByeScreen extends Screen {
 		btnTrainAthlete.setBounds(548, 357, 167, 25);
 		takeByeWindow.getContentPane().add(btnTrainAthlete);
 		
-		JLabel lblTheChosenAthlete = new JLabel("<html>The chosen athlete will get a +5 boost for<br/>both their offence and defence stats.<html>");
-		lblTheChosenAthlete.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTheChosenAthlete.setBounds(43, 344, 317, 38);
-		takeByeWindow.getContentPane().add(lblTheChosenAthlete);
+		JLabel lblSpeciallyTrainInfo = new JLabel("<html>The chosen athlete will get a +5 boost for<br/>both their offence and defence stats.<html>");
+		lblSpeciallyTrainInfo.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSpeciallyTrainInfo.setBounds(43, 344, 317, 38);
+		takeByeWindow.getContentPane().add(lblSpeciallyTrainInfo);
 		
 		JLabel lblStarters = new JLabel("Starters:");
 		lblStarters.setBounds(53, 55, 70, 15);
@@ -107,8 +122,8 @@ public class TakeByeScreen extends Screen {
 		reservesList.setBounds(43, 230, 672, 102);
 		takeByeWindow.getContentPane().add(reservesList);
 		
-		JLabel lblTheLastClicked = new JLabel("The last clicked athlete will be the chosen athlete.");
-		lblTheLastClicked.setBounds(43, 388, 365, 15);
-		takeByeWindow.getContentPane().add(lblTheLastClicked);
+		JLabel informationLabel = new JLabel("The last clicked athlete will be the chosen athlete.");
+		informationLabel.setBounds(43, 388, 365, 15);
+		takeByeWindow.getContentPane().add(informationLabel);
 	}
 }

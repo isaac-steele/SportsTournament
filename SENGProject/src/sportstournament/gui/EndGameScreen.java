@@ -1,7 +1,5 @@
 package sportstournament.gui;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
@@ -12,13 +10,27 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+ * This class implements the EndGameScreen which appears once all the weeks have been complete.
+ * It displays the team name, length of the season, money gained, and points gained. 
+ * 
+ * @author Isaac Steele and Reuben Schoonbee
+ *
+ */
+
 public class EndGameScreen extends Screen{
 
+	/**
+	 * The main frame that displays all the content.
+	 */
 	private JFrame endGameWindow;
 
 
 	/**
-	 * Create the application.
+	 * The constructor for EndGameScreen which calls its parent's constructor (Screen)
+	 * 
+	 * @param game An instance of GameEnvironment that controls the current state of the game
+	 * @param gui An instance of Gui that allows for the opening and closing of windows.
 	 */
 	public EndGameScreen(GameEnvironment game, Gui gui) {
 		super(game, gui);

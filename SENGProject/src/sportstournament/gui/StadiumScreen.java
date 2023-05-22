@@ -1,7 +1,5 @@
 package sportstournament.gui;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -16,18 +14,32 @@ import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
-import javax.swing.ListSelectionModel;
 import java.awt.Font;
 
+/**
+ * This class implements a StadiumScreen where matches can be played against different teams
+ * 
+ * @author Isaac Steele and Reuben Schoonbee
+ *
+ */
 public class StadiumScreen extends Screen {
 
+	/**
+	 * The JFrame that displays all the contents
+	 */
 	private JFrame stadiumWindow;
 	
+	/**
+	 * The list of matches available to be played
+	 */
 	private ArrayList<Team> matches;
 
 
 	/**
-	 * Create the application.
+	 * The constructor for StadiumScreen
+	 * 
+	 * @param game The GameEnvironment object that keeps track of the game
+	 * @param gui The Gui object used to open and close windows
 	 */
 	public StadiumScreen(GameEnvironment game, Gui gui) {
 		super(game, gui);
@@ -36,7 +48,7 @@ public class StadiumScreen extends Screen {
 		super.window = stadiumWindow;
 	}
 	/**
-	 * message to display
+	 * The message displayed at the completion of a match
 	 */
 	public void displayMessage(String result) {
 		String message = "The result of the match is: " + result + "\nThe updated status of your team is:\n\n" + game.getClub() + "\n\nYour total points are now: " + game.getPoints() + "\nYour total money is now: " + game.getMoneyAmount();
@@ -53,51 +65,51 @@ public class StadiumScreen extends Screen {
 		stadiumWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		stadiumWindow.getContentPane().setLayout(null);
 		
-		JButton btnMatch_1 = new JButton("Match 1");
-		btnMatch_1.addActionListener(new ActionListener() {
+		JButton firstMatchButton = new JButton("Match 1");
+		firstMatchButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String result = game.startMatch(0);
 				if (result == "Cannot start match! Must have at least one healthy athlete") {
 					JOptionPane.showMessageDialog(stadiumWindow, result, "Match Result", JOptionPane.ERROR_MESSAGE);
 				} else {
 					displayMessage(result);
-					btnMatch_1.setEnabled(false);
+					firstMatchButton.setEnabled(false);
 				}
 					
 			}
 		});
-		btnMatch_1.setBounds(677, 123, 89, 25);
-		stadiumWindow.getContentPane().add(btnMatch_1);
+		firstMatchButton.setBounds(677, 123, 89, 25);
+		stadiumWindow.getContentPane().add(firstMatchButton);
 		
-		JButton btnMatch_2 = new JButton("Match 2");
-		btnMatch_2.addActionListener(new ActionListener() {
+		JButton secondMatchButton = new JButton("Match 2");
+		secondMatchButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String result = game.startMatch(1);
 				if (result == "Cannot start match! Must have at least one healthy athlete") {
 					JOptionPane.showMessageDialog(stadiumWindow, result, "Match Result", JOptionPane.ERROR_MESSAGE);
 				} else {
 					displayMessage(result);
-					btnMatch_2.setEnabled(false);
+					secondMatchButton.setEnabled(false);
 				}
 			}
 		});
-		btnMatch_2.setBounds(677, 234, 89, 25);
-		stadiumWindow.getContentPane().add(btnMatch_2);
+		secondMatchButton.setBounds(677, 234, 89, 25);
+		stadiumWindow.getContentPane().add(secondMatchButton);
 		
-		JButton btnMatch_3 = new JButton("Match 3");
-		btnMatch_3.addActionListener(new ActionListener() {
+		JButton thirdMatchButton = new JButton("Match 3");
+		thirdMatchButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String result = game.startMatch(2);
 				if (result == "Cannot start match! Must have at least one healthy athlete") {
 					JOptionPane.showMessageDialog(stadiumWindow, result, "Match Result", JOptionPane.ERROR_MESSAGE);
 				} else {
 					displayMessage(result);
-					btnMatch_3.setEnabled(false);
+					thirdMatchButton.setEnabled(false);
 				}
 			}
 		});
-		btnMatch_3.setBounds(677, 351, 89, 25);
-		stadiumWindow.getContentPane().add(btnMatch_3);
+		thirdMatchButton.setBounds(677, 351, 89, 25);
+		stadiumWindow.getContentPane().add(thirdMatchButton);
 		
 		JLabel lblChooseAMatch = new JLabel("Choose a match to play:");
 		lblChooseAMatch.setBounds(30, 17, 229, 15);
@@ -159,68 +171,68 @@ public class StadiumScreen extends Screen {
 		btnViewCurrentTeam.setBounds(434, 12, 168, 25);
 		stadiumWindow.getContentPane().add(btnViewCurrentTeam);
 		
-		JLabel lblAttacker = new JLabel("Defender:");
-		lblAttacker.setFont(new Font("Dialog", Font.PLAIN, 13));
-		lblAttacker.setBounds(12, 98, 70, 15);
-		stadiumWindow.getContentPane().add(lblAttacker);
+		JLabel lblFirstDefender = new JLabel("Defender:");
+		lblFirstDefender.setFont(new Font("Dialog", Font.PLAIN, 13));
+		lblFirstDefender.setBounds(12, 98, 70, 15);
+		stadiumWindow.getContentPane().add(lblFirstDefender);
 		
-		JLabel lblDefender_6 = new JLabel("Defender:");
-		lblDefender_6.setFont(new Font("Dialog", Font.PLAIN, 13));
-		lblDefender_6.setBounds(12, 112, 70, 15);
-		stadiumWindow.getContentPane().add(lblDefender_6);
+		JLabel lblSecondDefender = new JLabel("Defender:");
+		lblSecondDefender.setFont(new Font("Dialog", Font.PLAIN, 13));
+		lblSecondDefender.setBounds(12, 112, 70, 15);
+		stadiumWindow.getContentPane().add(lblSecondDefender);
 		
-		JLabel lblDefender_1 = new JLabel("Defender:");
-		lblDefender_1.setFont(new Font("Dialog", Font.PLAIN, 13));
-		lblDefender_1.setBounds(12, 209, 70, 15);
-		stadiumWindow.getContentPane().add(lblDefender_1);
+		JLabel lblThirdDefender = new JLabel("Defender:");
+		lblThirdDefender.setFont(new Font("Dialog", Font.PLAIN, 13));
+		lblThirdDefender.setBounds(12, 209, 70, 15);
+		stadiumWindow.getContentPane().add(lblThirdDefender);
 		
-		JLabel lblDefender_7 = new JLabel("Defender:");
-		lblDefender_7.setFont(new Font("Dialog", Font.PLAIN, 13));
-		lblDefender_7.setBounds(12, 225, 70, 15);
-		stadiumWindow.getContentPane().add(lblDefender_7);
+		JLabel lblFourthDefender = new JLabel("Defender:");
+		lblFourthDefender.setFont(new Font("Dialog", Font.PLAIN, 13));
+		lblFourthDefender.setBounds(12, 225, 70, 15);
+		stadiumWindow.getContentPane().add(lblFourthDefender);
 		
-		JLabel lblDefender_2 = new JLabel("Defender:");
-		lblDefender_2.setFont(new Font("Dialog", Font.PLAIN, 13));
-		lblDefender_2.setBounds(12, 328, 70, 15);
-		stadiumWindow.getContentPane().add(lblDefender_2);
+		JLabel lblFifthDefender = new JLabel("Defender:");
+		lblFifthDefender.setFont(new Font("Dialog", Font.PLAIN, 13));
+		lblFifthDefender.setBounds(12, 328, 70, 15);
+		stadiumWindow.getContentPane().add(lblFifthDefender);
 		
-		JLabel lblDefender_3 = new JLabel("Defender:");
-		lblDefender_3.setFont(new Font("Dialog", Font.PLAIN, 13));
-		lblDefender_3.setBounds(12, 343, 70, 15);
-		stadiumWindow.getContentPane().add(lblDefender_3);
+		JLabel lblSixthDefender = new JLabel("Defender:");
+		lblSixthDefender.setFont(new Font("Dialog", Font.PLAIN, 13));
+		lblSixthDefender.setBounds(12, 343, 70, 15);
+		stadiumWindow.getContentPane().add(lblSixthDefender);
 		
-		JLabel lblDefender = new JLabel("Attacker:");
-		lblDefender.setFont(new Font("Dialog", Font.PLAIN, 13));
-		lblDefender.setBounds(12, 128, 70, 15);
-		stadiumWindow.getContentPane().add(lblDefender);
+		JLabel lblFirstAttacker = new JLabel("Attacker:");
+		lblFirstAttacker.setFont(new Font("Dialog", Font.PLAIN, 13));
+		lblFirstAttacker.setBounds(12, 128, 70, 15);
+		stadiumWindow.getContentPane().add(lblFirstAttacker);
 		
-		JLabel lblAttacker_1 = new JLabel("Attacker:");
-		lblAttacker_1.setFont(new Font("Dialog", Font.PLAIN, 13));
-		lblAttacker_1.setBounds(12, 144, 70, 15);
-		stadiumWindow.getContentPane().add(lblAttacker_1);
+		JLabel lblSecondAttacker = new JLabel("Attacker:");
+		lblSecondAttacker.setFont(new Font("Dialog", Font.PLAIN, 13));
+		lblSecondAttacker.setBounds(12, 144, 70, 15);
+		stadiumWindow.getContentPane().add(lblSecondAttacker);
 		
-		JLabel lblAttacker_2 = new JLabel("Attacker:");
-		lblAttacker_2.setFont(new Font("Dialog", Font.PLAIN, 13));
-		lblAttacker_2.setBounds(12, 239, 70, 15);
-		stadiumWindow.getContentPane().add(lblAttacker_2);
+		JLabel lblThirdAttacker = new JLabel("Attacker:");
+		lblThirdAttacker.setFont(new Font("Dialog", Font.PLAIN, 13));
+		lblThirdAttacker.setBounds(12, 239, 70, 15);
+		stadiumWindow.getContentPane().add(lblThirdAttacker);
 		
-		JLabel lblAttacker_3 = new JLabel("Attacker:");
-		lblAttacker_3.setFont(new Font("Dialog", Font.PLAIN, 13));
-		lblAttacker_3.setBounds(12, 252, 70, 15);
-		stadiumWindow.getContentPane().add(lblAttacker_3);
+		JLabel lblFourthAttacker = new JLabel("Attacker:");
+		lblFourthAttacker.setFont(new Font("Dialog", Font.PLAIN, 13));
+		lblFourthAttacker.setBounds(12, 252, 70, 15);
+		stadiumWindow.getContentPane().add(lblFourthAttacker);
 		
-		JLabel lblAttacker_4 = new JLabel("Attacker:");
-		lblAttacker_4.setFont(new Font("Dialog", Font.PLAIN, 13));
-		lblAttacker_4.setBounds(12, 356, 70, 15);
-		stadiumWindow.getContentPane().add(lblAttacker_4);
+		JLabel lblFifthAttacker = new JLabel("Attacker:");
+		lblFifthAttacker.setFont(new Font("Dialog", Font.PLAIN, 13));
+		lblFifthAttacker.setBounds(12, 356, 70, 15);
+		stadiumWindow.getContentPane().add(lblFifthAttacker);
 		
-		JLabel lblAttacker_5 = new JLabel("Attacker:");
-		lblAttacker_5.setFont(new Font("Dialog", Font.PLAIN, 13));
-		lblAttacker_5.setBounds(12, 371, 70, 15);
-		stadiumWindow.getContentPane().add(lblAttacker_5);
+		JLabel lblSixthAttacker = new JLabel("Attacker:");
+		lblSixthAttacker.setFont(new Font("Dialog", Font.PLAIN, 13));
+		lblSixthAttacker.setBounds(12, 371, 70, 15);
+		stadiumWindow.getContentPane().add(lblSixthAttacker);
 		
-		JButton btnInfoButton = new JButton("Info");
-		btnInfoButton.addActionListener(new ActionListener() {
+		JButton InfoButton = new JButton("Info");
+		InfoButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String message = "During a match, the athletes in your team will face off against the athletes in the opposition team.\n"
 						+ "Each of your defenders will face off against their respective defender in the opposition team.\n"
@@ -236,7 +248,7 @@ public class StadiumScreen extends Screen {
 				JOptionPane.showMessageDialog(stadiumWindow, message, "How to Play", JOptionPane.INFORMATION_MESSAGE );
 			}
 		});
-		btnInfoButton.setBounds(278, 12, 117, 25);
-		stadiumWindow.getContentPane().add(btnInfoButton);
+		InfoButton.setBounds(278, 12, 117, 25);
+		stadiumWindow.getContentPane().add(InfoButton);
 	}
 }

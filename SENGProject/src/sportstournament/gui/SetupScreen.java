@@ -1,17 +1,14 @@
 package sportstournament.gui;
 
-import java.awt.EventQueue;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
 import javax.swing.JFrame;
-import javax.swing.JTabbedPane;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
-import javax.swing.JToolBar;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -19,7 +16,6 @@ import javax.swing.event.DocumentListener;
 import sportstournament.main.Athlete;
 import sportstournament.main.GameEnvironment;
 
-import javax.swing.JPanel;
 import javax.swing.JComboBox;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -27,29 +23,68 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ListSelectionEvent;
-import javax.swing.AbstractListModel;
-import java.awt.Color;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 
+/**
+ * This class implements a SetupScreen which prompts the user to enter a team name, select the season length, choose the difficulty and draft a starting team.
+ * The user will not be able to start the game until they have finished the setup and met all the requirements.
+ * @author Isaac Steele and Reuben Schoonbee
+ *
+ */
 public class SetupScreen {
 
+	/**
+	 * The frame that displays all the contents
+	 */
 	private JFrame setupWindow;
-	private JTextField textField;
+	/**
+	 * The text field where the user inputs their desired team name
+	 */
+	private JTextField teamNameTextField;
+	/**
+	 * The list of athletes they user can draft
+	 */
 	private ArrayList<Athlete> athletesToDraft;
+	/**
+	 * The instance of GameEnvironment used to update and keep track of the game
+	 */
 	private GameEnvironment game;
+	/**
+	 * The chosen team name
+	 */
 	private String teamName;
+	/**
+	 * The chosen difficulty
+	 */
 	private String difficulty;
+	/**
+	 * The drafted athletes
+	 */
 	private ArrayList<Athlete> chosenAthletes;
+	/**
+	 * The selected season length
+	 */
 	private int numWeeks;
+	/**
+	 * The current list of selected athletes from the JList
+	 */
 	private List<Athlete> selectedAthletes =  new ArrayList<Athlete>();
+	/**
+	 * The amount of funds the user can use to draft athletes
+	 */
 	private int draftFunds = 22;
+	/**
+	 * The previously selected list of athletes from the JList
+	 */
 	private List<Athlete> oldAthletes = new ArrayList<Athlete>();
 
 	
 
 	/**
-	 * Create the application.
+	 * Constructor for SetupScreen 
+	 * @param game Used to make updates to the current state of the game
+	 * @param athletesToDraft The list of athletes the user can draft
 	 */
 	public SetupScreen(GameEnvironment game, ArrayList<Athlete> athletesToDraft) {
 		this.game = game;
@@ -67,20 +102,28 @@ public class SetupScreen {
 	}
 	
 	/**
-	 * Allows for the gui manager to close the window
+	 * This method is called once all requirements and conditions are met for the setup and it takes in all selections and passes them to game to handle.
 	 */
 	public void setupComplete() { 
-		teamName = textField.getText();
+		teamName = teamNameTextField.getText();
 		chosenAthletes = (ArrayList<Athlete>) selectedAthletes;
 		game.finishSetup(teamName, chosenAthletes, numWeeks, difficulty);;
 	}
+	/**
+	 * Returns a boolean that depends on whether a set of conditions are met.
+	 * Used to check if the user input meets the setup requirements.
+	 * 
+	 * @return true if all conditions are met and false otherwise
+	 */
 	public boolean checkAllSelected() {
-		String name = textField.getText();
+		String name = teamNameTextField.getText();
 		boolean acceptableName = (Pattern.matches("[a-zA-Z0-9]+(\\s)?[a-zA-Z0-9]+", name) && name.length() <= 15 && name.length() >=3);
-		// enable button if a difficulty is chosen, name is right, season lenght is selected, anmd 4 players are selected
+		// enable button if a difficulty is chosen, name is right, season length is selected, 4 players are selected, and the balance > 0.
 		return (acceptableName && difficulty!= null && numWeeks >=5 && numWeeks<=15 && selectedAthletes.size() == 4 && draftFunds >= 0);
 	}
-	
+	/**
+	 * Checks for a change in the selected athletes and updates the draftfunds based on changes made.
+	 */
 	public void changeChecker() {
 		for (Athlete oldAthlete : oldAthletes) {
 			if (!selectedAthletes.contains(oldAthlete)) {
@@ -135,23 +178,23 @@ public class SetupScreen {
 		btnAccept.setBounds(700, 380, 117, 25);
 		setupWindow.getContentPane().add(btnAccept);
 		
-		JLabel lblWelcomeToaside = new JLabel("Welcome to 4-A-Side Football!");
-		lblWelcomeToaside.setBounds(285, 12, 313, 15);
-		setupWindow.getContentPane().add(lblWelcomeToaside);
+		JLabel lblWelcomeToGame = new JLabel("Welcome to 4-A-Side Football!");
+		lblWelcomeToGame.setBounds(285, 12, 313, 15);
+		setupWindow.getContentPane().add(lblWelcomeToGame);
 		
-		JLabel lblNewLabel = new JLabel("Choose your team name:");
-		lblNewLabel.setBounds(71, 50, 202, 15);
-		setupWindow.getContentPane().add(lblNewLabel);
+		JLabel lblChooseTeamName = new JLabel("Choose your team name:");
+		lblChooseTeamName.setBounds(71, 50, 202, 15);
+		setupWindow.getContentPane().add(lblChooseTeamName);
 		
-		JLabel lblmustBeBetween = new JLabel("(Must be between 3 - 15 characters and no special characters)");
-		lblmustBeBetween.setBounds(285, 67, 458, 15);
-		setupWindow.getContentPane().add(lblmustBeBetween);
+		JLabel lblTeamNameRequirement = new JLabel("(Must be between 3 - 15 characters and no special characters)");
+		lblTeamNameRequirement.setBounds(285, 67, 458, 15);
+		setupWindow.getContentPane().add(lblTeamNameRequirement);
 		
 		Integer[] weeks = {5,6,7,8,9,10,11,12,13,14,15};
-		JComboBox comboBox = new JComboBox(weeks);
-		comboBox.addActionListener(new ActionListener() {
+		JComboBox<Integer> weekSelection = new JComboBox<Integer>(weeks);
+		weekSelection.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				numWeeks = (int) comboBox.getSelectedItem();
+				numWeeks = (int) weekSelection.getSelectedItem();
 				if(checkAllSelected()) {
 					btnAccept.setEnabled(true);
 				}
@@ -160,8 +203,8 @@ public class SetupScreen {
 				}
 			}
 		});
-		comboBox.setBounds(295, 104, 74, 24);
-		setupWindow.getContentPane().add(comboBox);
+		weekSelection.setBounds(295, 104, 74, 24);
+		setupWindow.getContentPane().add(weekSelection);
 		
 		JLabel lblSelectTheLength = new JLabel("Select the length of the season:");
 		lblSelectTheLength.setBounds(28, 104, 245, 20);
@@ -201,16 +244,16 @@ public class SetupScreen {
 		btnHard.setBounds(485, 145, 117, 25);
 		setupWindow.getContentPane().add(btnHard);
 		
-		JLabel lblDraftStarting = new JLabel("Draft 4 starting athletes:");
-		lblDraftStarting.setBounds(71, 177, 212, 15);
-		setupWindow.getContentPane().add(lblDraftStarting);
+		JLabel lblDraftStartingAthletes = new JLabel("Draft 4 starting athletes:");
+		lblDraftStartingAthletes.setBounds(71, 177, 212, 15);
+		setupWindow.getContentPane().add(lblDraftStartingAthletes);
 		
-		textField = new JTextField();
-		textField.setBounds(285, 48, 212, 19);
-		setupWindow.getContentPane().add(textField);
-		textField.setColumns(10);
+		teamNameTextField = new JTextField();
+		teamNameTextField.setBounds(285, 48, 212, 19);
+		setupWindow.getContentPane().add(teamNameTextField);
+		teamNameTextField.setColumns(10);
 		//This DocumentListener comes from the RocketManager Example in Lab 6
-		textField.getDocument().addDocumentListener(new DocumentListener() {
+		teamNameTextField.getDocument().addDocumentListener(new DocumentListener() {
 			@Override
 			public void insertUpdate(DocumentEvent e) {
 				if(checkAllSelected()) {
@@ -242,6 +285,7 @@ public class SetupScreen {
 			}
 		});
 		
+		
 		JLabel lblBalance = new JLabel("Balance:  $"+ draftFunds);
 		lblBalance.setBounds(700, 308, 117, 16);
 		setupWindow.getContentPane().add(lblBalance);
@@ -268,10 +312,10 @@ public class SetupScreen {
 		draftAthletes.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		setupWindow.getContentPane().add(draftAthletes);
 		
-		JLabel lblholdCtrlWhile = new JLabel("(Hold Ctrl while selecting)");
-		lblholdCtrlWhile.setFont(new Font("Lucida Grande", Font.PLAIN, 12));
-		lblholdCtrlWhile.setBounds(78, 193, 195, 15);
-		setupWindow.getContentPane().add(lblholdCtrlWhile);
+		JLabel lblholdCtrlWhileSelecting = new JLabel("(Hold Ctrl while selecting)");
+		lblholdCtrlWhileSelecting.setFont(new Font("Lucida Grande", Font.PLAIN, 12));
+		lblholdCtrlWhileSelecting.setBounds(78, 193, 195, 15);
+		setupWindow.getContentPane().add(lblholdCtrlWhileSelecting);
 		
 		JLabel lblBudgetWarning = new JLabel("<html>Choose wisely and<br/>be aware of your budget!");
 		lblBudgetWarning.setHorizontalAlignment(SwingConstants.CENTER);

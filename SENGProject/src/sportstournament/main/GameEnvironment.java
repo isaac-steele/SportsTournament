@@ -3,11 +3,8 @@ package sportstournament.main;
 import java.util.ArrayList;
 import java.util.List;
 
-import sportstournament.gui.EndGameScreen;
+
 import sportstournament.gui.Gui;
-import sportstournament.gui.MarketScreen;
-import sportstournament.gui.StadiumScreen;
-import sportstournament.gui.TakeByeScreen;
 import sportstournament.ui.CommandLine;
 
 /**
