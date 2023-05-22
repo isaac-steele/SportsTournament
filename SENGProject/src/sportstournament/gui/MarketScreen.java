@@ -1,25 +1,35 @@
 package sportstournament.gui;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-
 import sportstournament.main.GameEnvironment;
 import sportstournament.main.Market;
-
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+ * the class for the market screen where the player can go to the buy item screen or the buy athlete screen
+ * extends the abstract screen class
+ * @author rsc103
+ */
 public class MarketScreen extends Screen{
 
+	/**
+	 * the classes local reference to the frame
+	 */
 	private JFrame marketWindow;
+	/**
+	 * the classes reference to the games market class
+	 */
 	private Market market;
 
-
 	/**
-	 * Create the application.
+	 * creates a MarketScreen instance
+	 * calls the parents constructor
+	 * initializes the class level variables
+	 * @param game
+	 * @param gui
 	 */
 	public MarketScreen(GameEnvironment game, Gui gui) {
 		super(game, gui);
@@ -32,6 +42,7 @@ public class MarketScreen extends Screen{
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		
 		marketWindow = new JFrame();
 		marketWindow.setTitle("Market");
 		marketWindow.setBounds(100, 100, 804, 463);

@@ -21,23 +21,72 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.JLabel;
 import java.awt.Font;
 
+/**
+ * class for the buy athlete screen where player can sell reserves and starting athletes
+ * extends the abstract screen class
+ * @author rsc103
+ *
+ */
 public class BuyAthleteScreen extends Screen{
 
+	
+	/**
+	 * the classes local reference to the frame
+	 */
 	private JFrame frame;
+	/**
+	 * the classes reference to the games market class
+	 */
 	private Market market;
+	/**
+	 * the available athletes for purchase
+	 */
 	private ArrayList<Athlete> freeAgents;
+	/**
+	 * the athletes on the active team
+	 */
 	private ArrayList<Athlete> activeTeam;
+	/**
+	 * the athletes not on the active team
+	 */
 	private ArrayList<Athlete> reserves;
+	/**
+	 * the Jlist for the available athletes
+	 */
 	private JList<Athlete> availableAthletesList;
+	/**
+	 * the JList for the reserves
+	 */
 	private JList<Athlete> reservesList;
+	/**
+	 * the JList for the active team
+	 */
 	private JList<Athlete> activeTeamList;
+	/**
+	 * button that performs the sell starter method/action
+	 */
 	private JButton sellStarterBtn;
+	/**
+	 * button that performs the sell reserve method/action
+	 */
 	private JButton sellReserveBtn;
+	/**
+	 * button that performs the buy reserve method/action
+	 */
 	private JButton buyReserveBtn;
+	/**
+	 * button that performs the buy starter method/action
+	 */
 	private JButton buyStarterBtn;
  
+	
 	/**
-	 * Create the application.
+	 * Creates a BuyAthleteScreen instance
+	 * calls the parents constructor method
+	 * Initializes required variables at class level, updating all the required information on the frame 
+	 * calls the screens initializes method
+	 * @param game
+	 * @param gui
 	 */
 	public BuyAthleteScreen(GameEnvironment game, Gui gui) {
 		super(game,gui);
@@ -49,12 +98,8 @@ public class BuyAthleteScreen extends Screen{
 		this.window = frame;
 	}
 	
-
 	/**
 	 * Initialize the contents of the frame.
-	 */
-	/**
-	 * 
 	 */
 	private void initialize() {
 	    frame = new JFrame();
@@ -128,6 +173,7 @@ public class BuyAthleteScreen extends Screen{
 	    reservesList.addListSelectionListener(selectionListener);
 
 	    sellStarterBtn.addActionListener(new ActionListener() {
+	        
 	        public void actionPerformed(ActionEvent e) {
 	            int sellIndex = activeTeamList.getSelectedIndex();
 	            int replaceIndex = reservesList.getSelectedIndex();
@@ -150,8 +196,6 @@ public class BuyAthleteScreen extends Screen{
 	            gui.OpenMarket();
 	        }
 	    });
-
-	   
 
 	    buyReserveBtn.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent e) {
@@ -198,45 +242,49 @@ public class BuyAthleteScreen extends Screen{
 	    });
 	    
 	    
-	    JLabel lblPleaseSelectA = new JLabel("Please select a starter to sub off ");
-	    lblPleaseSelectA.setFont(new Font("Dialog", Font.BOLD, 11));
-	    lblPleaseSelectA.setBounds(751, 205, 235, 15);
-	    frame.getContentPane().add(lblPleaseSelectA);
+	    JLabel selectStarterLbl = new JLabel("Please select a starter to sub off ");
+	    selectStarterLbl.setFont(new Font("Dialog", Font.BOLD, 11));
+	    selectStarterLbl.setBounds(751, 205, 235, 15);
+	    frame.getContentPane().add(selectStarterLbl);
 	    
-	    JLabel lblNewLabel = new JLabel("Please select a reserve to sub on");
-	    lblNewLabel.setFont(new Font("Dialog", Font.BOLD, 11));
-	    lblNewLabel.setBounds(751, 340, 219, 13);
-	    frame.getContentPane().add(lblNewLabel);
+	    JLabel selectReserveLbl = new JLabel("Please select a reserve to sub on");
+	    selectReserveLbl.setFont(new Font("Dialog", Font.BOLD, 11));
+	    selectReserveLbl.setBounds(751, 340, 219, 13);
+	    frame.getContentPane().add(selectReserveLbl);
 	    
-	    JLabel lblNewLabel_1 = new JLabel("Starting Lineup");
-	    lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 12));
-	    lblNewLabel_1.setBounds(350, 216, 127, 13);
-	    frame.getContentPane().add(lblNewLabel_1);
+	    JLabel startingLineupLbl = new JLabel("Starting Lineup");
+	    startingLineupLbl.setFont(new Font("Tahoma", Font.BOLD, 12));
+	    startingLineupLbl.setBounds(350, 216, 127, 13);
+	    frame.getContentPane().add(startingLineupLbl);
 	    
-	    JLabel lblNewLabel_1_1 = new JLabel("Reserves");
-	    lblNewLabel_1_1.setFont(new Font("Tahoma", Font.BOLD, 12));
-	    lblNewLabel_1_1.setBounds(378, 386, 127, 13);
-	    frame.getContentPane().add(lblNewLabel_1_1);
+	    JLabel reservesLbl = new JLabel("Reserves");
+	    reservesLbl.setFont(new Font("Tahoma", Font.BOLD, 12));
+	    reservesLbl.setBounds(378, 386, 127, 13);
+	    frame.getContentPane().add(reservesLbl);
 	    
-	    JLabel lblNewLabel_2 = new JLabel("Maximum of 5 reserves");
-	    lblNewLabel_2.setFont(new Font("Dialog", Font.BOLD, 11));
-	    lblNewLabel_2.setBounds(780, 106, 185, 15);
-	    frame.getContentPane().add(lblNewLabel_2);
+	    JLabel maxReservesLbl = new JLabel("Maximum of 5 reserves");
+	    maxReservesLbl.setFont(new Font("Dialog", Font.BOLD, 11));
+	    maxReservesLbl.setBounds(780, 106, 185, 15);
+	    frame.getContentPane().add(maxReservesLbl);
 	    
-	    JLabel lblNewLabel_3 = new JLabel("Current Funds:");
-	    lblNewLabel_3.setBounds(23, 7, 117, 35);
-	    frame.getContentPane().add(lblNewLabel_3);
+	    JLabel currentFundsLbl = new JLabel("Current Funds:");
+	    currentFundsLbl.setBounds(23, 7, 117, 35);
+	    frame.getContentPane().add(currentFundsLbl);
 	    
 	    JLabel fundsLabel = new JLabel();
 	    fundsLabel.setText("$"+game.getMoneyAmount());
 	    fundsLabel.setBounds(139, 20, 159, 35);
 	    frame.getContentPane().add(fundsLabel);
 	    
-	    JLabel lblNewLabel_4 = new JLabel("Available athletes");
-	    lblNewLabel_4.setBounds(336, 38, 157, 15);
-	    frame.getContentPane().add(lblNewLabel_4);
+	    JLabel availableAthletesLbl = new JLabel("Available athletes");
+	    availableAthletesLbl.setBounds(336, 38, 157, 15);
+	    frame.getContentPane().add(availableAthletesLbl);
 	}
 
+	/**
+	 * This method is used by the list selection listener 
+	 * Is called any time a change is made to one of the JLists, and checks the selections of the JLists and activates the buttons accordingly
+	 */
 	private void updateButton() {
 	    boolean buyStarterEnabled = activeTeamList.getSelectedIndex() != -1 && availableAthletesList.getSelectedIndex() != -1;
 	    boolean buyReserveEnabled = availableAthletesList.getSelectedIndex() != -1 && availableAthletesList.getSelectedIndex() <= 4;

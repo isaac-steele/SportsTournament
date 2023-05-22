@@ -1,13 +1,9 @@
 package sportstournament.gui;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
-
 import sportstournament.main.GameEnvironment;
 import sportstournament.main.Item;
 import sportstournament.main.Market;
-
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JList;
@@ -15,24 +11,45 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import java.awt.Font;
 
+/**
+ * class for the buy item screen where player can purchase and sell items
+ * extends the abstract screen class
+ * @author rsc103
+ *
+ */
 public class BuyItemScreen extends Screen{
 
+	/**
+	 * the classes local reference to the frame
+	 */
 	private JFrame frame;
+	/**
+	 * the classes local reference to the games market class
+	 */
 	private Market market;
+	/**
+	 * the items in the inventory
+	 */
 	private ArrayList<Item> inventory;
+	/**
+	 * the items available for purchase
+	 */
 	private ArrayList<Item> availableItems;
 
-
-
+	
 	/**
-	 * Create the application.
+	 * Creates a BuyItemScreen instance
+	 * calls the parents constructor method
+	 * Initializes required variables at class level, updating all the required information on the frame
+	 * calls the screens initializes method
+	 * @param game
+	 * @param gui
 	 */
 	public BuyItemScreen(GameEnvironment game, Gui gui) {
 		super(game, gui);
@@ -40,10 +57,7 @@ public class BuyItemScreen extends Screen{
 		availableItems = market.viewAvailableItems();
 		inventory = game.getClub().viewItems();
 		initialize();
-		this.window = frame;
-
-		
-		
+		this.window = frame;	
 	}
 
 	/**
@@ -65,20 +79,16 @@ public class BuyItemScreen extends Screen{
 		buyItemBtn.setBounds(64, 191, 117, 25);
 		frame.getContentPane().add(buyItemBtn);
 		
-
 		JButton sellItemBtn = new JButton("Sell item");
 		sellItemBtn.setEnabled(false);
 		sellItemBtn.setBounds(64, 357, 117, 25);
 		frame.getContentPane().add(sellItemBtn);
 		
-		
-		
-		JList availableItemsList = new JList(availableItemsModel);
+		JList availableItemsList = new JList<>(availableItemsModel);
 		availableItemsList.setBounds(48, 73, 615, 106);
 		frame.getContentPane().add(availableItemsList);
 		
-	
-		JList inventoryList = new JList(inventoryModel);
+		JList inventoryList = new JList<>(inventoryModel);
 		inventoryList.setFont(new Font("Dialog", Font.BOLD, 12));
 		inventoryList.setBounds(48, 239, 615, 106);
 		JScrollPane itemsScrollPane = new JScrollPane(inventoryList);
@@ -100,18 +110,18 @@ public class BuyItemScreen extends Screen{
 		lblCurrentFunds.setBounds(50, 30, 131, 15);
 		frame.getContentPane().add(lblCurrentFunds);
 		
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setText("$"+game.getMoneyAmount());
-		lblNewLabel.setBounds(174, 30, 70, 15);
-		frame.getContentPane().add(lblNewLabel);
+		JLabel fundsLabel = new JLabel("New label");
+		fundsLabel.setText("$"+game.getMoneyAmount());
+		fundsLabel.setBounds(174, 30, 70, 15);
+		frame.getContentPane().add(fundsLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("Available Items");
-		lblNewLabel_1.setBounds(305, 46, 131, 15);
-		frame.getContentPane().add(lblNewLabel_1);
+		JLabel availableItemsLabel = new JLabel("Available Items");
+		availableItemsLabel.setBounds(305, 46, 131, 15);
+		frame.getContentPane().add(availableItemsLabel);
 		
-		JLabel lblNewLabel_2 = new JLabel("Your items");
-		lblNewLabel_2.setBounds(324, 212, 94, 15);
-		frame.getContentPane().add(lblNewLabel_2);
+		JLabel yourItemsLabel = new JLabel("Your items");
+		yourItemsLabel.setBounds(324, 212, 94, 15);
+		frame.getContentPane().add(yourItemsLabel);
 		
 		availableItemsList.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent listSelectionEvent) {
@@ -126,6 +136,7 @@ public class BuyItemScreen extends Screen{
 				}
 			}
 		});
+		
 		inventoryList.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent listSelectionEvent) {
 				if (!listSelectionEvent.getValueIsAdjusting()) {

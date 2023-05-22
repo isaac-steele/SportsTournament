@@ -1,14 +1,10 @@
 package sportstournament.gui;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-
 import sportstournament.main.Athlete;
 import sportstournament.main.Club;
 import sportstournament.main.GameEnvironment;
-
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -21,17 +17,38 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.Font;
 
+/**
+ * the class for the team properties screen where player can view their active team and reserves, aswell as make substitutions and position swaps
+ * extends the abstract class screen
+ * @author rsc103
+ *
+ */
 public class TeamPropertiesScreen extends Screen {
 
-	private JFrame teamWindow;
-	private Club club;
-	private ArrayList<Athlete> activeTeam;
-	private ArrayList<Athlete> reserves;
-	private JList<Athlete> activeTeamList;
-    private JList<Athlete> reservesList;
-
 	/**
-	 * Create the application.
+	 * the classes local reference to the frame
+	 */
+	private JFrame teamWindow;
+	/**
+	 * the classes local reference to the club class
+	 */
+	private Club club;
+	/**
+	 * the active team list
+	 */
+	private ArrayList<Athlete> activeTeam;
+	/**
+	 * the reserves list
+	 */
+	private ArrayList<Athlete> reserves;
+
+    
+	/**
+	 * creates an instance of the TeamPropertiesScreen class
+	 * calls the parent classes constructor
+	 * initializes the required class level variables
+	 * @param game
+	 * @param gui
 	 */
 	public TeamPropertiesScreen(GameEnvironment game, Gui gui) {
 		super(game,gui);
@@ -88,7 +105,7 @@ public class TeamPropertiesScreen extends Screen {
 		
 		DefaultListModel<Athlete> activeTeamModel = new DefaultListModel<>();
 		activeTeamModel.addAll(activeTeam);
-		activeTeamList = new JList<>(activeTeamModel);
+		JList activeTeamList = new JList<>(activeTeamModel);
 		activeTeamList.setFont(new Font("Dialog", Font.BOLD, 11));
 		activeTeamList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		activeTeamList.setBounds(94, 79, 644, 84);
@@ -96,7 +113,7 @@ public class TeamPropertiesScreen extends Screen {
 		
 		DefaultListModel<Athlete> reservesModel = new DefaultListModel<>();
 		reservesModel.addAll(reserves);
-		reservesList = new JList<>(reservesModel);
+		JList reservesList = new JList<>(reservesModel);
 		reservesList.setFont(new Font("Dialog", Font.BOLD, 11));
 		reservesList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		reservesList.setBounds(23, 255, 715, 100);
@@ -164,31 +181,28 @@ public class TeamPropertiesScreen extends Screen {
 		});
 		
 		
-		
-		
-		
 		btnSwapAthletes.setBounds(590, 193, 146, 52);
 		teamWindow.getContentPane().add(btnSwapAthletes);
 		
-		JLabel lblNewLabel = new JLabel("Defender");
-		lblNewLabel.setFont(new Font("Dialog", Font.BOLD, 11));
-		lblNewLabel.setBounds(22, 79, 70, 15);
-		teamWindow.getContentPane().add(lblNewLabel);
+		JLabel defenderLbl = new JLabel("Defender");
+		defenderLbl.setFont(new Font("Dialog", Font.BOLD, 11));
+		defenderLbl.setBounds(22, 79, 70, 15);
+		teamWindow.getContentPane().add(defenderLbl);
 		
-		JLabel lblNewLabel_1 = new JLabel("Defender");
-		lblNewLabel_1.setFont(new Font("Dialog", Font.BOLD, 11));
-		lblNewLabel_1.setBounds(23, 95, 70, 15);
-		teamWindow.getContentPane().add(lblNewLabel_1);
+		JLabel defenderLbl2 = new JLabel("Defender");
+		defenderLbl2.setFont(new Font("Dialog", Font.BOLD, 11));
+		defenderLbl2.setBounds(23, 95, 70, 15);
+		teamWindow.getContentPane().add(defenderLbl2);
 		
-		JLabel lblNewLabel_2 = new JLabel("Attacker");
-		lblNewLabel_2.setFont(new Font("Dialog", Font.BOLD, 11));
-		lblNewLabel_2.setBounds(23, 110, 70, 15);
-		teamWindow.getContentPane().add(lblNewLabel_2);
+		JLabel attackerLbl1 = new JLabel("Attacker");
+		attackerLbl1.setFont(new Font("Dialog", Font.BOLD, 11));
+		attackerLbl1.setBounds(23, 110, 70, 15);
+		teamWindow.getContentPane().add(attackerLbl1);
 		
-		JLabel lblAttacker = new JLabel("Attacker");
-		lblAttacker.setFont(new Font("Dialog", Font.BOLD, 11));
-		lblAttacker.setBounds(23, 126, 70, 15);
-		teamWindow.getContentPane().add(lblAttacker);
+		JLabel attackerLbl2 = new JLabel("Attacker");
+		attackerLbl2.setFont(new Font("Dialog", Font.BOLD, 11));
+		attackerLbl2.setBounds(23, 126, 70, 15);
+		teamWindow.getContentPane().add(attackerLbl2);
 		
 		
 	}

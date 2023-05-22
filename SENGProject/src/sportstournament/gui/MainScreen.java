@@ -1,27 +1,33 @@
 package sportstournament.gui;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JButton;
-import javax.swing.JTextPane;
-
 import sportstournament.main.Athlete;
 import sportstournament.main.GameEnvironment;
-
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+ * the class for the main screen where player can choose to go the club, market, stadium or take a bye
+ * extends the abstract class screen
+ * @author rsc103
+ *
+ */
 public class MainScreen extends Screen {
 	
-	
+	/**
+	 * the classes local reference to the frame
+	 */
 	private JFrame mainWindow;
 
-
+	
 	/**
-	 * Create the window.
+	 * creates a MainScreen instance and calls the parent classes constructor
+	 * calls the screens initialize method
+	 * @param game
+	 * @param gui
 	 */
 	public MainScreen(GameEnvironment game, Gui gui) {
 		super(game, gui);
@@ -29,10 +35,9 @@ public class MainScreen extends Screen {
 		super.window = mainWindow;
 	}
 		
-
-
 	/**
 	 * Initialize the contents of the frame.
+	 * 
 	 */
 	private void initialize() {
 		mainWindow = new JFrame();
