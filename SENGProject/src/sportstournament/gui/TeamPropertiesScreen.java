@@ -20,7 +20,7 @@ import java.awt.Font;
 /**
  * the class for the team properties screen where player can view their active team and reserves, aswell as make substitutions and position swaps
  * extends the abstract class screen
- * @author rsc103
+ * @author Isaac Steele and Reuben Schoonbee
  *
  */
 public class TeamPropertiesScreen extends Screen {
@@ -47,8 +47,8 @@ public class TeamPropertiesScreen extends Screen {
 	 * creates an instance of the TeamPropertiesScreen class
 	 * calls the parent classes constructor
 	 * initializes the required class level variables
-	 * @param game
-	 * @param gui
+	 * @param game The instance of GameEnvironment that keeps track of the game
+	 * @param gui The instance of Gui that can open and close windows
 	 */
 	public TeamPropertiesScreen(GameEnvironment game, Gui gui) {
 		super(game,gui);
@@ -105,7 +105,7 @@ public class TeamPropertiesScreen extends Screen {
 		
 		DefaultListModel<Athlete> activeTeamModel = new DefaultListModel<>();
 		activeTeamModel.addAll(activeTeam);
-		JList activeTeamList = new JList<>(activeTeamModel);
+		JList<Athlete> activeTeamList = new JList<>(activeTeamModel);
 		activeTeamList.setFont(new Font("Dialog", Font.BOLD, 11));
 		activeTeamList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		activeTeamList.setBounds(94, 79, 644, 84);
@@ -113,7 +113,7 @@ public class TeamPropertiesScreen extends Screen {
 		
 		DefaultListModel<Athlete> reservesModel = new DefaultListModel<>();
 		reservesModel.addAll(reserves);
-		JList reservesList = new JList<>(reservesModel);
+		JList<Athlete> reservesList = new JList<>(reservesModel);
 		reservesList.setFont(new Font("Dialog", Font.BOLD, 11));
 		reservesList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		reservesList.setBounds(23, 255, 715, 100);
