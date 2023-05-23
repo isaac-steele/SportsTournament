@@ -49,6 +49,8 @@ public class StadiumScreen extends Screen {
 	}
 	/**
 	 * The message displayed at the completion of a match
+	 * 
+	 * @param result The result of the match
 	 */
 	public void displayMessage(String result) {
 		String message = "The result of the match is: " + result + "\nThe updated status of your team is:\n\n" + game.getClub() + "\n\nYour total points are now: " + game.getPoints() + "\nYour total money is now: " + game.getMoneyAmount();

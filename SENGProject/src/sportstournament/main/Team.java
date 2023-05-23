@@ -65,7 +65,7 @@ public class Team {
 	
 	/**
 	 * Sets the team name
-	 * @param The name of the team
+	 * @param name The name of the team
 	 */
 	public void setName(String name) {
 		this.name = name;

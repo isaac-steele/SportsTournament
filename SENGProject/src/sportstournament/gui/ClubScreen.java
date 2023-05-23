@@ -33,8 +33,8 @@ public class ClubScreen extends Screen {
 	/**
 	 * creates the club screen and initializes the required class level variables
 	 * calls the parents constructor
-	 * @param game
-	 * @param gui
+	 * @param game The instance of GameEnvironment that keeps track of the game
+	 * @param gui The instance of Gui that can open and close windows
 	 */
 	public ClubScreen(GameEnvironment game, Gui gui) {
 		super(game, gui);

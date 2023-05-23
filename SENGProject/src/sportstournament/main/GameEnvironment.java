@@ -238,7 +238,7 @@ public class GameEnvironment {
 	public Market getMarket() {
 		return market;
 	}
-	/*
+	/**
 	 * Gets the Stadium
 	 * 
 	 * @return the Stadium
@@ -313,7 +313,7 @@ public class GameEnvironment {
 	/**
 	 * Updates the amount of money 
 	 * 
-	 * @param The amount of money gained.
+	 * @param gains The amount of money gained.
 	 */
 	public void updateMoney(int gains) {
 		this.moneyAmount += gains;
@@ -321,7 +321,7 @@ public class GameEnvironment {
 	/**
 	 * Decreases the total money
 	 * 
-	 * @param The amount of money to decrease the total by.
+	 * @param withdraw The amount of money to decrease the total by.
 	 */
 	public void decreaseMoney(int withdraw) {
 		if (this.moneyAmount - withdraw < 0) {

@@ -20,7 +20,7 @@ import sportstournament.main.Team;
 /**
  * command line interface for the game environment
  * can take input from console and perform actions
- * @author rsc103
+ * @author Isaac Steele and Reuben Schoonbee
  *
  */
 public class CommandLine {
@@ -44,7 +44,7 @@ public class CommandLine {
 	}
 	/**
 	 * prompts the users name and athlete selection and returns the information to the game environment
-	 * @param game
+	 * @param game The instance of GameEnvironment used to keep track of the game
 	 */
 	public void SetUp(GameEnvironment game) {
 		
@@ -56,6 +56,7 @@ public class CommandLine {
 	
 	}
 	/**
+	 * Returns the number of weeks the game shall be played for
 	 * 
 	 * @return the number of weeks the game shall be played for
 	 */
@@ -79,7 +80,7 @@ public class CommandLine {
 	
 	/**
 	 * prompts player to enter a name for the team and checks it is valid
-	 * @return name
+	 * @return The team name
 	 */
 	public String getName() {
 		System.out.println("Enter team name (must be one word)");
@@ -100,8 +101,8 @@ public class CommandLine {
 	
 	/**
 	 * prompts player to select athletes and returns their selected team
-	 * @param game
-	 * @return selected athletes
+	 * @param game The instance of GameEnvironment used to keep track of the game
+	 * @return the drafted athletes
 	 */
 	public ArrayList<Athlete> draftAthletes(GameEnvironment game) {
 		
@@ -124,7 +125,7 @@ public class CommandLine {
 	
 	/**
 	 * takes the list of available players to draft and displays the number to select them and their stats
-	 * @param draft
+	 * @param draft the list of available athletes to draft
 	 */
 	public void printDraftOptions(ArrayList<Athlete> draft) {
 		
@@ -138,7 +139,6 @@ public class CommandLine {
 	/**
 	 * starts the main game run loop where the user selects the action they want to perform
 	 * terminates when no more weeks are remaining
-	 * @param club
 	 */
 	public void start() {
 		
@@ -165,7 +165,7 @@ public class CommandLine {
 	
 	/**
 	 * handles user selection from the main screen
-	 * @param selection
+	 * @param selection the chosen option
 	 */
 	public void handleMainOption(int selection) {
 		
@@ -195,8 +195,8 @@ public class CommandLine {
 	 * a helper method that takes an integer which represents the number of options the user can select
 	 * it then prompts the user for input and checks if the input is valid
 	 * then returns the integer
-	 * @param numOptions
-	 * @return
+	 * @param numOptions the number of options
+	 * @return an integer representing the selected option
 	 */
 	public int getIntegerInput(int numOptions) {
 		
@@ -223,7 +223,7 @@ public class CommandLine {
 	/**
 	 * helper method that keeps prompting user for a specific input until it is received
 	 * used for situations where there is only one options available
-	 * @param optionNum
+	 * @param optionNum the number of options
 	 */
 	public void singleIntegerInput(int optionNum) {
 		
@@ -262,7 +262,7 @@ public class CommandLine {
 	
 	/**
 	 * prints the options for the player to be subbed off
-	 * @param club
+	 * @param club The user's Club
 	 */
 	public void printSubOffOptions(Club club) {
 		
@@ -279,7 +279,7 @@ public class CommandLine {
 		
 	/**
 	 * prints the options for the player to be subbed on
-	 * @param club
+	 * @param club The user's Club
 	 */
 	public void printSubOnOptions(Club club) {
 		System.out.println("Select the player you wish to put on your active team");
@@ -293,7 +293,7 @@ public class CommandLine {
 	
 	/**
 	 * prints the items in the inventory to be used plus an option to return to club
-	 * @param club
+	 * @param club The user's Club
 	 */
 	public void printInventoryOptions(Club club) {
 		System.out.println("Please select the item you wish to use");
@@ -308,7 +308,7 @@ public class CommandLine {
 	/**
 	 * displays all the athletes in the club including the active team and the reserves
 	 * used so user can select an athlete to use an item on
-	 * @param club
+	 * @param club The user's Club
 	 */
 	public void printWholeTeam(Club club) {
 		
@@ -357,7 +357,9 @@ public class CommandLine {
 			}
 		}
 	}
-	
+	/**
+	 * Handles the options in market
+	 */
 	public void MarketOptions(){
 		
 		printMarketOptions();
@@ -396,7 +398,9 @@ public class CommandLine {
 		
 		
 	}
-	
+	/**
+	 * prints the market options
+	 */
 	public void printMarketOptions() {
 		
 		System.out.println("Current balance: $"+game.getMoneyAmount());
@@ -407,6 +411,9 @@ public class CommandLine {
 		System.out.println("5: Return to main screen");
 	}
 	
+	/**
+	 * Returns to the main market screen
+	 */
 	public void returnToMarket() {
 		
 	}

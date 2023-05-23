@@ -17,7 +17,8 @@ public class Match {
 	 * Takes your team and an opposition team and goes through each team comparing each athletes stats. 
 	 * The athlete with the higher stat gains points for their team.
 	 * The team with the most points wins
-	 * 
+	 * @param me The user's club
+	 * @param opponent The opposition team
 	 * @return The result of the match.
 	 */
 	public static String playMatch(Club me, Team opponent) {

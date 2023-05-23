@@ -10,10 +10,16 @@ package sportstournament.main;
 public enum Item implements Purchasable {
 	
 	/**
-	 * The three types of items.
+	 * A protein shake that boosts the athlete's defence.
 	 */
 	PROTEIN_SHAKE(3, 5, "Defence"), 
+	/**
+	 * An energy drink that boosts the athlete's stamina
+	 */
 	ENERGY_DRINK(5,10, "Stamina"),
+	/**
+	 * A knee sleeve that boosts the athlete's offence
+	 */
 	KNEE_SLEEVE(4,5, "Offence");
 	
 	/**

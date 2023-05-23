@@ -27,6 +27,7 @@ public class Market {
 	 * Default constructor for Market
 	 * Adds 3 items to the market
 	 * Creates a list of random athletes to be available for purchase.
+	 * @param game The instance of GameEnvironment used to keep track of the game
 	 */
 	public Market(GameEnvironment game) {
 		this.game = game;
@@ -68,7 +69,7 @@ public class Market {
 	/**
 	 * Adds a new Athlete to be available for purchase in the Market.
 	 * 
-	 * @param The Athlete to be added.
+	 * @param athlete The Athlete to be added.
 	 */
 	public void addFreeAgent(Athlete athlete) {
 		freeAgents.add(athlete);
@@ -76,7 +77,7 @@ public class Market {
 	/**
 	 * Sets the list of available Athletes in the market.
 	 * 
-	 * @param a list of Athletes to be made available for purchase.
+	 * @param freeAgents a list of Athletes to be made available for purchase.
 	 */
 	public void setFreeAgents(ArrayList<Athlete> freeAgents) {
 		this.freeAgents = freeAgents;

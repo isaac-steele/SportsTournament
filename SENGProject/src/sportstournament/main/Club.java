@@ -180,8 +180,8 @@ public class Club extends Team{
 	/**
 	 * takes two indices of athletes in active team and swaps their position in the list
 	 * this allows the user to change the athletes positions
-	 * @param index1
-	 * @param index2
+	 * @param index1 The index of the first athlete
+	 * @param index2 The index of the second athlete
 	 */
 	public void swapPositions(int index1, int index2) {
 		Collections.swap(activeTeam, index1, index2);

@@ -121,7 +121,7 @@ public class RandomEvent {
 	/**
 	 * Sets the number used to determine if a random athlete quits.
 	 * 
-	 * @param The number used to determine if a random athlete quits.
+	 * @param num The number used to determine if a random athlete quits.
 	 */
 	public void setQuitNumber(int num) {
 		quitNumber = num;

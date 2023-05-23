@@ -26,8 +26,8 @@ public class MainScreen extends Screen {
 	/**
 	 * creates a MainScreen instance and calls the parent classes constructor
 	 * calls the screens initialize method
-	 * @param game
-	 * @param gui
+	 * @param game The instance of GameEnvironment that keeps track of the game
+	 * @param gui The instance of Gui that opens and closes windows
 	 */
 	public MainScreen(GameEnvironment game, Gui gui) {
 		super(game, gui);

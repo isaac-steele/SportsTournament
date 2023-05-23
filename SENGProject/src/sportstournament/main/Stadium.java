@@ -1,13 +1,12 @@
 package sportstournament.main;
 
+import java.util.ArrayList;
+
 /**
  * This class implements a Stadium where the player can see 3 matches and select which one they want to play
  * 
  * @author Isaac Steele and Reuben Schoonbee
  */
-
-import java.util.ArrayList;
-
 public class Stadium {
 	/**
 	 * A list of possible matches to play
