@@ -1,3 +1,5 @@
+SportsTournament
+----------------
 To build source code, import it into Eclipse, and run the program:
 ------------------------------------------------------------------
 1. Create a new Java project into the workspace (File->New->Java Project)
