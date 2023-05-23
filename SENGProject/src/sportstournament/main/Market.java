@@ -93,9 +93,13 @@ public class Market {
 	 */
 	public String buyReserve(Athlete newAthlete, Club club) {
 		try {
-			game.decreaseMoney(newAthlete.getPrice());
-			club.addNewAthlete(newAthlete);
-			freeAgents.remove(newAthlete);
+			if (club.viewReserves().size() < 5) {
+				game.decreaseMoney(newAthlete.getPrice());
+				club.addNewAthlete(newAthlete);
+				freeAgents.remove(newAthlete);
+			} else {
+				return "Maximum size of reserves is 5";
+			}
 		
 			if (freeAgents.size() == 2) {
 				freeAgents.add(Athlete.randomAthleteGenerator());
@@ -120,11 +124,15 @@ public class Market {
 	 */
 	public String buyStarter(Athlete newAthlete, Athlete subAthlete, Club club) {
 		try {
+			if (club.viewReserves().size() < 5) {
+				game.decreaseMoney(newAthlete.getPrice());
+				club.addNewAthlete(newAthlete);
+				club.subAthlete(newAthlete, subAthlete);
+				freeAgents.remove(newAthlete);
+			} else {
+				return "Maximum size of reserves is 5";
+			}
 			
-			game.decreaseMoney(newAthlete.getPrice());
-			club.addNewAthlete(newAthlete);
-			club.subAthlete(newAthlete, subAthlete);
-			freeAgents.remove(newAthlete);
 			
 			if (freeAgents.size() == 2) {
 				freeAgents.add(Athlete.randomAthleteGenerator());
