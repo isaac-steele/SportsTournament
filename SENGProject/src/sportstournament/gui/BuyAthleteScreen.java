@@ -221,7 +221,7 @@ public class BuyAthleteScreen extends Screen{
 	        public void actionPerformed(ActionEvent e) {
 	            int buyIndex = availableAthletesList.getSelectedIndex();
 	            int subIndex = activeTeamList.getSelectedIndex();
-	            String message =  "Athlete: "+freeAgents.get(buyIndex).getName()+" purchased and subbed on for starter: "+activeTeam.get(subIndex).getName()+", ";
+	            String message =  "Athlete: "+freeAgents.get(buyIndex).getName()+" purchased and subbed on for starter: "+activeTeam.get(subIndex).getName();
 	            String result = market.buyStarter(freeAgents.get(buyIndex),activeTeam.get(subIndex), game.getClub());
 	            if (result== "You cannot afford this!") {
 					JOptionPane.showMessageDialog(frame, "You cannot afford this athlete", "Insufficient funds", JOptionPane.ERROR_MESSAGE);
