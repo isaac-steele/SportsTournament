@@ -102,7 +102,6 @@ class MarketTest {
 		Market market = new Market(game);
 		Club club = new Club("Fellas", myTeam);
 		ArrayList<Athlete> reserves = club.viewReserves();
-		ArrayList<Athlete> freeAgents = market.getFreeAgents();
 		Athlete reserve = new Athlete("Bob", 57, 82, 6);
 		reserves.add(reserve);
 		market.sellReserve(reserve, club);
@@ -123,7 +122,6 @@ class MarketTest {
 		Club club = new Club("Fellas", myTeam);
 		ArrayList<Athlete> reserves = club.viewReserves();
 		ArrayList<Athlete> starters = club.viewActiveTeam();
-		ArrayList<Athlete> freeAgents = market.getFreeAgents();
 		Athlete reserve = new Athlete("Bob", 57, 82, 6);
 		Athlete starter = starters.get(0);
 		reserves.add(reserve);
