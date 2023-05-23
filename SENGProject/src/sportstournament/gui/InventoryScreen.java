@@ -21,7 +21,7 @@ import java.awt.Font;
 /**
  * class for the inventory screen where player can view their items and use them on their athletes
  * extends the abstract class screen
- * @author rsc103
+ * @author Isaac Steele and Reuben Schoonbee
  *
  */
 public class InventoryScreen extends Screen {
@@ -52,8 +52,8 @@ public class InventoryScreen extends Screen {
 	 * creates an InventoryScreen instance
 	 * calls the parents constructor
 	 * initializes class level variables and updates required information for the frame
-	 * @param game
-	 * @param gui
+	 * @param game The instance of GameEnvironment that keeps track of the game
+	 * @param gui The instance of Gui that opens and closes windows
 	 */
 	public InventoryScreen(GameEnvironment game, Gui gui) {
 		super(game, gui);
@@ -94,7 +94,7 @@ public class InventoryScreen extends Screen {
 		
 		DefaultListModel<Item> inventoryModel = new DefaultListModel<Item>();
 		inventoryModel.addAll(inventory);
-		JList inventoryList = new JList(inventoryModel);
+		JList<Item> inventoryList = new JList<Item>(inventoryModel);
 		inventoryList.setBounds(51, 64, 521, 119);
 		JScrollPane inventoryScrollPane = new JScrollPane(inventoryList);
 		inventoryScrollPane.setSize(524, 122);
@@ -109,7 +109,7 @@ public class InventoryScreen extends Screen {
 		DefaultListModel<Athlete> teamModel = new DefaultListModel<Athlete>();
 		teamModel.addAll(activeTeam);
 		teamModel.addAll(reserves);
-		JList teamList = new JList(teamModel);
+		JList<Athlete> teamList = new JList<Athlete>(teamModel);
 		teamList.setFont(new Font("Dialog", Font.BOLD, 11));
 		teamList.setBounds(39, 233, 743, 246);
 		inventoryWindow.getContentPane().add(teamList);

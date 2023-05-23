@@ -20,7 +20,7 @@ import java.awt.Font;
 /**
  * class for the buy item screen where player can purchase and sell items
  * extends the abstract screen class
- * @author rsc103
+ * @author Isaac Steele and Reuben Schoonbee
  *
  */
 public class BuyItemScreen extends Screen{
@@ -48,8 +48,8 @@ public class BuyItemScreen extends Screen{
 	 * calls the parents constructor method
 	 * Initializes required variables at class level, updating all the required information on the frame
 	 * calls the screens initializes method
-	 * @param game
-	 * @param gui
+	 * @param game The instance of GameEnvironment that keeps track of the game
+	 * @param gui The instance of Gui that can open and close windows
 	 */
 	public BuyItemScreen(GameEnvironment game, Gui gui) {
 		super(game, gui);
@@ -84,11 +84,11 @@ public class BuyItemScreen extends Screen{
 		sellItemBtn.setBounds(64, 357, 117, 25);
 		frame.getContentPane().add(sellItemBtn);
 		
-		JList availableItemsList = new JList<>(availableItemsModel);
+		JList<Item> availableItemsList = new JList<>(availableItemsModel);
 		availableItemsList.setBounds(48, 73, 615, 106);
 		frame.getContentPane().add(availableItemsList);
 		
-		JList inventoryList = new JList<>(inventoryModel);
+		JList<Item> inventoryList = new JList<>(inventoryModel);
 		inventoryList.setFont(new Font("Dialog", Font.BOLD, 12));
 		inventoryList.setBounds(48, 239, 615, 106);
 		JScrollPane itemsScrollPane = new JScrollPane(inventoryList);

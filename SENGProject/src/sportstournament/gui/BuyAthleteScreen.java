@@ -1,6 +1,5 @@
 package sportstournament.gui;
 
-import java.awt.EventQueue;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
@@ -24,7 +23,7 @@ import java.awt.Font;
 /**
  * class for the buy athlete screen where player can sell reserves and starting athletes
  * extends the abstract screen class
- * @author rsc103
+ * @author Isaac Steele and Reuben Schoonbee
  *
  */
 public class BuyAthleteScreen extends Screen{
@@ -85,8 +84,8 @@ public class BuyAthleteScreen extends Screen{
 	 * calls the parents constructor method
 	 * Initializes required variables at class level, updating all the required information on the frame 
 	 * calls the screens initializes method
-	 * @param game
-	 * @param gui
+	 * @param game the instance of GamEnvironment that keeps track of the game
+	 * @param gui the instance of Gui that can open and close windows
 	 */
 	public BuyAthleteScreen(GameEnvironment game, Gui gui) {
 		super(game,gui);
