@@ -132,19 +132,19 @@ public class TeamPropertiesScreen extends Screen {
 		        public void valueChanged(ListSelectionEvent event) {
 		        	int[] selections = activeTeamList.getSelectedIndices();
 		        	if (selections.length == 2) {
-			        	System.out.println("2");
+			        	
 
 		        		btnSwapPositions.setEnabled(true);
 		        		btnSwapAthletes.setEnabled(false);
 		        	}
 		        	else if (selections.length == 1 && reservesList.getSelectedIndex()!= -1) {
-			        	System.out.println("1");
+			        	
 
 		            	btnSwapAthletes.setEnabled(true);
 		            	btnSwapPositions.setEnabled(false);
 		            }
 		            else {
-			        	System.out.println("else");
+			      
 
 		            	btnSwapAthletes.setEnabled(false);
 		            	btnSwapPositions.setEnabled(false);
